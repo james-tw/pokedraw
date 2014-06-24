@@ -1,0 +1,140 @@
+@mixin box-round {
+	border-radius: 5px;
+}
+
+@mixin color-class($color-name, $color) {
+	.#{$color-name} {
+		background: $color;
+	}
+}
+
+$rainbow-color-names: red, orange, yellow, yellow-green, green, light-blue, blue, purple;
+$rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #992FE0;
+
+* {
+	box-sizing: border-box;
+}
+body {
+	background: #555;
+	font-family: Helvetica,Arial,sans-serif;
+}
+canvas {
+	background: #fff;
+	display:block;
+	margin: 50px auto 10px;
+	@include box-round;
+	box-shadow: 0 2px 0 0 #222;
+	/*cursor*/
+}
+@mixin shared-color-properties {
+	height: 50px;
+	width: 50px;
+	border-radius: 50px;
+	cursor: pointer;
+	border: 0;
+	box-shadow: 0 2px 0 0 #222;
+}
+.controls {
+	margin: 0 auto;
+	width: 600px;
+	@include box-round;
+	ul {
+		list-style: none;
+		float:left;
+		padding: 10px 0 10px;
+		width: 100%;
+		text-align: center;
+		li {
+			display: inline-block;
+			margin: 0 5px 5px;
+			position: relative;
+			@include shared-color-properties;
+			&.selected {
+				border: 2px solid #ccc;
+				width: 48px;
+				height: 48px;
+				top: 2px;
+				box-shadow: none;
+			}
+		}
+	}
+}
+
+/*for each item in $rainbow-color-names, create a class with a background set to the corresponding color in $rainbow-colors.*/
+@for $i from 1 through length($rainbow-colors) {
+	@include color-class(nth($rainbow-color-names, $i), nth($rainbow-colors, $i));
+}
+.black {
+	background:#000;
+}
+
+#colorSelect {
+	background: #fff;
+	@include box-round;
+	clear:both;
+	margin: 20px auto 0;
+	padding: 10px;
+	width: 360px;
+	position: relative;
+	&:after {
+		bottom: 100%;
+		left: 50%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-color: rgba(255, 255, 255, 0);
+		border-bottom-color: #fff;
+		border-width: 12px;
+		margin-left: -10px;
+	}
+}
+
+#newColor {
+	@include shared-color-properties;
+	background: #369;
+	width: 80px;
+	height: 80px;
+	border-radius: 50px;
+	box-shadow: 0 3px 0 0 #222;
+	float:left;
+	border: none;
+	margin: 10px 20px 20px 10px;
+}
+
+.sliders {
+	p {
+		margin: 8px 0;
+		vertical-align: middle;
+	}
+	label {
+		display: inline-block;
+		margin: 0 10px 0 10px;
+		width: 55px;
+		font-size: 14px;
+	}
+	input {
+		position: relative;
+		top: 2px;
+	}
+}
+
+#addNewColor {
+	background: #946D9B;
+	box-shadow: 0 4px 0 0 #5B575C;
+	color: #fff;
+	outline: none;
+	text-shadow: 0 1px #5B575C;
+	display: block;
+	font-size: 16px;
+	line-height: 40px;
+	border:none;
+	border-top: 1px solid #5B575C;
+	border-radius: 0 0 5px 5px;
+	clear:both;
+	margin: 12px -10px -7px;
+	padding: 5px 10px;
+	width: 360px;
+}

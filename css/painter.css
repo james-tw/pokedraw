@@ -1,0 +1,159 @@
+/* line 14, painter.scss */
+* {
+  box-sizing: border-box; }
+
+/* line 17, painter.scss */
+body {
+  background: #555;
+  font-family: Helvetica,Arial,sans-serif; }
+
+/* line 21, painter.scss */
+canvas {
+  background: #fff;
+  display: block;
+  margin: 50px auto 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 0 0 #222;
+  /*cursor*/ }
+
+/* line 37, painter.scss */
+.controls {
+  margin: 0 auto;
+  width: 600px;
+  border-radius: 5px; }
+  /* line 41, painter.scss */
+  .controls ul {
+    list-style: none;
+    float: left;
+    padding: 10px 0 10px;
+    width: 100%;
+    text-align: center; }
+    /* line 47, painter.scss */
+    .controls ul li {
+      display: inline-block;
+      margin: 0 5px 5px;
+      position: relative;
+      height: 50px;
+      width: 50px;
+      border-radius: 50px;
+      cursor: pointer;
+      border: 0;
+      box-shadow: 0 2px 0 0 #222; }
+      /* line 52, painter.scss */
+      .controls ul li.selected {
+        border: 2px solid #ccc;
+        width: 48px;
+        height: 48px;
+        top: 2px;
+        box-shadow: none; }
+
+/*for each item in $rainbow-color-names, create a class with a background set to the corresponding color in $rainbow-colors.*/
+/* line 6, painter.scss */
+.red {
+  background: #f42a35; }
+
+/* line 6, painter.scss */
+.orange {
+  background: #ffa200; }
+
+/* line 6, painter.scss */
+.yellow {
+  background: #ffd500; }
+
+/* line 6, painter.scss */
+.yellow-green {
+  background: #a8bf12; }
+
+/* line 6, painter.scss */
+.green {
+  background: #2eb52f; }
+
+/* line 6, painter.scss */
+.light-blue {
+  background: #00aab5; }
+
+/* line 6, painter.scss */
+.blue {
+  background: #325bc5; }
+
+/* line 6, painter.scss */
+.purple {
+  background: #992fe0; }
+
+/* line 67, painter.scss */
+.black {
+  background: #000; }
+
+/* line 71, painter.scss */
+#colorSelect {
+  background: #fff;
+  border-radius: 5px;
+  clear: both;
+  margin: 20px auto 0;
+  padding: 10px;
+  width: 360px;
+  position: relative; }
+  /* line 79, painter.scss */
+  #colorSelect:after {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 12px;
+    margin-left: -10px; }
+
+/* line 95, painter.scss */
+#newColor {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  box-shadow: 0 2px 0 0 #222;
+  background: #369;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  box-shadow: 0 3px 0 0 #222;
+  float: left;
+  border: none;
+  margin: 10px 20px 20px 10px; }
+
+/* line 108, painter.scss */
+.sliders p {
+  margin: 8px 0;
+  vertical-align: middle; }
+/* line 112, painter.scss */
+.sliders label {
+  display: inline-block;
+  margin: 0 10px 0 10px;
+  width: 55px;
+  font-size: 14px; }
+/* line 118, painter.scss */
+.sliders input {
+  position: relative;
+  top: 2px; }
+
+/* line 124, painter.scss */
+#addNewColor {
+  background: #946D9B;
+  box-shadow: 0 4px 0 0 #5B575C;
+  color: #fff;
+  outline: none;
+  text-shadow: 0 1px #5B575C;
+  display: block;
+  font-size: 16px;
+  line-height: 40px;
+  border: none;
+  border-top: 1px solid #5B575C;
+  border-radius: 0 0 5px 5px;
+  clear: both;
+  margin: 12px -10px -7px;
+  padding: 5px 10px;
+  width: 360px; }
