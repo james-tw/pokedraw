@@ -44,7 +44,7 @@ body {
 header{
 	height: 160px;
 }
-
+/************ LEFT COLUMN **************************/
 #imageContainer {
 	@extend #canvas;
 	text-align: center;
@@ -64,7 +64,18 @@ header{
 		padding: 20px;
 	}
 }
+/************ CENTER COLUMN **************************/
+.center-column {
+	padding-top: 30px;
+	text-align:center;
+}
+#timer {
+	color: #fff;
+	font-family: Helvetica,Arial,sans-serif;
+	font-size: 48px;
+}
 
+/************ RIGHT COLUMN **************************/
 #canvas {
 	max-width: 100%;
 	width:100%;

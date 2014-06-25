@@ -21,6 +21,7 @@ body {
 header {
   height: 160px; }
 
+/************ LEFT COLUMN **************************/
 /* line 48, painter.scss */
 #imageContainer {
   text-align: center;
@@ -41,7 +42,20 @@ header {
     max-height: 100%;
     padding: 20px; }
 
+/************ CENTER COLUMN **************************/
 /* line 68, painter.scss */
+.center-column {
+  padding-top: 30px;
+  text-align: center; }
+
+/* line 72, painter.scss */
+#timer {
+  color: #fff;
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 48px; }
+
+/************ RIGHT COLUMN **************************/
+/* line 79, painter.scss */
 #canvas, #imageContainer {
   max-width: 100%;
   width: 100%;
@@ -53,18 +67,18 @@ header {
   box-shadow: 0 2px 0 0 #222;
   /*cursor*/ }
 
-/* line 80, painter.scss */
+/* line 91, painter.scss */
 .controls {
   margin: 0 auto;
   border-radius: 5px; }
-  /* line 83, painter.scss */
+  /* line 94, painter.scss */
   .controls ul {
     list-style: none;
     float: left;
     padding: 10px 0 0;
     width: 100%;
     text-align: center; }
-    /* line 89, painter.scss */
+    /* line 100, painter.scss */
     .controls ul li {
       display: inline-block;
       margin: 0 5px 5px;
@@ -75,14 +89,14 @@ header {
       cursor: pointer;
       border: 0;
       box-shadow: 0 2px 0 0 #222; }
-      /* line 94, painter.scss */
+      /* line 105, painter.scss */
       .controls ul li.selected {
         border: 2px solid #ccc;
         width: 48px;
         height: 48px;
         top: 2px;
         box-shadow: none; }
-      /* line 101, painter.scss */
+      /* line 112, painter.scss */
       .controls ul li a {
         display: block;
         height: 100%; }
@@ -124,11 +138,11 @@ header {
 .brown {
   background: #875e37; }
 
-/* line 113, painter.scss */
+/* line 124, painter.scss */
 .black {
   background: #000; }
 
-/* line 117, painter.scss */
+/* line 128, painter.scss */
 #colorSelect {
   background: #fff;
   border-radius: 5px;
@@ -137,7 +151,7 @@ header {
   padding: 5px 0 10px 0;
   width: 100%;
   position: relative; }
-  /* line 125, painter.scss */
+  /* line 136, painter.scss */
   #colorSelect:after {
     bottom: 100%;
     left: 50%;
@@ -152,7 +166,7 @@ header {
     border-width: 12px;
     margin-left: -10px; }
 
-/* line 141, painter.scss */
+/* line 152, painter.scss */
 #newColor {
   height: 50px;
   width: 50px;
@@ -169,22 +183,22 @@ header {
   border: none;
   margin: 20px; }
 
-/* line 154, painter.scss */
+/* line 165, painter.scss */
 .sliders p {
   margin: 8px 0;
   vertical-align: middle; }
-/* line 158, painter.scss */
+/* line 169, painter.scss */
 .sliders label {
   display: inline-block;
   margin: 0 10px 0 10px;
   width: 55px;
   font-size: 14px; }
-/* line 164, painter.scss */
+/* line 175, painter.scss */
 .sliders input {
   position: relative;
   top: 2px; }
 
-/* line 170, painter.scss */
+/* line 181, painter.scss */
 #addNewColor {
   background: #946D9B;
   box-shadow: 0 4px 0 0 #5B575C;

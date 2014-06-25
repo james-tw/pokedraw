@@ -54,4 +54,31 @@ $('.controls ul li a').each(function(){
     'data-color': colorLink,
     href: '#canvas' 
   })
-})
+});
+
+function startTimer() {
+  var timer = setInterval(function() { 
+   $('#timer').text(--sec);
+   if (sec == 0) {
+    //$('#timer').fadeOut('fast');
+    clearInterval(timer);
+    $('#newRound').attr('disabled', false);
+   } 
+  }, 1000);
+}
+
+var currentPokemon;
+
+function getNewPokemon() {
+  var s = "00" + Math.floor(Math.random() * 150);
+  var index =  s.substr(s.length-3);
+  $('#imageContainer img').attr('src', "img/" + index + ".png");
+}
+$('#newRound').click(function(){
+  sec = 45
+  $(this).attr('disabled', true);
+  //$('#timer').fadeIn('fast');
+  startTimer();
+  getNewPokemon();
+
+});
