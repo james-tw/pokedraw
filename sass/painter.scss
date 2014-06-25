@@ -1,4 +1,11 @@
 
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
 @mixin box-round {
 	border-radius: 5px;
 }
@@ -23,6 +30,9 @@ $rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, 
 * {
 	box-sizing: border-box;
 }
+html, body, .row, .columns, .container {
+	@include clearfix;
+}
 body {
 	background: #555;
 	font-family: Helvetica,Arial,sans-serif;
@@ -30,9 +40,31 @@ body {
 .container {
 	max-width: 1080px;
 }
+
 header{
 	height: 160px;
 }
+
+#imageContainer {
+	@extend #canvas;
+	text-align: center;
+	font: 0/0 a;
+	&:before {
+		content: ' ';
+	    display: inline-block;
+	    vertical-align: middle;  /* vertical alignment of the inline element */
+	    height: 100%;
+	}
+	img {
+		display: inline-block;
+		vertical-align: middle;
+		font: 16px/1 Arial sans-serif;
+		max-width: 100%;
+		max-height: 100%;
+		padding: 20px;
+	}
+}
+
 #canvas {
 	max-width: 100%;
 	width:100%;
@@ -44,6 +76,7 @@ header{
 	box-shadow: 0 2px 0 0 #222;
 	/*cursor*/
 }
+
 .controls {
 	margin: 0 auto;
 	@include box-round;

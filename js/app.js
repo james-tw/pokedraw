@@ -42,8 +42,10 @@ function calibrateCanvas(){
     width: $canvas.css('width'),
     height: $canvas.css('height')
   });
-  $.sketch.redraw();
+  $('#canvas').sketch().redraw();
+  $('#imageContainer').css('height', $canvas.css('height'));
 }
+$(function(){calibrateCanvas();});
 
 $('.controls ul li').append('<a></a>');
 $('.controls ul li a').each(function(){
