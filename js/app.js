@@ -30,6 +30,15 @@ var context = $('canvas')[0].getContext('2d');
 var lastEvent;
 var mouseDown = false;
 
+$(window).resize(calibrateCanvas);
+
+function calibrateCanvas(){
+  console.log($canvas.css('width'));
+  $canvas.attr({
+    width: $canvas.css('width'),
+    height: $canvas.css('height')
+  });
+}
 
 $canvas.mousedown(function(e){
   lastEvent = e;

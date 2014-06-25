@@ -17,8 +17,9 @@ header {
 
 /* line 36, painter.scss */
 canvas {
+  max-width: 100%;
   width: 100%;
-  height: 423px;
+  height: auto;
   background: #fff;
   display: block;
   margin: 10px auto 0px;
@@ -26,18 +27,18 @@ canvas {
   box-shadow: 0 2px 0 0 #222;
   /*cursor*/ }
 
-/* line 46, painter.scss */
+/* line 47, painter.scss */
 .controls {
   margin: 0 auto;
   border-radius: 5px; }
-  /* line 49, painter.scss */
+  /* line 50, painter.scss */
   .controls ul {
     list-style: none;
     float: left;
     padding: 10px 0 0;
     width: 100%;
     text-align: center; }
-    /* line 55, painter.scss */
+    /* line 56, painter.scss */
     .controls ul li {
       display: inline-block;
       margin: 0 5px 5px;
@@ -48,7 +49,7 @@ canvas {
       cursor: pointer;
       border: 0;
       box-shadow: 0 2px 0 0 #222; }
-      /* line 60, painter.scss */
+      /* line 61, painter.scss */
       .controls ul li.selected {
         border: 2px solid #ccc;
         width: 48px;
@@ -93,11 +94,11 @@ canvas {
 .brown {
   background: #875e37; }
 
-/* line 75, painter.scss */
+/* line 76, painter.scss */
 .black {
   background: #000; }
 
-/* line 79, painter.scss */
+/* line 80, painter.scss */
 #colorSelect {
   background: #fff;
   border-radius: 5px;
@@ -106,7 +107,7 @@ canvas {
   padding: 5px 0 10px 0;
   width: 100%;
   position: relative; }
-  /* line 87, painter.scss */
+  /* line 88, painter.scss */
   #colorSelect:after {
     bottom: 100%;
     left: 50%;
@@ -121,7 +122,7 @@ canvas {
     border-width: 12px;
     margin-left: -10px; }
 
-/* line 103, painter.scss */
+/* line 104, painter.scss */
 #newColor {
   height: 50px;
   width: 50px;
@@ -138,22 +139,22 @@ canvas {
   border: none;
   margin: 20px; }
 
-/* line 116, painter.scss */
+/* line 117, painter.scss */
 .sliders p {
   margin: 8px 0;
   vertical-align: middle; }
-/* line 120, painter.scss */
+/* line 121, painter.scss */
 .sliders label {
   display: inline-block;
   margin: 0 10px 0 10px;
   width: 55px;
   font-size: 14px; }
-/* line 126, painter.scss */
+/* line 127, painter.scss */
 .sliders input {
   position: relative;
   top: 2px; }
 
-/* line 132, painter.scss */
+/* line 133, painter.scss */
 #addNewColor {
   background: #946D9B;
   box-shadow: 0 4px 0 0 #5B575C;
