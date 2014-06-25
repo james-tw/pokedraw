@@ -1,6 +1,5 @@
 
 var color = $('.selected').css('background-color');
-var context = $('canvas')[0].getContext('2d');
 
 $('.controls').on('click', 'li', function(){
   $(this).siblings().removeClass('selected');
@@ -26,8 +25,11 @@ $('#addNewColor').click(function() {
 });
 
 var $canvas = $('canvas');
+var context = $('canvas')[0].getContext('2d');
+
 var lastEvent;
 var mouseDown = false;
+
 
 $canvas.mousedown(function(e){
   lastEvent = e;

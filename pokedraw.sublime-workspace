@@ -1,0 +1,848 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"rain",
+				"rainbow-colors"
+			],
+			[
+				"ff",
+				"ff:ss	font-family:sans-serif"
+			],
+			[
+				"ab",
+				"album-list-dropdown"
+			],
+			[
+				"link-",
+				"link-logout"
+			],
+			[
+				"target",
+				"targetList"
+			],
+			[
+				"child",
+				"childSnapshot"
+			],
+			[
+				"Top",
+				"Top5"
+			],
+			[
+				"upda",
+				"updateDropdown"
+			],
+			[
+				"loaded",
+				"loadedList"
+			],
+			[
+				"listname",
+				"listNameEdit"
+			],
+			[
+				"listnam",
+				"listNameEdit"
+			],
+			[
+				"pre",
+				"preventDefault"
+			],
+			[
+				"album-lis",
+				"album-list-dropdown"
+			],
+			[
+				"list",
+				"listTitle"
+			],
+			[
+				"search",
+				"search-results"
+			],
+			[
+				"max-",
+				"max-height"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"login-",
+				"login-password"
+			],
+			[
+				"border-top",
+				"border-top-style"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"pad",
+				"padding-left"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"paddi",
+				"padding-top"
+			],
+			[
+				"seco",
+				"secondary-content"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"slideshow",
+				"slideshow-alternate"
+			],
+			[
+				"sl",
+				"slideshow-alternate"
+			],
+			[
+				"em",
+				"email_body"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"o",
+				"owl-demo"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"li",
+				"list-style"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"main",
+				"maincontainer"
+			],
+			[
+				"backgro",
+				"background-color"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"backgroun",
+				"background-size"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"parsed",
+				"parsed_json"
+			],
+			[
+				"be",
+				"bestPicnicDay"
+			],
+			[
+				"fore",
+				"forecast"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 1476,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "sass/painter.scss",
+			"settings":
+			{
+				"buffer_size": 2569,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/app.js",
+			"settings":
+			{
+				"buffer_size": 1285,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "TODO.txt",
+			"settings":
+			{
+				"buffer_size": 320,
+				"line_ending": "Windows",
+				"name": "TO DO:"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Add Repository"
+			]
+		],
+		"width": 464.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Code/painter/js/app.js",
+		"/C/Code/painter/index.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/homepage/index.html",
+		"/C/Code/top5/js/top5.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/top5/js/top5.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/homepage/home.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/homepage/yoda/index.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/top5/index.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/top5/css/top5.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/top5/css/bootstrap.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/top5/css/bootflat.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/top5/index.php",
+		"/C/xampp/htdocs/inc/footer.php",
+		"/C/xampp/htdocs/inc/header.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/Sass/2/_variables.scss",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/Sass/2/_globals.scss",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/Sass/2/main.scss",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/Sass/2/main.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/Sass/2/index.html",
+		"/C/Users/C_Downing/Documents/GitHub/javascript-last.fm-api/lastfm.api.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Final fixes/mobile.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Final fixes/verdant.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/FRAMEWORKS/bootflat.github.io-master/css/site.css",
+		"/C/Users/C_Downing/Documents/GitHub/discogs-browser/js/dc-browser.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Final fixes/alternate.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Final fixes/secondary.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Final fixes/default.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Final fixes/footer.php",
+		"/C/Users/C_Downing/Desktop/second-login-appy-export.json",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/Sass/2/variables.scss",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/Sass/1/main.scss",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/Sass/1/main.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/Sass/1/index.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/styles/framework.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/mobile.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/verdant.css",
+		"/C/Users/C_Downing/AppData/Local/Temp/fz3temp-2/style.css",
+		"/C/xampp/htdocs/verdantlaw-wordpress/header.php",
+		"/C/xampp/htdocs/verdantlaw-concrete5/elements/header.php",
+		"/C/Users/C_Downing/AppData/Local/Temp/fz3temp-2/verdant.css",
+		"/C/xampp/htdocs/verdantlaw-concrete5/alternate.php",
+		"/C/xampp/htdocs/verdantlaw-wordpress/styles/style.css",
+		"/C/xampp/htdocs/verdantlaw-wordpress/footer.php",
+		"/C/xampp/htdocs/verdantlaw-wordpress/mobile.css",
+		"/C/xampp/htdocs/verdantlaw-wordpress/style.css",
+		"/C/xampp/htdocs/verdantlaw-wordpress/single.php",
+		"/C/xampp/htdocs/verdantlaw-wordpress/search.php",
+		"/C/xampp/htdocs/verdantlaw-wordpress/archive.php",
+		"/C/xampp/htdocs/verdantlaw-wordpress/index.php",
+		"/C/xampp/htdocs/verdantlaw-wordpress/styles/framework.css",
+		"/C/xampp/htdocs/verdantlaw-wordpress/searchform.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/verdant-home.html",
+		"/C/xampp/htdocs/verdantlaw-wordpress/styles-verdant.css",
+		"/C/xampp/htdocs/verdantlaw-wordpress/page.php",
+		"/C/xampp/htdocs/verdantlaw-concrete5/email-inquiry.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC  About.htm",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC  Environmental & Sustainability Law Firm.htm",
+		"/C/xampp/htdocs/verdantlaw-concrete5/AUTONAV/drop_down_menu.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC Our Team.htm",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/main.css",
+		"/C/xampp/htdocs/verdantlaw-concrete5/elements/footer.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/FTP Backups/ccm.base - Copy.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/desktop.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/php/contact.php",
+		"/C/xampp/htdocs/verdantlaw-concrete5/includes/header.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/jquery.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/scripts/custom.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/scripts/jquery.js",
+		"/C/Users/C_Downing/AppData/Roaming/Sublime Text 2/Packages/BracketHighlighter/Example.sublime-keymap",
+		"/C/Users/C_Downing/AppData/Roaming/Sublime Text 2/Packages/User/bh_core.sublime-settings",
+		"/C/Users/C_Downing/AppData/Roaming/Sublime Text 2/Packages/BracketHighlighter/bh_core.sublime-settings",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/styles/style.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/scripts/snap.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/scripts/framework.launcher.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/scripts/framework.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC  About_files/view.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/typography.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/typography.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm.htm",
+		"/C/xampp/htdocs/verdantlaw-concrete5/AUTONAV/info_resources.php",
+		"/C/xampp/htdocs/verdantlaw-concrete5/secondary.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/mobile.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/desktop.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/verdant.css",
+		"/C/xampp/htdocs/verdantlaw-concrete5/AUTONAV/practice_info_resources.php",
+		"/C/xampp/htdocs/verdantlaw-concrete5/AUTONAV/drop_down_menu_cn.php",
+		"/C/xampp/htdocs/verdantlaw-concrete5/default.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/main.css",
+		"/C/xampp/htdocs/verdantlaw-concrete5/fancybox.html",
+		"/C/xampp/htdocs/verdantlaw-concrete5/full.php",
+		"/C/xampp/htdocs/verdantlaw-concrete5/index.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/verdant2.css",
+		"/C/xampp/htdocs/verdantlaw-concrete5/elements/safe.header.php",
+		"/C/xampp/htdocs/verdantlaw-concrete5/elements/header-test.php",
+		"/C/xampp/htdocs/verdantlaw-concrete5/includes/footer.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/verdantlaw-concrete5/verdant.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/verdant.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller mobile/code/jquery.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller-test.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/about.htm",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/stroller-test",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/index.htm",
+		"/C/xampp/htdocs/inc/products.php",
+		"/C/xampp/htdocs/shirts.php",
+		"/C/xampp/htdocs/shirt.php",
+		"/C/xampp/htdocs/contact.php",
+		"/C/xampp/htdocs/wildflowercafe-bootstrap/index.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/ccm.base.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/ccm.base.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/verdantlaw/Verdant Law PLLC  Environmental & Sustainability Law Firm_files/jquery.js",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/wildflowercafe-bootstrap/inc/header.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/wildflowercafe-bootstrap/inc/footer.php",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/wildflowercafe-bootstrap/index.php",
+		"/C/xampp/htdocs/index.php",
+		"/C/xampp/htdocs/text.php",
+		"/C/xampp/htdocs/arrays.php",
+		"/C/xampp/htdocs/contact-thanks.php",
+		"/C/xampp/htdocs/contact-process.php",
+		"/C/xampp/htdocs/shirts4mike/index.php",
+		"/C/xampp/htdocs/index.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/wildflowercafe-bootstrap/css/wildflower.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/wildflowercafe-bootstrap/index.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/wildflowercafe/css/main.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/3-11/start/css/my-styles.css",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/wildflowercafe/index.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/3-11/start/index.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/Treehouse Stuff/2-9/final/index.html",
+		"/C/Users/C_Downing/Dropbox/Code-Projects/wildflowercafe-bootstrap/owl-carousel/owl.theme.css"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"album-list",
+			"\\",
+			"\\r",
+			"\\n",
+			"\n		                <div class=\"search-button-col\"><button style=\"display:none;\"class=\"list-search-button btn btn-default\"><span class=\"glyphicon glyphicon-search\"></span></button></div>\n		                <div class=\"list-input-col col-xs-8 col-xs-offset-3\">\n		                  	<input class=\"list-input input-lg form-control\" type=\"text\" placeholder=\"What is your fifth favorite album?\"></input>\n		                </div>  ",
+			"loadList",
+			"childSnapshot",
+			"loadList",
+			"saveList",
+			"href=\"#\"",
+			"href=\"",
+			"col-xs-1",
+			".list-sear",
+			"thumbnail img",
+			"-sm",
+			"col-sm-offset-2",
+			"8",
+			"col-sm-9",
+			"container",
+			"The Pains of Being Pure at Heart",
+			"Hissing Fauna, Are You the Destroyer?",
+			".title",
+			".\">",
+			"shadow",
+			"text-sh",
+			"images",
+			"img",
+			"width:",
+			"color: #000",
+			"http://verdantlaw.com/themes/verdantlaw/",
+			"http://verdantlaw.com/themes/verdantlaw/images/",
+			"../",
+			"<img",
+			":hover",
+			"content",
+			"sidebar",
+			"about_files",
+			"float: right",
+			"right: 0",
+			"</th>",
+			"<th>",
+			"<td>",
+			"</td>",
+			"</tr>",
+			"<tr>",
+			"style",
+			"width",
+			"css",
+			";\n",
+			"');\n",
+			"alert",
+			"dailyLoc",
+			"cond ",
+			";\n",
+			"?",
+			"99",
+			"tr"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 1476,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								631,
+								631
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 57.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "sass/painter.scss",
+					"settings":
+					{
+						"buffer_size": 2569,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								324,
+								324
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 189.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/app.js",
+					"settings":
+					{
+						"buffer_size": 1285,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1,
+								1
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "TODO.txt",
+					"settings":
+					{
+						"buffer_size": 320,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								183,
+								183
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_name": "TO DO:",
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 114.0,
+	"status_bar_visible": true
+}

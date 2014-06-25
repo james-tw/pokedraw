@@ -1,3 +1,4 @@
+
 @mixin box-round {
 	border-radius: 5px;
 }
@@ -7,25 +8,6 @@
 		background: $color;
 	}
 }
-
-$rainbow-color-names: red, orange, yellow, yellow-green, green, light-blue, blue, purple;
-$rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #992FE0;
-
-* {
-	box-sizing: border-box;
-}
-body {
-	background: #555;
-	font-family: Helvetica,Arial,sans-serif;
-}
-canvas {
-	background: #fff;
-	display:block;
-	margin: 50px auto 10px;
-	@include box-round;
-	box-shadow: 0 2px 0 0 #222;
-	/*cursor*/
-}
 @mixin shared-color-properties {
 	height: 50px;
 	width: 50px;
@@ -34,14 +16,40 @@ canvas {
 	border: 0;
 	box-shadow: 0 2px 0 0 #222;
 }
+
+$rainbow-color-names: red, orange, yellow, light-green, green, light-blue, blue, purple, brown;
+$rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #992FE0, #875E37;
+
+* {
+	box-sizing: border-box;
+}
+body {
+	background: #555;
+	font-family: Helvetica,Arial,sans-serif;
+}
+.container {
+	max-width: 1080px;
+}
+header{
+	height: 160px;
+}
+canvas {
+	width: 100%;
+	height: 423px;
+	background: #fff;
+	display:block;
+	margin: 10px auto 0px;
+	@include box-round;
+	box-shadow: 0 2px 0 0 #222;
+	/*cursor*/
+}
 .controls {
 	margin: 0 auto;
-	width: 600px;
 	@include box-round;
 	ul {
 		list-style: none;
 		float:left;
-		padding: 10px 0 10px;
+		padding: 10px 0 0;
 		width: 100%;
 		text-align: center;
 		li {
@@ -73,8 +81,8 @@ canvas {
 	@include box-round;
 	clear:both;
 	margin: 20px auto 0;
-	padding: 10px;
-	width: 360px;
+	padding: 5px 0 10px 0;
+	width: 100%;
 	position: relative;
 	&:after {
 		bottom: 100%;
@@ -101,7 +109,7 @@ canvas {
 	box-shadow: 0 3px 0 0 #222;
 	float:left;
 	border: none;
-	margin: 10px 20px 20px 10px;
+	margin: 20px;
 }
 
 .sliders {
@@ -134,7 +142,7 @@ canvas {
 	border-top: 1px solid #5B575C;
 	border-radius: 0 0 5px 5px;
 	clear:both;
-	margin: 12px -10px -7px;
+	margin: 12px 0px -7px;
 	padding: 5px 10px;
-	width: 360px;
+	width: 100%;
 }

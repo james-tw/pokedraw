@@ -1,0 +1,14 @@
+TO DO:
+
+
+1. Convert canvas to jCanvas. Retain functionality with color changing.
+2. Align grid of the site according to wireframe. (Bootstrap, vanilla css, or maybe something lighter.)
+
+- Obtain pictures of 150 pokemon.
+- Create a firebase, plan out database format. (For pokemon and saved drawings).
+- 
+
+BUGS: 
+
+DONE:
+
