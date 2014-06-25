@@ -16,7 +16,7 @@ header {
   height: 160px; }
 
 /* line 36, painter.scss */
-canvas {
+#canvas {
   max-width: 100%;
   width: 100%;
   height: auto;
@@ -56,6 +56,10 @@ canvas {
         height: 48px;
         top: 2px;
         box-shadow: none; }
+      /* line 68, painter.scss */
+      .controls ul li a {
+        display: block;
+        height: 100%; }
 
 /*for each item in $rainbow-color-names, create a class with a background set to the corresponding color in $rainbow-colors.*/
 /* line 7, painter.scss */
@@ -94,11 +98,11 @@ canvas {
 .brown {
   background: #875e37; }
 
-/* line 76, painter.scss */
+/* line 80, painter.scss */
 .black {
   background: #000; }
 
-/* line 80, painter.scss */
+/* line 84, painter.scss */
 #colorSelect {
   background: #fff;
   border-radius: 5px;
@@ -107,7 +111,7 @@ canvas {
   padding: 5px 0 10px 0;
   width: 100%;
   position: relative; }
-  /* line 88, painter.scss */
+  /* line 92, painter.scss */
   #colorSelect:after {
     bottom: 100%;
     left: 50%;
@@ -122,7 +126,7 @@ canvas {
     border-width: 12px;
     margin-left: -10px; }
 
-/* line 104, painter.scss */
+/* line 108, painter.scss */
 #newColor {
   height: 50px;
   width: 50px;
@@ -139,22 +143,22 @@ canvas {
   border: none;
   margin: 20px; }
 
-/* line 117, painter.scss */
+/* line 121, painter.scss */
 .sliders p {
   margin: 8px 0;
   vertical-align: middle; }
-/* line 121, painter.scss */
+/* line 125, painter.scss */
 .sliders label {
   display: inline-block;
   margin: 0 10px 0 10px;
   width: 55px;
   font-size: 14px; }
-/* line 127, painter.scss */
+/* line 131, painter.scss */
 .sliders input {
   position: relative;
   top: 2px; }
 
-/* line 133, painter.scss */
+/* line 137, painter.scss */
 #addNewColor {
   background: #946D9B;
   box-shadow: 0 4px 0 0 #5B575C;

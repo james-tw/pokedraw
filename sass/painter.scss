@@ -33,7 +33,7 @@ body {
 header{
 	height: 160px;
 }
-canvas {
+#canvas {
 	max-width: 100%;
 	width:100%;
 	height: auto;
@@ -64,6 +64,10 @@ canvas {
 				height: 48px;
 				top: 2px;
 				box-shadow: none;
+			}
+			a {
+				display: block;
+				height: 100%;
 			}
 		}
 	}

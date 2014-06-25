@@ -19,45 +19,37 @@ $('input[type=range]').change(changeColor);
 
 $('#addNewColor').click(function() {
   var $newColor = $('<li></li>');
-  $newColor.css('background-color', $('#newColor').css('background-color') );
+  var $newColorLink = $('<a></a>');
+  $newColor.append($newColorLink);
+  var colorVal = $('#newColor').css('background-color')
+  $newColor.css('background-color', colorVal );
+  $newColorLink.attr({
+    'data-color': colorVal,
+    href: '#canvas' 
+  });
   $('.controls ul').append($newColor);
-  $newColor.click();
+  $newColorLink.click();
 });
 
-var $canvas = $('canvas');
-var context = $('canvas')[0].getContext('2d');
 
-var lastEvent;
-var mouseDown = false;
+var $canvas = $('#canvas');
+$(function(){$canvas.sketch()});
 
 $(window).resize(calibrateCanvas);
 
 function calibrateCanvas(){
-  console.log($canvas.css('width'));
   $canvas.attr({
     width: $canvas.css('width'),
     height: $canvas.css('height')
   });
+  $.sketch.redraw();
 }
 
-$canvas.mousedown(function(e){
-  lastEvent = e;
-  mouseDown = true;
-}).mousemove(function(e){
-  if(mouseDown) {
-    context.beginPath();
-    context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
-    context.lineTo(e.offsetX, e.offsetY);
-    context.strokeStyle = color;
-    context.lineWidth = 4;
-    context.lineJoin = 'round';
-    context.stroke();
-    lastEvent = e;
-  }
-}).mouseup(function(){
-  mouseDown = false;
-}).mouseleave(function(){
-  $canvas.mouseup();
-});
-
-
+$('.controls ul li').append('<a></a>');
+$('.controls ul li a').each(function(){
+  var colorLink = $(this).parent().css('background-color');
+  $(this).attr({
+    'data-color': colorLink,
+    href: '#canvas' 
+  })
+})
