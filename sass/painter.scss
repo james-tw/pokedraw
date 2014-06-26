@@ -23,9 +23,29 @@
 	border: 0;
 	box-shadow: 0 2px 0 0 #222;
 }
+@mixin button($color, $side-color) {
+	position:relative;
+	background: $color;
+	box-shadow: 0 4px 0 0 $side-color;
+	color: #fff;
+	outline: none;
+	text-shadow: 0 1px $side-color;
+	display: block;
+	font-size: 16px;
+	border:none;
+	@include box-round;
+	clear:both;
+	&:enabled:active {
+		top: 2px;
+		box-shadow: none;
+	}
+	&:disabled {
+		opacity: 0.7;
+	}
+}
 
-$rainbow-color-names: red, orange, yellow, light-green, green, light-blue, blue, purple, brown;
-$rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #992FE0, #875E37;
+$rainbow-color-names: red, orange, yellow, light-green, green, light-blue, blue, purple, brown, gray;
+$rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #992FE0, #875E37, #8E969B;
 
 * {
 	box-sizing: border-box;
@@ -34,7 +54,7 @@ html, body, .row, .columns, .container {
 	@include clearfix;
 }
 body {
-	background: #555;
+	background: #666;
 	font-family: Helvetica,Arial,sans-serif;
 }
 .container {
@@ -64,6 +84,13 @@ header{
 		padding: 20px;
 	}
 }
+#pokemonName {
+	text-align: center;
+	color: white;
+	font-size: 36px;
+	margin: 10px 0;
+	text-shadow: 0 2px #333;
+}
 /************ CENTER COLUMN **************************/
 .center-column {
 	padding-top: 30px;
@@ -73,6 +100,14 @@ header{
 	color: #fff;
 	font-family: Helvetica,Arial,sans-serif;
 	font-size: 48px;
+}
+#newRound {
+	@include button(#74BB3A,#578C2B);
+	@include box-round;
+	font-size: 20px;
+	line-height: 30px;
+	margin: 10px;
+	padding: 5px;
 }
 
 /************ RIGHT COLUMN **************************/
@@ -85,7 +120,8 @@ header{
 	margin: 10px auto 0px;
 	@include box-round;
 	box-shadow: 0 2px 0 0 #222;
-	/*cursor*/
+	pointer-events: none;
+	cursor: url(../img/cursor.png), crosshair;
 }
 
 .controls {
@@ -104,8 +140,8 @@ header{
 			@include shared-color-properties;
 			&.selected {
 				border: 2px solid #ccc;
-				width: 48px;
-				height: 48px;
+				width: 50px;
+				height: 50px;
 				top: 2px;
 				box-shadow: none;
 			}
@@ -151,7 +187,7 @@ header{
 
 #newColor {
 	@include shared-color-properties;
-	background: #369;
+	background: rgb(255,190,227);
 	width: 80px;
 	height: 80px;
 	border-radius: 50px;
@@ -179,19 +215,10 @@ header{
 }
 
 #addNewColor {
-	background: #946D9B;
-	box-shadow: 0 4px 0 0 #5B575C;
-	color: #fff;
-	outline: none;
-	text-shadow: 0 1px #5B575C;
-	display: block;
-	font-size: 16px;
+	@include button(#946D9B, #5B575C);
 	line-height: 40px;
-	border:none;
-	border-top: 1px solid #5B575C;
 	border-radius: 0 0 5px 5px;
-	clear:both;
-	margin: 12px 0px -7px;
+	margin: 12px 0px -9px;
 	padding: 5px 10px;
 	width: 100%;
 }

@@ -1,4 +1,4 @@
-/* line 30, painter.scss */
+/* line 50, painter.scss */
 * {
   box-sizing: border-box; }
 
@@ -8,32 +8,32 @@ html:after, body:after, .row:after, .columns:after, .container:after {
   display: table;
   clear: both; }
 
-/* line 36, painter.scss */
+/* line 56, painter.scss */
 body {
-  background: #555;
+  background: #666;
   font-family: Helvetica,Arial,sans-serif; }
 
-/* line 40, painter.scss */
+/* line 60, painter.scss */
 .container {
   max-width: 1080px; }
 
-/* line 44, painter.scss */
+/* line 64, painter.scss */
 header {
   height: 160px; }
 
 /************ LEFT COLUMN **************************/
-/* line 48, painter.scss */
+/* line 68, painter.scss */
 #imageContainer {
   text-align: center;
   font: 0/0 a; }
-  /* line 52, painter.scss */
+  /* line 72, painter.scss */
   #imageContainer:before {
     content: ' ';
     display: inline-block;
     vertical-align: middle;
     /* vertical alignment of the inline element */
     height: 100%; }
-  /* line 58, painter.scss */
+  /* line 78, painter.scss */
   #imageContainer img {
     display: inline-block;
     vertical-align: middle;
@@ -42,20 +42,54 @@ header {
     max-height: 100%;
     padding: 20px; }
 
+/* line 87, painter.scss */
+#pokemonName {
+  text-align: center;
+  color: white;
+  font-size: 36px;
+  margin: 10px 0;
+  text-shadow: 0 2px #333; }
+
 /************ CENTER COLUMN **************************/
-/* line 68, painter.scss */
+/* line 95, painter.scss */
 .center-column {
   padding-top: 30px;
   text-align: center; }
 
-/* line 72, painter.scss */
+/* line 99, painter.scss */
 #timer {
   color: #fff;
   font-family: Helvetica,Arial,sans-serif;
   font-size: 48px; }
 
+/* line 104, painter.scss */
+#newRound {
+  position: relative;
+  background: #74bb3a;
+  box-shadow: 0 4px 0 0 #578c2b;
+  color: #fff;
+  outline: none;
+  text-shadow: 0 1px #578c2b;
+  display: block;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  clear: both;
+  border-radius: 5px;
+  font-size: 20px;
+  line-height: 30px;
+  margin: 10px;
+  padding: 5px; }
+  /* line 38, painter.scss */
+  #newRound:enabled:active {
+    top: 2px;
+    box-shadow: none; }
+  /* line 42, painter.scss */
+  #newRound:disabled {
+    opacity: 0.7; }
+
 /************ RIGHT COLUMN **************************/
-/* line 79, painter.scss */
+/* line 114, painter.scss */
 #canvas, #imageContainer {
   max-width: 100%;
   width: 100%;
@@ -65,20 +99,21 @@ header {
   margin: 10px auto 0px;
   border-radius: 5px;
   box-shadow: 0 2px 0 0 #222;
-  /*cursor*/ }
+  pointer-events: none;
+  cursor: url(../img/cursor.png), crosshair; }
 
-/* line 91, painter.scss */
+/* line 127, painter.scss */
 .controls {
   margin: 0 auto;
   border-radius: 5px; }
-  /* line 94, painter.scss */
+  /* line 130, painter.scss */
   .controls ul {
     list-style: none;
     float: left;
     padding: 10px 0 0;
     width: 100%;
     text-align: center; }
-    /* line 100, painter.scss */
+    /* line 136, painter.scss */
     .controls ul li {
       display: inline-block;
       margin: 0 5px 5px;
@@ -89,14 +124,14 @@ header {
       cursor: pointer;
       border: 0;
       box-shadow: 0 2px 0 0 #222; }
-      /* line 105, painter.scss */
+      /* line 141, painter.scss */
       .controls ul li.selected {
         border: 2px solid #ccc;
-        width: 48px;
-        height: 48px;
+        width: 50px;
+        height: 50px;
         top: 2px;
         box-shadow: none; }
-      /* line 112, painter.scss */
+      /* line 148, painter.scss */
       .controls ul li a {
         display: block;
         height: 100%; }
@@ -138,11 +173,15 @@ header {
 .brown {
   background: #875e37; }
 
-/* line 124, painter.scss */
+/* line 14, painter.scss */
+.gray {
+  background: #8e969b; }
+
+/* line 160, painter.scss */
 .black {
   background: #000; }
 
-/* line 128, painter.scss */
+/* line 164, painter.scss */
 #colorSelect {
   background: #fff;
   border-radius: 5px;
@@ -151,7 +190,7 @@ header {
   padding: 5px 0 10px 0;
   width: 100%;
   position: relative; }
-  /* line 136, painter.scss */
+  /* line 172, painter.scss */
   #colorSelect:after {
     bottom: 100%;
     left: 50%;
@@ -166,7 +205,7 @@ header {
     border-width: 12px;
     margin-left: -10px; }
 
-/* line 152, painter.scss */
+/* line 188, painter.scss */
 #newColor {
   height: 50px;
   width: 50px;
@@ -174,7 +213,7 @@ header {
   cursor: pointer;
   border: 0;
   box-shadow: 0 2px 0 0 #222;
-  background: #369;
+  background: #ffbee3;
   width: 80px;
   height: 80px;
   border-radius: 50px;
@@ -183,35 +222,43 @@ header {
   border: none;
   margin: 20px; }
 
-/* line 165, painter.scss */
+/* line 201, painter.scss */
 .sliders p {
   margin: 8px 0;
   vertical-align: middle; }
-/* line 169, painter.scss */
+/* line 205, painter.scss */
 .sliders label {
   display: inline-block;
   margin: 0 10px 0 10px;
   width: 55px;
   font-size: 14px; }
-/* line 175, painter.scss */
+/* line 211, painter.scss */
 .sliders input {
   position: relative;
   top: 2px; }
 
-/* line 181, painter.scss */
+/* line 217, painter.scss */
 #addNewColor {
-  background: #946D9B;
-  box-shadow: 0 4px 0 0 #5B575C;
+  position: relative;
+  background: #946d9b;
+  box-shadow: 0 4px 0 0 #5b575c;
   color: #fff;
   outline: none;
-  text-shadow: 0 1px #5B575C;
+  text-shadow: 0 1px #5b575c;
   display: block;
   font-size: 16px;
-  line-height: 40px;
   border: none;
-  border-top: 1px solid #5B575C;
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px;
   clear: both;
-  margin: 12px 0px -7px;
+  line-height: 40px;
+  border-radius: 0 0 5px 5px;
+  margin: 12px 0px -9px;
   padding: 5px 10px;
   width: 100%; }
+  /* line 38, painter.scss */
+  #addNewColor:enabled:active {
+    top: 2px;
+    box-shadow: none; }
+  /* line 42, painter.scss */
+  #addNewColor:disabled {
+    opacity: 0.7; }
