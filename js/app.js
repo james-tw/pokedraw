@@ -8,7 +8,6 @@ var pokeArray = pokeList.split(' ');
 for (var i = 1; i < 151; i++) {
   pokedex[i] = pokeArray[i-1];
 }
-console.log(pokedex);
 
 //Allows you to select a color from the list.
 $('.controls').on('click', 'li', function(){
@@ -71,6 +70,35 @@ $('.controls ul li a').each(function(){
   })
 });
 
+function saveImage() {
+  //get the current ImageData for the canvas.
+  var data = context.getImageData(0, 0, canvas.width, canvas.height);
+  //store the current globalCompositeOperation
+  var compositeOperation = context.globalCompositeOperation;
+  //set to draw behind current content
+  context.globalCompositeOperation = "destination-over";
+  //set background color to white
+  context.fillStyle = '#fff';
+  //draw background / rect on entire canvas
+  context.fillRect(0,0,canvas.width, canvas.height);
+  //encode the drawing, send to saveImage.php which saves the image to ../drawings.
+  var dataURL = canvas.toDataURL('image/jpeg');
+  console.log(dataURL);
+  $.ajax({
+    type: "POST",
+    url: "php/saveImage.php",
+    data: { 
+       imgBase64: dataURL
+    }
+  }).done(function(o) {
+  console.log('saved'); 
+  // If you want the file to be visible in the browser 
+  // - please modify the callback in javascript. All you
+  // need is to return the url to the file, you just saved 
+  // and than put the image in your browser.
+});
+}
+
 //Timer function initiated when #newRound is clicked.
 function startTimer() {
   var timer = setInterval(function() { 
@@ -80,6 +108,8 @@ function startTimer() {
     clearInterval(timer);
     $('#newRound').attr('disabled', false);
     $canvas.css('pointer-events', 'none');
+    saveImage();
+    getRecentDrawings();
     } 
   }, 1000);
 }
@@ -98,7 +128,7 @@ function getNewPokemon() {
 }
 
 $('#newRound').click(function(){
-  sec = 45
+  sec = 3
   $(this).attr('disabled', true);
   $('#timer').text('45');
   $canvas.sketch().actions = [];
@@ -108,4 +138,28 @@ $('#newRound').click(function(){
   getNewPokemon();
 });
 
+function getRecentDrawings() {
+  var dir = "drawings/";
+  var fileextension = ".jpeg";
+  var imgList = [];
+  $.ajax({
+    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+    url: dir,
+    success: function (data) {
+      //
+      $(data).find("a[href*='.jpeg']").each(function (i) {
+        var filename = this.href.replace(window.location.host, "").replace("http:///", "").replace("pokedraw/", "");
+        imgList.unshift(filename);
+        console.log(i);
+        //$("body").append($("<img src=" + dir + filename + "></img>"));
+        //Stop adding URLs to imgList at 10.
+        if (i >= 9) {
+          console.log(imgList);
+          return false;
+        }
+      });
+      //On success, send imgList to another function which updates the jQuery header with the images.
+    }
+  });
+}
 
