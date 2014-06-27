@@ -33,6 +33,7 @@
 	display: block;
 	font-size: 16px;
 	border:none;
+	font-family: 'Open Sans', sans-serif;
 	@include box-round;
 	clear:both;
 	&:enabled:active {
@@ -54,16 +55,40 @@ html, body, .row, .columns, .container {
 	@include clearfix;
 }
 body {
-	background: #666;
+	margin:0;
+	background: #777;
 	font-family: Helvetica,Arial,sans-serif;
 }
 .container {
 	max-width: 1080px;
 }
+/************ HEADER *******************************/
 
-header{
+header {
 	height: 160px;
+	overflow: hidden;
+	background: white;
+	box-shadow: 0px 3px 2px 0px #111;
+	.recentDrawing {
+		max-height: 100%;
+		float: right;
+	}
+	#logo {
+		max-height: 100%;
+		padding: 4px;
+	}
 }
+
+/************ HERO TEXT ****************************/
+
+h1 {
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+	text-align: center;
+	text-shadow: 0 1px #333;
+	margin: 10px 0 0;
+}
+
 /************ LEFT COLUMN **************************/
 #imageContainer {
 	@extend #canvas;
@@ -85,6 +110,7 @@ header{
 	}
 }
 #pokemonName {
+	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 	color: white;
 	font-size: 36px;
@@ -98,16 +124,34 @@ header{
 }
 #timer {
 	color: #fff;
-	font-family: Helvetica,Arial,sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 48px;
+	display: none;
 }
 #newRound {
-	@include button(#74BB3A,#578C2B);
+	@include button(#78BC3F,#306901);
 	@include box-round;
-	font-size: 20px;
+	font-size: 36px;
 	line-height: 30px;
-	margin: 10px;
-	padding: 5px;
+	margin: 10px auto;
+	padding: 15px 20px;
+}
+#share, #save {
+	@include button(#478E95, #095057);
+	@include box-round;
+	margin: 10px auto;
+	font-size: 24px;
+	line-height: 24px;
+	padding: 10px 20px;
+	display: none;
+}
+#save {
+	text-decoration: none;
+	margin: 0 auto;
+	&:active {
+		top: 2px;
+		box-shadow: none;
+	}
 }
 
 /************ RIGHT COLUMN **************************/
@@ -130,7 +174,7 @@ header{
 	ul {
 		list-style: none;
 		float:left;
-		padding: 10px 0 0;
+		padding: 0;
 		width: 100%;
 		text-align: center;
 		li {
@@ -221,4 +265,13 @@ header{
 	margin: 12px 0px -9px;
 	padding: 5px 10px;
 	width: 100%;
+}
+
+/********** FOOTER **********************/
+
+footer {
+	margin-top: 40px;
+	background: #444;
+	color: #eee;
+	padding: 10px 0;
 }

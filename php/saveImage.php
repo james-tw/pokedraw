@@ -4,7 +4,6 @@
 	$img = $_POST['imgBase64'];
 	$img = str_replace('data:image/jpeg;base64,', '', $img);
 	$img = str_replace(' ', '+', $img);
-	print $img;
 	$data = base64_decode($img);
 	$datetime = date("Ymd") . date("His") . uniqid();
 	$file = UPLOAD_DIR . $datetime . '.jpeg';

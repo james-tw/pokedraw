@@ -9,6 +9,16 @@ for (var i = 1; i < 151; i++) {
   pokedex[i] = pokeArray[i-1];
 }
 
+//Adds an anchor tag to each color choice to make it work with sketch.js
+$('.controls ul li').append('<a></a>');
+$('.controls ul li a').each(function(){
+  var colorLink = $(this).parent().css('background-color');
+  $(this).attr({
+    'data-color': colorLink,
+    href: '#canvas' 
+  })
+});
+
 //Allows you to select a color from the list.
 $('.controls').on('click', 'li', function(){
   $(this).siblings().removeClass('selected');
@@ -41,9 +51,12 @@ $('#addNewColor').click(function() {
   $newColorLink.click();
 });
 
+
+/////////////////////////////////////////////////////////////
 //Creation of the canvas and context.
 var $canvas = $('#canvas');
 var context = $('canvas')[0].getContext('2d');
+
 //Initiate sketch.js
 $(function(){$canvas.sketch()});
 //Function for resizing the canvas when the window resizes.
@@ -59,18 +72,9 @@ function calibrateCanvas(){
 $(window).resize(calibrateCanvas);
 //Initial calibration of canvas size.
 $(function(){calibrateCanvas();});
+/////////////////////////////////////////////////////////////
 
-//Adds an anchor tag to each color choice to make it work with sketch.js
-$('.controls ul li').append('<a></a>');
-$('.controls ul li a').each(function(){
-  var colorLink = $(this).parent().css('background-color');
-  $(this).attr({
-    'data-color': colorLink,
-    href: '#canvas' 
-  })
-});
-
-function saveImage() {
+function whiteOutCanvasBackground() {
   //get the current ImageData for the canvas.
   var data = context.getImageData(0, 0, canvas.width, canvas.height);
   //store the current globalCompositeOperation
@@ -81,9 +85,13 @@ function saveImage() {
   context.fillStyle = '#fff';
   //draw background / rect on entire canvas
   context.fillRect(0,0,canvas.width, canvas.height);
+}
+
+function saveImage() {
+  //Sets the background of the saved canvas to white.
+  whiteOutCanvasBackground();
   //encode the drawing, send to saveImage.php which saves the image to ../drawings.
   var dataURL = canvas.toDataURL('image/jpeg');
-  console.log(dataURL);
   $.ajax({
     type: "POST",
     url: "php/saveImage.php",
@@ -91,25 +99,28 @@ function saveImage() {
        imgBase64: dataURL
     }
   }).done(function(o) {
-  console.log('saved'); 
-  // If you want the file to be visible in the browser 
-  // - please modify the callback in javascript. All you
-  // need is to return the url to the file, you just saved 
-  // and than put the image in your browser.
-});
+    console.log('Image saved. Refreshing header.'); 
+    getRecentDrawings();
+    // If you want the file to be visible in the browser 
+    // - please modify the callback in javascript. All you
+    // need is to return the url to the file, you just saved 
+    // and than put the image in your browser.
+  });
 }
 
 //Timer function initiated when #newRound is clicked.
 function startTimer() {
   var timer = setInterval(function() { 
-    $('#timer').text(--sec);
+    //Updates the text shown on the timer.
+    $('#timer').fadeIn('fast').text(--sec);
+    if (sec == 5) {
+      $('#timer').css('color', '#FF6A62');
+    }
     if (sec == 0) {
-    //$('#timer').fadeOut('fast');
-    clearInterval(timer);
-    $('#newRound').attr('disabled', false);
-    $canvas.css('pointer-events', 'none');
-    saveImage();
-    getRecentDrawings();
+      clearInterval(timer);
+      //This function sets the CSS of the interface when a round has ended.
+      setInactiveInterface();
+      saveImage(); //Calls getRecentDrawings() in callback.
     } 
   }, 1000);
 }
@@ -127,15 +138,49 @@ function getNewPokemon() {
   $('#pokemonName').text(pokedex[rand]);
 }
 
+function setActiveInterface() {
+  //Hide the hero text once the button has been clicked once.
+  $('h1').css('visibility', 'hidden');
+  $('#newRound').attr('disabled', true);
+  $('#timer').text('45').css('color', 'white');
+  $('#share').css('display', 'none');
+  $('#save').css('display', 'none');
+}
+function setInactiveInterface() {
+  //As soon as the round is over, change the CTA button to say "Draw a new Pokemon" and change the button css to match.
+  $('#newRound').attr('disabled', false)
+                .text('Draw a new Pokémon!')
+                .css({
+                 'font-size': '20px',
+                 'padding': '5px'
+                });
+  $canvas.css('pointer-events', 'none');
+  $('#share').css('display', 'block').fadeIn('fast');
+  $('#save').css('display', 'inline-block').fadeIn('fast');
+}
+
 $('#newRound').click(function(){
-  sec = 3
-  $(this).attr('disabled', true);
-  $('#timer').text('45');
+  //This function changes the CSS of the interface during a round.
+  setActiveInterface();
+  //These next two lines clear out the saved canvas strokes and redraw it as empty.
   $canvas.sketch().actions = [];
   $canvas.sketch().redraw();
   $canvas.css('pointer-events', 'auto');
+  //Reset the timer and get a new Pokemon to draw.
+  sec = 45;
   startTimer();
   getNewPokemon();
+});
+
+$('#save').click(function(){
+  //Sets the background of the saved picture to white.
+  whiteOutCanvasBackground();
+});
+
+$('#share').click(function(){
+  //Open a modal with the link to share with friends. 
+  //The link should end with the filename of the image that was just drawn.
+
 });
 
 function getRecentDrawings() {
@@ -148,18 +193,53 @@ function getRecentDrawings() {
     success: function (data) {
       //
       $(data).find("a[href*='.jpeg']").each(function (i) {
-        var filename = this.href.replace(window.location.host, "").replace("http:///", "").replace("pokedraw/", "");
+        var filename = this.href.replace(window.location.host, "").replace("http:///", "").replace("pokedraw/", "").replace("drawings/", "");
+        console.log(filename);
         imgList.unshift(filename);
-        console.log(i);
         //$("body").append($("<img src=" + dir + filename + "></img>"));
-        //Stop adding URLs to imgList at 10.
-        if (i >= 9) {
-          console.log(imgList);
-          return false;
-        }
       });
-      //On success, send imgList to another function which updates the jQuery header with the images.
+
     }
-  });
+  }).done(function(o) {
+  //Only keep the 10 most recent URLs.
+    imgList = imgList.slice(0,10);
+    console.log(imgList);
+    updateShareLink(imgList[0]);
+    //On success, send imgList to another function which updates the jQuery header with the images.
+    updateHeaderDrawings(imgList);
+});;
+}
+var sharePic;
+function updateShareLink(fileURL) {
+  sharePic = ("http://www.jamestw.net/pokedraw/drawings/" + fileURL);
+}
+function updateHeaderDrawings(images) {
+  console.log(images);
+  $('header .recentDrawing').fadeOut('fast').remove();
+  images.forEach(function(val, i) {
+    $("header").append($("<img class='recentDrawing' src=drawings/" + val + "></img>").fadeIn('fast'));
+  })
 }
 
+getRecentDrawings();
+
+
+  (function() {
+    
+    var fbShare = function() {
+        FB.ui({
+            method: "feed",
+            link: "http://jamestw.net/pokedraw/",
+            caption: "I drew this Pokemon all by myself!!!!",
+            description: "Think you can draw a Pokemon better than this? Click here to try. It only takes 45 seconds.",
+            picture: sharePic
+        });
+    };
+    $("#share").click(function() {
+        FB.login(function(response) {
+            if (response.authResponse) {
+                fbShare();
+           }
+        }, {scope: 'publish_stream'});
+    });
+})();

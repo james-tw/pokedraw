@@ -4,12 +4,42 @@
 	<title>Pokedraw</title>
 	<link rel="stylesheet" href="css/smart-grid.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="css/painter.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<!--For Facebook Sharing-->
+	<meta property="og:title" content="Pokédraw - Draw a Pokémon in 45 seconds!" />
+	<meta property="og:site_name" content="Pokédraw" />
+	<meta property="og:url" content="http://www.jamestw.net/pokedraw/" />
+	<meta property="og:description" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds." /> 
+	<meta property="og:image" content="http://www.jamestw.net/pokedraw/img/logo-fb-share.png" />
 </head>
 <body>
+	<script>
+		window.fbAsyncInit = function() {
+	        FB.init({
+	          appId      : 351920294960632,
+	          xfbml      : true,
+	          version    : 'v2.0'
+	        });
+	      };
+
+	      (function(d, s, id){
+	         var js, fjs = d.getElementsByTagName(s)[0];
+	         if (d.getElementById(id)) {return;}
+	         js = d.createElement(s); js.id = id;
+	         js.src = "//connect.facebook.net/en_US/sdk.js";
+	         fjs.parentNode.insertBefore(js, fjs);
+	       }(document, 'script', 'facebook-jssdk'));
+	</script>
+
 	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+
+	<header class="row">
+		<img id="logo" src="img/logo.png"/>
+	</header>
 	<div class="container">
-		<header class="row">
-		</header>
+		<div class="row">
+			<h1>You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
+		</div>
 		<section class="row">
 			<div class="left-column columns five">
 				<div id="imageContainer">
@@ -19,8 +49,10 @@
 				<p id="pokemonName"></p>
 			</div>
 			<div class="center-column columns two">
+				<button id="newRound">Go!</button>
 				<span id="timer">45</span>
-				<button id="newRound">Draw a new Pokemon!</button>
+				<button id="share">Share</button>
+				<a href="#canvas" id="save" data-download="jpeg">Save</a>
 			</div>
 			<div class="right-column columns five ">
 				<canvas id="canvas" width="400" height="400"></canvas>
@@ -62,8 +94,14 @@
 			</div>
 		</section>
 	</div>
+	<footer>
+		<div class="container">
+			<p>Made by James TW</p>
+		</div>
+	</footer>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/sketch.js" type="text/javascript" charset="utf-8"></script>
+
 </body>
 </html>

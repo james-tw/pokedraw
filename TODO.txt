@@ -1,8 +1,7 @@
 TO DO:
 
-- Design a header which fills from the right with pictures. On the left, the pokedraw logo.
-- Write a function which updates the header with the most recent pokedraws from getRecentDrawings()
 
+- Implement Facebook share button, and a save button.
 
 - Create a firebase, plan out database format. (For saved drawings, likes, etc).
 
@@ -26,3 +25,5 @@ DONE:
 	- Display this name when the pokemon is randomly selected.
 - Save images to the server immediately once the timer runs out.
 - Write a function which gets a list of the X most recent images.
+- Write a function which updates the header with the most recent pokedraws from getRecentDrawings()
+- Design a header which fills from the right with pictures. On the left, the pokedraw logo.
