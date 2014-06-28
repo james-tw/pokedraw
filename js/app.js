@@ -8,6 +8,7 @@ var pokeArray = pokeList.split(' ');
 for (var i = 1; i < 151; i++) {
   pokedex[i] = pokeArray[i-1];
 }
+var introMode = true;
 
 //Adds an anchor tag to each color choice to make it work with sketch.js
 $('.controls ul li').append('<a></a>');
@@ -151,7 +152,7 @@ function setInactiveInterface() {
   $('#newRound').attr('disabled', false)
                 .text('Draw a new Pokémon!')
                 .css({
-                 'font-size': '20px',
+                 'font-size': '24px',
                  'padding': '5px'
                 });
   $canvas.css('pointer-events', 'none');
@@ -160,6 +161,13 @@ function setInactiveInterface() {
 }
 
 $('#newRound').click(function(){
+  //If this is the first time #newRound is being clicked...
+  if (introMode) {
+    //Remove the Who's That Pokemon image, and un-dim the canvas.
+    $('#canvas').css('background', "#fff");
+    $('#imageContainer').css('background', '#fff');
+    $('#imageContainer img').attr('src', '').css('padding', '20px');
+  }
   //This function changes the CSS of the interface during a round.
   setActiveInterface();
   //These next two lines clear out the saved canvas strokes and redraw it as empty.

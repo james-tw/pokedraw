@@ -106,7 +106,7 @@ h1 {
 		font: 16px/1 Arial sans-serif;
 		max-width: 100%;
 		max-height: 100%;
-		padding: 20px;
+		@include box-round;
 	}
 }
 #pokemonName {
@@ -132,9 +132,9 @@ h1 {
 	@include button(#78BC3F,#306901);
 	@include box-round;
 	font-size: 36px;
-	line-height: 30px;
+	line-height: 36px;
 	margin: 10px auto;
-	padding: 15px 20px;
+	padding: 8px 20px;
 }
 #share, #save {
 	@include button(#478E95, #095057);
@@ -159,7 +159,7 @@ h1 {
 	max-width: 100%;
 	width:100%;
 	height: auto;
-	background: #fff;
+	background: #bbb;
 	display:block;
 	margin: 10px auto 0px;
 	@include box-round;
