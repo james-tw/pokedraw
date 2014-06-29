@@ -273,5 +273,18 @@ footer {
 	margin-top: 40px;
 	background: #444;
 	color: #eee;
-	padding: 10px 0;
+	padding: 20px 0;
+	#galleryLink {
+		float: left;
+	}
+	#byline {
+		float: right;
+	}
+	a {
+		text-decoration: none;
+		color: #BD9E70;
+		&:hover{
+			color: #E4C08A;
+		}
+	}
 }

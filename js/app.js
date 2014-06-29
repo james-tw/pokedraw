@@ -215,7 +215,7 @@ function getRecentDrawings() {
     updateShareLink(imgList[0]);
     //On success, send imgList to another function which updates the jQuery header with the images.
     updateHeaderDrawings(imgList);
-});;
+  });;
 }
 var sharePic;
 function updateShareLink(fileURL) {

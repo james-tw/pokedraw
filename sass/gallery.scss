@@ -1,0 +1,35 @@
+header {
+	height: 80px;
+}
+
+.row p {
+	font-family: "Open Sans" ,sans-serif;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+}
+.drawing {
+	height: auto;
+	float: left;
+	position: relative;
+	width: 25%;
+	padding: 10px;
+	img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 5px;
+		box-shadow: 0 2px 0 0 #222;
+	}
+}
+@media only screen and (max-width : 650px) {
+  /* Tablet & phone view: 2 tiles */
+  .drawing {
+    width: 50%;
+  }
+}
+@media only screen and (max-width : 1050px) and (min-width : 651px) {
+  /* Small desktop / ipad view: 3 tiles */
+  .drawing {
+    width: 33.3%;
+  }
+}

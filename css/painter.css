@@ -332,4 +332,17 @@ footer {
   margin-top: 40px;
   background: #444;
   color: #eee;
-  padding: 10px 0; }
+  padding: 20px 0; }
+  /* line 277, painter.scss */
+  footer #galleryLink {
+    float: left; }
+  /* line 280, painter.scss */
+  footer #byline {
+    float: right; }
+  /* line 283, painter.scss */
+  footer a {
+    text-decoration: none;
+    color: #BD9E70; }
+    /* line 286, painter.scss */
+    footer a:hover {
+      color: #E4C08A; }

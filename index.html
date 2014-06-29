@@ -13,7 +13,7 @@
 	<meta property="og:image" content="http://www.jamestw.net/pokedraw/img/logo-fb-share.png" />
 </head>
 <body>
-	<script>
+	<script> //Facebook sharing script. No malicious intent here! Install Ghostery if you don't want to be tracked. https://www.ghostery.com/
 		window.fbAsyncInit = function() {
 	        FB.init({
 	          appId      : 351920294960632,
@@ -21,7 +21,6 @@
 	          version    : 'v2.0'
 	        });
 	      };
-
 	      (function(d, s, id){
 	         var js, fjs = d.getElementsByTagName(s)[0];
 	         if (d.getElementById(id)) {return;}
@@ -34,7 +33,7 @@
 	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
 
 	<header class="row">
-		<img id="logo" src="img/logo.png"/>
+		<a href="/"><img id="logo" src="img/logo.png"/></a>
 	</header>
 	<div class="container">
 		<div class="row">
@@ -96,7 +95,8 @@
 	</div>
 	<footer>
 		<div class="container">
-			<p>Made by <a href="http://www.jamestw.net">James TW</a></p>
+			<div id="galleryLink">Visit the <a href="gallery.html">Gallery</a> to see all the drawings!</div>
+			<div id="byline">Made by <a href="http://www.jamestw.net">James TW</a></div>
 		</div>
 	</footer>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
