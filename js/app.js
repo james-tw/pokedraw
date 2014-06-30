@@ -34,7 +34,7 @@ function changeColor() {
   var g = $('#green').val();
   var b = $('#blue').val();
   
-  $('#newColor').css('background-color', 'rgb(' + r + ',' + g + ',' + b + ')');
+  $('#addNewColor').css('background-color', 'rgb(' + r + ',' + g + ',' + b + ')');
 }
 
 //Adds the newly created color the the color list and selects it immediately.
@@ -42,7 +42,7 @@ $('#addNewColor').click(function() {
   var $newColor = $('<li></li>');
   var $newColorLink = $('<a></a>');
   $newColor.append($newColorLink);
-  var colorVal = $('#newColor').css('background-color')
+  var colorVal = $('#addNewColor').css('background-color')
   $newColor.css('background-color', colorVal );
   $newColorLink.attr({
     'data-color': colorVal,

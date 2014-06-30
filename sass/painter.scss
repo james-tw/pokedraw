@@ -45,8 +45,15 @@
 	}
 }
 
+/***** MEDIA QUERIES ************/
+$mq-phone: "only screen and (max-width : 321px)";
+$mq-phone-landscape: "only screen and (max-width : 481px)";
+$mq-tablet: "only screen and (max-width : 900px)";
+
+/***** COLORS ********************/
 $rainbow-color-names: red, orange, yellow, light-green, green, light-blue, blue, purple, brown, gray;
 $rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #992FE0, #875E37, #8E969B;
+
 
 * {
 	box-sizing: border-box;
@@ -135,6 +142,11 @@ h1 {
 	line-height: 36px;
 	margin: 10px auto;
 	padding: 8px 20px;
+	@media #{$mq-tablet} {
+		font-size: 24px;
+		line-height: 24px;
+		padding: 8px 10px; 
+	}
 }
 #share, #save {
 	@include button(#478E95, #095057);
@@ -210,8 +222,9 @@ h1 {
 	@include box-round;
 	clear:both;
 	margin: 20px auto 0;
-	padding: 5px 0 10px 0;
-	width: 100%;
+	padding: 8px 0 10px 0;
+	max-width: 100%;
+	width: 300px;
 	position: relative;
 	&:after {
 		bottom: 100%;
@@ -228,8 +241,17 @@ h1 {
 		margin-left: -10px;
 	}
 }
-
+#addNewColor {
+	@include button(#946D9B, #5B575C);
+	line-height: 40px;
+	border-radius: 5px;
+	margin: 10px auto;
+	padding: 5px 10px;
+	width: 90%;
+	font-size: 20px;
+}
 #newColor {
+	display:none;
 	@include shared-color-properties;
 	background: rgb(255,190,227);
 	width: 80px;
@@ -242,30 +264,27 @@ h1 {
 }
 
 .sliders {
+	padding-top: 4px;
 	p {
 		margin: 8px 0;
 		vertical-align: middle;
 	}
 	label {
+		text-align: right;
+		font-family: "Open Sans",sans-serif;font-size: 16px;
 		display: inline-block;
 		margin: 0 10px 0 10px;
-		width: 55px;
-		font-size: 14px;
+		width: 20%;
+		font-size: 16px;
 	}
 	input {
 		position: relative;
-		top: 2px;
+		width: 60%;
+		top: 4px;
 	}
 }
 
-#addNewColor {
-	@include button(#946D9B, #5B575C);
-	line-height: 40px;
-	border-radius: 0 0 5px 5px;
-	margin: 12px 0px -9px;
-	padding: 5px 10px;
-	width: 100%;
-}
+
 
 /********** FOOTER **********************/
 

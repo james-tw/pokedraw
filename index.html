@@ -5,6 +5,8 @@
 	<link rel="stylesheet" href="css/smart-grid.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="css/painter.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--For Facebook Sharing-->
 	<meta property="og:title" content="Pokédraw - Draw a Pokémon in 45 seconds!" />
 	<meta property="og:site_name" content="Pokédraw" />
@@ -33,7 +35,7 @@
 	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
 
 	<header class="row">
-		<a href="/"><img id="logo" src="img/logo.png"/></a>
+		<a href="index.html"><img id="logo" src="img/logo.png"/></a>
 	</header>
 	<div class="container">
 		<div class="row">
@@ -70,7 +72,9 @@
 						<li class="black selected"></li>
 					</ul>
 					<div id="colorSelect">
-						<span id="newColor"></span>
+						<div>
+							<button id="addNewColor">Add Color</button>
+						</div>
 						<div class="sliders">
 							<p>
 								<label for="red">Red</label>
@@ -84,9 +88,6 @@
 								<label for="blue">Blue</label>
 								<input id="blue" name="blue" type="range" min=0 max=255 value=227>
 							</p>
-						</div>
-						<div>
-							<button id="addNewColor">Add Color</button>
 						</div>
 					</div>
 				</div>
