@@ -37,7 +37,7 @@
 	@include box-round;
 	clear:both;
 	&:enabled:active {
-		top: 2px;
+		top: 4px;
 		box-shadow: none;
 	}
 	&:disabled {
@@ -51,8 +51,8 @@ $mq-phone-landscape: "only screen and (max-width : 481px)";
 $mq-tablet: "only screen and (max-width : 900px)";
 
 /***** COLORS ********************/
-$rainbow-color-names: red, orange, yellow, light-green, green, light-blue, blue, purple, brown, gray;
-$rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #992FE0, #875E37, #8E969B;
+$rainbow-color-names: red, orange, yellow, light-green, green, light-blue, blue, pink, brown, gray;
+$rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #FAD0DE, #875E37, #8E969B;
 
 
 * {
@@ -243,24 +243,11 @@ h1 {
 }
 #addNewColor {
 	@include button(#946D9B, #5B575C);
-	line-height: 40px;
 	border-radius: 5px;
 	margin: 10px auto;
-	padding: 5px 10px;
+	padding: 10px;
 	width: 90%;
 	font-size: 20px;
-}
-#newColor {
-	display:none;
-	@include shared-color-properties;
-	background: rgb(255,190,227);
-	width: 80px;
-	height: 80px;
-	border-radius: 50px;
-	box-shadow: 0 3px 0 0 #222;
-	float:left;
-	border: none;
-	margin: 20px;
 }
 
 .sliders {

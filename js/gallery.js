@@ -15,7 +15,7 @@ function getRecentDrawings() {
     }
   }).done(function(o) {
     //Only keep the 150 most recent URLs.
-    imgList = imgList.slice(0,150);
+    imgList = imgList.slice(0,90);
     //On success, send imgList to another function which updates the page body with the images.
     displayDrawings(imgList);
   });;

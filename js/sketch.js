@@ -62,6 +62,9 @@ var __slice = Array.prototype.slice;
           if ($(this).attr('data-download')) {
             sketch.download($(this).attr('data-download'));
           }
+          if ($(this).attr('data-clear')) {
+            sketch.clear();
+          }
           return false;
         });
       }
@@ -74,6 +77,13 @@ var __slice = Array.prototype.slice;
       }
       mime = "image/" + format;
       return window.open(this.el.toDataURL(mime));
+    };
+    Sketch.prototype.clear = function() {
+      console.log(this.actions);
+      this.actions = [];
+      console.log(this.action);
+      this.action = null;
+      return this.redraw();
     };
     Sketch.prototype.set = function(key, value) {
       this[key] = value;
@@ -129,6 +139,9 @@ var __slice = Array.prototype.slice;
       switch (e.type) {
         case 'mousedown':
         case 'touchstart':
+          if (this.painting) {
+            this.stopPainting();
+          }
           this.startPainting();
           break;
         case 'mouseup':

@@ -5,8 +5,8 @@
 	<link rel="stylesheet" href="css/smart-grid.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="css/painter.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!--For Facebook Sharing-->
 	<meta property="og:title" content="Pokédraw - Draw a Pokémon in 45 seconds!" />
 	<meta property="og:site_name" content="Pokédraw" />
@@ -66,27 +66,27 @@
 						<li class="green"></li>
 						<li class="light-blue"></li>
 						<li class="blue"></li>
-						<li class="purple"></li>
+						<li class="pink"></li>
 						<li class="brown"></li>
 						<li class="gray"></li>
 						<li class="black selected"></li>
 					</ul>
 					<div id="colorSelect">
 						<div>
-							<button id="addNewColor">Add Color</button>
+							<button id="addNewColor">Add This Color</button>
 						</div>
 						<div class="sliders">
 							<p>
 								<label for="red">Red</label>
-								<input id="red" name="red" type="range" min=0 max=255 value=255>
+								<input id="red" name="red" type="range" min=0 max=255 value=148>
 							</p>
 							<p>
 								<label for="green">Green</label>
-								<input id="green" name="green" type="range" min=0 max=255 value=190>
+								<input id="green" name="green" type="range" min=0 max=255 value=109>
 							</p>
 							<p>
 								<label for="blue">Blue</label>
-								<input id="blue" name="blue" type="range" min=0 max=255 value=227>
+								<input id="blue" name="blue" type="range" min=0 max=255 value=155>
 							</p>
 						</div>
 					</div>
@@ -103,6 +103,16 @@
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/sketch.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-52635684-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
 
 </body>
 </html>

@@ -9,6 +9,7 @@ for (var i = 1; i < 151; i++) {
   pokedex[i] = pokeArray[i-1];
 }
 var introMode = true;
+var recentPokemon = [];
 
 //Adds an anchor tag to each color choice to make it work with sketch.js
 $('.controls ul li').append('<a></a>');
@@ -29,12 +30,33 @@ $('.controls').on('click', 'li', function(){
 
 //Changes the color of the newly created color when the sliders are moved.
 $('input[type=range]').change(changeColor);
+
+//Darkens/lightens the given color by the given percent.
+function shadeColor(color, percent) {   
+    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
+    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
+}
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
 function changeColor() {
-  var r = $('#red').val();
-  var g = $('#green').val();
-  var b = $('#blue').val();
-  
-  $('#addNewColor').css('background-color', 'rgb(' + r + ',' + g + ',' + b + ')');
+  var r = parseInt($('#red').val());
+  var g = parseInt($('#green').val());
+  var b = parseInt($('#blue').val());
+  var newColor = rgbToHex(r,g,b);
+  var shadowColor = shadeColor(newColor,-0.5);
+  console.log(newColor);
+  console.log(shadowColor);
+  $('#addNewColor').css({
+    'background-color': newColor,
+    'text-shadow': "0 1px " + shadowColor
+  });
 }
 
 //Adds the newly created color the the color list and selects it immediately.
@@ -113,7 +135,7 @@ function saveImage() {
 function startTimer() {
   var timer = setInterval(function() { 
     //Updates the text shown on the timer.
-    $('#timer').fadeIn('fast').text(--sec);
+    $('#timer').css('display','block').fadeIn('fast').text(--sec);
     if (sec == 5) {
       $('#timer').css('color', '#FF6A62');
     }
@@ -130,7 +152,16 @@ var currentPokemon;
 
 //Generates a random number 001-150.
 function getNewPokemon() {
+  //Clear list of recent Pokemon if 149+.
+  if (recentPokemon.length >= 149) {
+    recentPokemon = [];
+  }
+  //If rand already shows up in recent pokemon, reroll until we get a new one.
   var rand = (Math.floor(Math.random() * 150)+1);
+  while (recentPokemon.indexOf(rand) !== -1) {
+    rand = (Math.floor(Math.random() * 150)+1);
+  }  
+  recentPokemon.push(rand);
   var s = "00" + rand;
   var index =  s.substr(s.length-3);
   //Fetches the proper image file for that pokemon.
@@ -156,7 +187,7 @@ function setInactiveInterface() {
                  'padding': '5px'
                 });
   $canvas.css('pointer-events', 'none');
-  $('#share').css('display', 'block').fadeIn('fast');
+  $('#share').css('display', 'inline-block').fadeIn('fast');
   $('#save').css('display', 'inline-block').fadeIn('fast');
 }
 
@@ -171,8 +202,7 @@ $('#newRound').click(function(){
   //This function changes the CSS of the interface during a round.
   setActiveInterface();
   //These next two lines clear out the saved canvas strokes and redraw it as empty.
-  $canvas.sketch().actions = [];
-  $canvas.sketch().redraw();
+  $canvas.sketch().clear();
   $canvas.css('pointer-events', 'auto');
   //Reset the timer and get a new Pokemon to draw.
   sec = 45;
