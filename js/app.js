@@ -134,10 +134,20 @@ function saveImage() {
 //Timer function initiated when #newRound is clicked.
 function startTimer() {
   var timer = setInterval(function() { 
+    //If in mq-mobile resolution, don't show the regular timer.
+    if ($('#pip').css('display') !== 'block') {
+      console.log('not mobile. #timer should display.')
+      $('#timer').css('display','block');
+    } else {
+      console.log('mobile. #timer shouldn"t display.')
+      $('#timer').css('display','hidden');
+    }
     //Updates the text shown on the timer.
-    $('#timer').css('display','block').fadeIn('fast').text(--sec);
+    $('#timer').text(--sec);
+    $('#pip-timer').text(sec);
     if (sec == 5) {
       $('#timer').css('color', '#FF6A62');
+      $('#pip-timer').css('color', '#FF6A62');
     }
     if (sec == 0) {
       clearInterval(timer);
@@ -166,6 +176,7 @@ function getNewPokemon() {
   var index =  s.substr(s.length-3);
   //Fetches the proper image file for that pokemon.
   $('#imageContainer img').attr('src', "img/" + index + ".png");
+  $('#pip img').attr('src', "img/" + index + ".png");
   //Fetched the proper name from the pokedex object.
   $('#pokemonName').text(pokedex[rand]);
 }
@@ -173,8 +184,13 @@ function getNewPokemon() {
 function setActiveInterface() {
   //Hide the hero text once the button has been clicked once.
   $('h1').css('visibility', 'hidden');
+  //If in mq-mobile resolution, don't show the regular timer.
+  if ($('#pip').css('display') == 'block') {
+    $('h1').css('height', '0px');
+  }
   $('#newRound').attr('disabled', true);
   $('#timer').text('45').css('color', 'white');
+  $('#pip-timer').text('45').css('color', '#666');
   $('#share').css('display', 'none');
   $('#save').css('display', 'none');
 }
@@ -189,6 +205,9 @@ function setInactiveInterface() {
   $canvas.css('pointer-events', 'none');
   $('#share').css('display', 'inline-block').fadeIn('fast');
   $('#save').css('display', 'inline-block').fadeIn('fast');
+}
+function scrollToCanvas() {
+
 }
 
 $('#newRound').click(function(){
@@ -208,6 +227,16 @@ $('#newRound').click(function(){
   sec = 45;
   startTimer();
   getNewPokemon();
+  //If on mobile, Scroll to the canvas element.
+  if ($('#pip').css('display') == 'block') {
+    var target = $('#canvas');
+    if (target.length) {
+      $('html,body').animate({
+        scrollTop: target.offset().top
+      }, 500);
+      return false;
+    }
+  }
 });
 
 $('#save').click(function(){

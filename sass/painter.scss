@@ -22,6 +22,15 @@
 	cursor: pointer;
 	border: 0;
 	box-shadow: 0 2px 0 0 #222;
+	&.selected {
+		border: 2px solid #ccc;
+		top: 2px;
+		box-shadow: none;
+	}
+	@media #{$mq-phone} {
+		width:46px;
+		height: 46px;
+	}
 }
 @mixin button($color, $side-color) {
 	position:relative;
@@ -33,6 +42,7 @@
 	display: block;
 	font-size: 16px;
 	border:none;
+	cursor: pointer;
 	font-family: 'Open Sans', sans-serif;
 	@include box-round;
 	clear:both;
@@ -46,10 +56,10 @@
 }
 
 /***** MEDIA QUERIES ************/
-$mq-phone: "only screen and (max-width : 321px)";
+$mq-phone: "only screen and (max-width : 381px)";
 $mq-phone-landscape: "only screen and (max-width : 481px)";
 $mq-tablet: "only screen and (max-width : 900px)";
-
+$mq-1110: "only screen and (max-width : 1110px)";
 /***** COLORS ********************/
 $rainbow-color-names: red, orange, yellow, light-green, green, light-blue, blue, pink, brown, gray;
 $rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #FAD0DE, #875E37, #8E969B;
@@ -72,7 +82,9 @@ body {
 /************ HEADER *******************************/
 
 header {
-	height: 160px;
+	z-index: 1;
+	position: relative;
+	height: 140px;
 	overflow: hidden;
 	background: white;
 	box-shadow: 0px 3px 2px 0px #111;
@@ -83,6 +95,40 @@ header {
 	#logo {
 		max-height: 100%;
 		padding: 4px;
+	}
+	@media #{$mq-phone-landscape} {
+		height: 90px;
+	}
+}
+
+/************ NAVIGATION ***************************/
+
+nav {
+	margin: 0px 20px;
+	z-index: 0;
+	width: 110px;
+	box-shadow: 0px 2px 2px 0px #111;
+	position: absolute;
+	text-align: center;
+	a {
+		background: #EEDF8E;
+		display: block;
+		text-decoration: none;
+		color: black;
+		font-size: 16px;
+		width: 100%;
+		padding: 10px;
+		position: relative;
+		font-family: 'Open Sans', sans-serif;
+		&:hover {
+			background: #EBE2B5;
+		}
+	}
+	@media #{$mq-phone-landscape} {
+		display: none;
+	}
+	@media #{$mq-1110} {
+		position:relative;
 	}
 }
 
@@ -97,8 +143,16 @@ h1 {
 }
 
 /************ LEFT COLUMN **************************/
+
 #imageContainer {
-	@extend #canvas;
+	max-width: 100%;
+	width:100%;
+	height: auto;
+	background: #bbb;
+	display:block;
+	margin: 10px auto 0px;
+	@include box-round;
+	box-shadow: 0 2px 0 0 #222;
 	text-align: center;
 	font: 0/0 a;
 	&:before {
@@ -115,6 +169,9 @@ h1 {
 		max-height: 100%;
 		@include box-round;
 	}
+	@media #{$mq-phone} {
+		display: none;
+	}
 }
 #pokemonName {
 	font-family: 'Open Sans', sans-serif;
@@ -128,12 +185,18 @@ h1 {
 .center-column {
 	padding-top: 30px;
 	text-align:center;
+	@media #{$mq-phone} {
+		padding-top: 0;
+	}
 }
 #timer {
 	color: #fff;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 48px;
 	display: none;
+	@media #{$mq-phone} {
+		display: hidden;
+	}
 }
 #newRound {
 	@include button(#78BC3F,#306901);
@@ -167,17 +230,48 @@ h1 {
 }
 
 /************ RIGHT COLUMN **************************/
-#canvas {
-	max-width: 100%;
-	width:100%;
-	height: auto;
-	background: #bbb;
-	display:block;
-	margin: 10px auto 0px;
-	@include box-round;
-	box-shadow: 0 2px 0 0 #222;
-	pointer-events: none;
-	cursor: url(../img/cursor.png), crosshair;
+#canvas-container {
+	position: relative;
+	#canvas {
+		max-width: 100%;
+		width:100%;
+		height: auto;
+		background: #bbb;
+		display:block;
+		margin: 10px auto 0px;
+		@include box-round;
+		box-shadow: 0 2px 0 0 #222;
+		pointer-events: none;
+		cursor: url(../img/cursor.png), crosshair;
+		
+	}
+	#pip {
+		display: none;
+		position: absolute;
+		max-height: 25%;
+		max-width: 25%;
+		top: 5px;
+		left: 5px;
+		@include box-round;
+		@media #{$mq-phone} {
+			display: block;
+		}
+		img {
+			max-width: 100%;
+			max-height: 100%;
+			@include box-round;
+		}
+	}
+	#pip-timer {
+		display: none;
+		position: absolute;
+		right: 10px;
+		top: 5px;
+		font-size: 36px;
+		@media #{$mq-phone} {
+			display: block;
+		}
+	}
 }
 
 .controls {
@@ -194,13 +288,7 @@ h1 {
 			margin: 0 5px 5px;
 			position: relative;
 			@include shared-color-properties;
-			&.selected {
-				border: 2px solid #ccc;
-				width: 50px;
-				height: 50px;
-				top: 2px;
-				box-shadow: none;
-			}
+			
 			a {
 				display: block;
 				height: 100%;

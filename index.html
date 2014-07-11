@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="css/painter.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
 	<!--For Facebook Sharing-->
 	<meta property="og:title" content="Pokédraw - Draw a Pokémon in 45 seconds!" />
 	<meta property="og:site_name" content="Pokédraw" />
@@ -37,6 +37,9 @@
 	<header class="row">
 		<a href="index.html"><img id="logo" src="img/logo.png"/></a>
 	</header>
+	<nav>
+		<a href="gallery.html"><span>Gallery</span></a>
+	</nav>
 	<div class="container">
 		<div class="row">
 			<h1>You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
@@ -56,7 +59,13 @@
 				<a href="#canvas" id="save" data-download="jpeg">Save</a>
 			</div>
 			<div class="right-column columns five ">
-				<canvas id="canvas" width="400" height="400"></canvas>
+				<div id="canvas-container">
+					<div id="pip">
+						<img src="img/whos-that-pokemon.jpg">
+					</div>
+					<span id="pip-timer">45</span>
+					<canvas id="canvas" width="400" height="400"></canvas>
+				</div>
 				<div class="controls">
 					<ul>
 						<li class="red"></li>
