@@ -115,13 +115,13 @@ function saveImage() {
     var dataURL = canvas.toDataURL('image/jpeg');
     $.ajax({
       type: "POST",
-      url: "php/saveImage.php",
+      url: "php/kidsSaveImage.php",
       data: { 
          imgBase64: dataURL
       }
-    }).done(function(o) {
+    }).done(function(newImg) {
       console.log('Image saved. Refreshing header.'); 
-      getRecentDrawings();
+      getRecentDrawings(newImg);
       // If you want the file to be visible in the browser 
       // - please modify the callback in javascript. All you
       // need is to return the url to the file, you just saved 
@@ -199,7 +199,6 @@ function setInactiveInterface() {
                  'padding': '5px'
                 });
   $canvas.css('pointer-events', 'none');
-  $('#share').css('display', 'inline-block').fadeIn('fast');
   $('#save').css('display', 'inline-block').fadeIn('fast');
 }
 
@@ -237,69 +236,26 @@ $('#save').click(function(){
   whiteOutCanvasBackground();
 });
 
-$('#share').click(function(){
-  //Open a modal with the link to share with friends. 
-  //The link should end with the filename of the image that was just drawn.
 
-});
-
-function getRecentDrawings() {
-  var dir = "drawings/?C=M;O=D";
+function getRecentDrawings(filename) {
+  var dir = "img/kidpics/";
   var fileextension = ".jpeg";
-  var imgList = [];
-  $.ajax({
-    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-    url: dir,
-    success: function (data) {
-      
-      $(data).find("a[href*='.jpeg']").each(function (i) {
-        var filename = this.href.replace(window.location.host, "").replace("http:///", "").replace("pokedraw/", "").replace("drawings/", "");
-        imgList.push(filename);
-        if (i >= 12) {
-          console.log("Updated the most recent 12 Pokedraws for you!");
-          return false;
-        }
-        console.log(filename + " " + i);
-      });
-    
-    }
-  }).done(function(o) {
-    updateShareLink(imgList[0]);
-    //On success, send imgList to another function which updates the jQuery header with the images.
-    updateHeaderDrawings(imgList);
-  });;
-}
-var sharePic;
-function updateShareLink(fileURL) {
-  sharePic = ("http://www.jamestw.net/pokedraw/drawings/" + fileURL);
+  var imgList = ["img/kidpics/2014062708334353ad8ed754ada.jpeg","img/kidpics/2014062708343453ad8f0af3bad.jpeg", "img/kidpics/2014062708352853ad8f40eeaa8.jpeg", "img/kidpics/2014062708362553ad8f790de4c.jpeg", "img/kidpics/2014062708374053ad8fc464955.jpeg", "img/kidpics/2014062708385553ad900f65570.jpeg", "img/kidpics/2014070715091853bb1a8e44318.jpeg", "img/kidpics/2014070715110353bb1af78d1ed.jpeg", "img/kidpics/2014070806521953bbf79323587.jpeg", "img/kidpics/2014070806541053bbf802c8475.jpeg"];
+  if (filename) {
+    imgList.unshift("drawings/" + filename);
+  };
+
+  imgList = imgList.slice(0,10);
+  //On success, send imgList to another function which updates the jQuery header with the images.
+  updateHeaderDrawings(imgList);
+
 }
 function updateHeaderDrawings(images) {
   console.log(images);
   $('header .recentDrawing').fadeOut('fast').remove();
   images.forEach(function(val, i) {
-    $("header").append($("<img class='recentDrawing' src=drawings/" + val + "></img>").fadeIn('fast'));
+    $("header").append($("<img class='recentDrawing' src=" + val + "></img>").fadeIn('fast'));
   })
 }
 console.log('getting recent drawings...');
 getRecentDrawings();
-
-
-  (function() {
-    
-    var fbShare = function() {
-        FB.ui({
-            method: "feed",
-            link: "http://jamestw.net/pokedraw/",
-            caption: "I drew this Pokemon all by myself!!!!",
-            description: "Think you can draw a Pokemon better than this? Click here to try. It only takes 45 seconds.",
-            picture: sharePic
-        });
-    };
-    $("#share").click(function() {
-        FB.login(function(response) {
-            if (response.authResponse) {
-                fbShare();
-           }
-        }, {scope: 'publish_stream'});
-    });
-})();

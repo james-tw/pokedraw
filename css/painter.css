@@ -47,7 +47,7 @@ header {
 nav {
   margin: 0px 20px;
   z-index: 0;
-  width: 110px;
+  width: 120px;
   box-shadow: 0px 2px 2px 0px #111;
   position: absolute;
   text-align: center; }
@@ -61,10 +61,16 @@ nav {
     width: 100%;
     padding: 10px;
     position: relative;
-    font-family: 'Open Sans', sans-serif; }
-    /* line 123, painter.scss */
+    font-family: 'Open Sans', sans-serif;
+    border-top: 1px solid #666; }
+    /* line 124, painter.scss */
     nav a:hover {
       background: #EBE2B5; }
+  /* line 128, painter.scss */
+  nav div {
+    background: white;
+    border-top: 1px solid;
+    padding: 5px; }
   @media only screen and (max-width: 481px) {
     /* line 106, painter.scss */
     nav {
@@ -75,7 +81,7 @@ nav {
       position: relative; } }
 
 /************ HERO TEXT ****************************/
-/* line 137, painter.scss */
+/* line 143, painter.scss */
 h1 {
   font-family: 'Open Sans', sans-serif;
   color: white;
@@ -84,7 +90,7 @@ h1 {
   margin: 10px 0 0; }
 
 /************ LEFT COLUMN **************************/
-/* line 147, painter.scss */
+/* line 153, painter.scss */
 #imageContainer {
   max-width: 100%;
   width: 100%;
@@ -96,14 +102,14 @@ h1 {
   box-shadow: 0 2px 0 0 #222;
   text-align: center;
   font: 0/0 a; }
-  /* line 158, painter.scss */
+  /* line 164, painter.scss */
   #imageContainer:before {
     content: ' ';
     display: inline-block;
     vertical-align: middle;
     /* vertical alignment of the inline element */
     height: 100%; }
-  /* line 164, painter.scss */
+  /* line 170, painter.scss */
   #imageContainer img {
     display: inline-block;
     vertical-align: middle;
@@ -112,11 +118,11 @@ h1 {
     max-height: 100%;
     border-radius: 5px; }
   @media only screen and (max-width: 381px) {
-    /* line 147, painter.scss */
+    /* line 153, painter.scss */
     #imageContainer {
       display: none; } }
 
-/* line 176, painter.scss */
+/* line 182, painter.scss */
 #pokemonName {
   font-family: 'Open Sans', sans-serif;
   text-align: center;
@@ -126,27 +132,27 @@ h1 {
   text-shadow: 0 2px #333; }
 
 /************ CENTER COLUMN **************************/
-/* line 185, painter.scss */
+/* line 191, painter.scss */
 .center-column {
   padding-top: 30px;
   text-align: center; }
   @media only screen and (max-width: 381px) {
-    /* line 185, painter.scss */
+    /* line 191, painter.scss */
     .center-column {
       padding-top: 0; } }
 
-/* line 192, painter.scss */
+/* line 198, painter.scss */
 #timer {
   color: #fff;
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
   display: none; }
   @media only screen and (max-width: 381px) {
-    /* line 192, painter.scss */
+    /* line 198, painter.scss */
     #timer {
       display: hidden; } }
 
-/* line 201, painter.scss */
+/* line 207, painter.scss */
 #newRound {
   position: relative;
   background: #78bc3f;
@@ -174,13 +180,13 @@ h1 {
   #newRound:disabled {
     opacity: 0.7; }
   @media only screen and (max-width: 900px) {
-    /* line 201, painter.scss */
+    /* line 207, painter.scss */
     #newRound {
       font-size: 24px;
       line-height: 24px;
       padding: 8px 10px; } }
 
-/* line 214, painter.scss */
+/* line 220, painter.scss */
 #share, #save {
   position: relative;
   background: #478e95;
@@ -209,20 +215,20 @@ h1 {
   #share:disabled, #save:disabled {
     opacity: 0.7; }
 
-/* line 223, painter.scss */
+/* line 229, painter.scss */
 #save {
   text-decoration: none;
   margin: 0 auto; }
-  /* line 226, painter.scss */
+  /* line 232, painter.scss */
   #save:active {
     top: 2px;
     box-shadow: none; }
 
 /************ RIGHT COLUMN **************************/
-/* line 233, painter.scss */
+/* line 239, painter.scss */
 #canvas-container {
   position: relative; }
-  /* line 235, painter.scss */
+  /* line 241, painter.scss */
   #canvas-container #canvas {
     max-width: 100%;
     width: 100%;
@@ -234,7 +240,7 @@ h1 {
     box-shadow: 0 2px 0 0 #222;
     pointer-events: none;
     cursor: url(../img/cursor.png), crosshair; }
-  /* line 248, painter.scss */
+  /* line 254, painter.scss */
   #canvas-container #pip {
     display: none;
     position: absolute;
@@ -244,15 +250,15 @@ h1 {
     left: 5px;
     border-radius: 5px; }
     @media only screen and (max-width: 381px) {
-      /* line 248, painter.scss */
+      /* line 254, painter.scss */
       #canvas-container #pip {
         display: block; } }
-    /* line 259, painter.scss */
+    /* line 265, painter.scss */
     #canvas-container #pip img {
       max-width: 100%;
       max-height: 100%;
       border-radius: 5px; }
-  /* line 265, painter.scss */
+  /* line 271, painter.scss */
   #canvas-container #pip-timer {
     display: none;
     position: absolute;
@@ -260,22 +266,22 @@ h1 {
     top: 5px;
     font-size: 36px; }
     @media only screen and (max-width: 381px) {
-      /* line 265, painter.scss */
+      /* line 271, painter.scss */
       #canvas-container #pip-timer {
         display: block; } }
 
-/* line 277, painter.scss */
+/* line 283, painter.scss */
 .controls {
   margin: 0 auto;
   border-radius: 5px; }
-  /* line 280, painter.scss */
+  /* line 286, painter.scss */
   .controls ul {
     list-style: none;
     float: left;
     padding: 0;
     width: 100%;
     text-align: center; }
-    /* line 286, painter.scss */
+    /* line 292, painter.scss */
     .controls ul li {
       display: inline-block;
       margin: 0 5px 5px;
@@ -292,11 +298,11 @@ h1 {
         top: 2px;
         box-shadow: none; }
       @media only screen and (max-width: 381px) {
-        /* line 286, painter.scss */
+        /* line 292, painter.scss */
         .controls ul li {
           width: 46px;
           height: 46px; } }
-      /* line 292, painter.scss */
+      /* line 298, painter.scss */
       .controls ul li a {
         display: block;
         height: 100%; }
@@ -342,11 +348,11 @@ h1 {
 .gray {
   background: #8e969b; }
 
-/* line 304, painter.scss */
+/* line 310, painter.scss */
 .black {
   background: #000; }
 
-/* line 308, painter.scss */
+/* line 314, painter.scss */
 #colorSelect {
   background: #fff;
   border-radius: 5px;
@@ -356,7 +362,7 @@ h1 {
   max-width: 100%;
   width: 300px;
   position: relative; }
-  /* line 317, painter.scss */
+  /* line 323, painter.scss */
   #colorSelect:after {
     bottom: 100%;
     left: 50%;
@@ -371,7 +377,7 @@ h1 {
     border-width: 12px;
     margin-left: -10px; }
 
-/* line 332, painter.scss */
+/* line 338, painter.scss */
 #addNewColor {
   position: relative;
   background: #946d9b;
@@ -399,14 +405,14 @@ h1 {
   #addNewColor:disabled {
     opacity: 0.7; }
 
-/* line 341, painter.scss */
+/* line 347, painter.scss */
 .sliders {
   padding-top: 4px; }
-  /* line 343, painter.scss */
+  /* line 349, painter.scss */
   .sliders p {
     margin: 8px 0;
     vertical-align: middle; }
-  /* line 347, painter.scss */
+  /* line 353, painter.scss */
   .sliders label {
     text-align: right;
     font-family: "Open Sans",sans-serif;
@@ -415,29 +421,29 @@ h1 {
     margin: 0 10px 0 10px;
     width: 20%;
     font-size: 16px; }
-  /* line 355, painter.scss */
+  /* line 361, painter.scss */
   .sliders input {
     position: relative;
     width: 60%;
     top: 4px; }
 
 /********** FOOTER **********************/
-/* line 366, painter.scss */
+/* line 372, painter.scss */
 footer {
   margin-top: 40px;
   background: #444;
   color: #eee;
   padding: 20px 0; }
-  /* line 371, painter.scss */
+  /* line 377, painter.scss */
   footer #galleryLink {
     float: left; }
-  /* line 374, painter.scss */
+  /* line 380, painter.scss */
   footer #byline {
     float: right; }
-  /* line 377, painter.scss */
+  /* line 383, painter.scss */
   footer a {
     text-decoration: none;
     color: #BD9E70; }
-    /* line 380, painter.scss */
+    /* line 386, painter.scss */
     footer a:hover {
       color: #E4C08A; }

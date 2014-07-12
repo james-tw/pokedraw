@@ -1,3 +1,26 @@
+@mixin button($color, $side-color) {
+	position:relative;
+	background: $color;
+	box-shadow: 0 4px 0 0 $side-color;
+	color: #fff;
+	outline: none;
+	text-shadow: 0 1px $side-color;
+	display: block;
+	font-size: 16px;
+	border:none;
+	cursor: pointer;
+	font-family: 'Open Sans', sans-serif;
+	border-radius: 5px;
+	clear:both;
+	&:enabled:active {
+		top: 4px;
+		box-shadow: none;
+	}
+	&:disabled {
+		opacity: 0.7;
+	}
+}
+
 header {
 	height: 80px;
 }
@@ -21,6 +44,14 @@ header {
 		box-shadow: 0 2px 0 0 #222;
 	}
 }
+
+.loader {
+	margin: 0 auto;
+	@include button(#78BC3F,#306901);
+	padding: 20px;
+	font-size:24px;
+}
+
 @media only screen and (max-width : 650px) {
   /* Tablet & phone view: 2 tiles */
   .drawing {

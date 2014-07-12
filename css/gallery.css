@@ -1,35 +1,61 @@
-/* line 1, gallery.scss */
+/* line 24, gallery.scss */
 header {
   height: 80px; }
 
-/* line 5, gallery.scss */
+/* line 28, gallery.scss */
 .row p {
   font-family: "Open Sans" ,sans-serif;
   color: #fff;
   text-align: center;
   font-size: 16px; }
 
-/* line 11, gallery.scss */
+/* line 34, gallery.scss */
 .drawing {
   height: auto;
   float: left;
   position: relative;
   width: 25%;
   padding: 10px; }
-  /* line 17, gallery.scss */
+  /* line 40, gallery.scss */
   .drawing img {
     width: 100%;
     height: auto;
     border-radius: 5px;
     box-shadow: 0 2px 0 0 #222; }
 
+/* line 48, gallery.scss */
+.loader {
+  margin: 0 auto;
+  position: relative;
+  background: #78bc3f;
+  box-shadow: 0 4px 0 0 #306901;
+  color: #fff;
+  outline: none;
+  text-shadow: 0 1px #306901;
+  display: block;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 5px;
+  clear: both;
+  padding: 20px;
+  font-size: 24px; }
+  /* line 15, gallery.scss */
+  .loader:enabled:active {
+    top: 4px;
+    box-shadow: none; }
+  /* line 19, gallery.scss */
+  .loader:disabled {
+    opacity: 0.7; }
+
 @media only screen and (max-width: 650px) {
   /* Tablet & phone view: 2 tiles */
-  /* line 26, gallery.scss */
+  /* line 57, gallery.scss */
   .drawing {
     width: 50%; } }
 @media only screen and (max-width: 1050px) and (min-width: 651px) {
   /* Small desktop / ipad view: 3 tiles */
-  /* line 32, gallery.scss */
+  /* line 63, gallery.scss */
   .drawing {
     width: 33.3%; } }
