@@ -244,30 +244,16 @@ $('#share').click(function(){
 });
 
 function getRecentDrawings() {
-  var dir = "drawings/?C=M;O=D";
-  var fileextension = ".jpeg";
   var imgList = [];
   $.ajax({
-    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-    url: dir,
-    success: function (data) {
-      
-      $(data).find("a[href*='.jpeg']").each(function (i) {
-        var filename = this.href.replace(window.location.host, "").replace("http:///", "").replace("pokedraw/", "").replace("drawings/", "");
-        imgList.push(filename);
-        if (i >= 12) {
-          console.log("Updated the most recent 12 Pokedraws for you!");
-          return false;
-        }
-        console.log(filename + " " + i);
-      });
-    
-    }
-  }).done(function(o) {
-    updateShareLink(imgList[0]);
-    //On success, send imgList to another function which updates the jQuery header with the images.
-    updateHeaderDrawings(imgList);
-  });;
+    type: "POST",
+    url: "php/getDrawingFilenames.php"
+  }).done(function(files) {
+      imgList = JSON.parse(files).slice(0, 12);
+      updateShareLink(imgList[0]);
+      //On success, send imgList to another function which updates the jQuery header with the images.
+      updateHeaderDrawings(imgList);
+  });
 }
 var sharePic;
 function updateShareLink(fileURL) {

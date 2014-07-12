@@ -2,28 +2,12 @@ var loadPortion = [];
 var imgList = [];
 var loadStart = 0;
 function initializeGallery() {
-  var dir = "drawings/?C=M;O=D";
-  var fileextension = ".jpeg";
   $.ajax({
-    type: "GET",
-    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-    url: dir,
-    success: function (data) {
-      console.log(data);
-      $(data).find("a[href*='.jpeg']").each(function (i) {
-        var filename = this.href.replace(window.location.host, "").replace("http:///", "").replace("pokedraw/", "").replace("drawings/", "");
-        //Build an array of all the image filenames in the directory.
-        imgList.push(filename);
-        if (i > 640) {
-          console.log("Found the most recent 640 Pokedraws for you!");
-          return false;
-        }
-      });
-    }
-  }).done(function(o) {
-    //On success, send loadPortion to another function which updates the page body with the images.
-    displayNewDrawings();
-    console.log(imgList.length);
+    type: "POST",
+    url: "php/getDrawingFilenames.php"
+  }).done(function(files) {
+      imgList = JSON.parse(files).slice(0, 640);
+      displayNewDrawings();
   });
 }
 function displayNewDrawings() {
