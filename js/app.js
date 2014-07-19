@@ -257,7 +257,7 @@ function getRecentDrawings() {
 }
 var sharePic;
 function updateShareLink(fileURL) {
-  sharePic = ("http://www.jamestw.net/pokedraw/drawings/" + fileURL);
+  sharePic = ("http://www.pokedraw.net/drawings/" + fileURL);
 }
 function updateHeaderDrawings(images) {
   console.log(images);
@@ -275,7 +275,7 @@ getRecentDrawings();
     var fbShare = function() {
         FB.ui({
             method: "feed",
-            link: "http://jamestw.net/pokedraw/",
+            link: "http://pokedraw.net/",
             caption: "I drew this Pokemon all by myself!!!!",
             description: "Think you can draw a Pokemon better than this? Click here to try. It only takes 45 seconds.",
             picture: sharePic

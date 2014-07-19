@@ -25,11 +25,22 @@ header {
 	height: 80px;
 }
 
-.row p {
-	font-family: "Open Sans" ,sans-serif;
-	color: #fff;
-	text-align: center;
-	font-size: 16px;
+.row {
+	p {
+		font-family: "Open Sans" ,sans-serif;
+		color: #fff;
+		text-align: center;
+		font-size: 16px;
+		margin: 5px;
+	}
+	a {
+		color: #ddd;
+		&:hover {
+			color: #bbb;
+		}
+	}
+	
+
 }
 .drawing {
 	height: auto;

@@ -1,18 +1,18 @@
 var loadPortion = [];
 var imgList = [];
 var loadStart = 0;
+
 function initializeGallery() {
   $.ajax({
     type: "POST",
     url: "php/getDrawingFilenames.php"
   }).done(function(files) {
-      imgList = JSON.parse(files).slice(0, 640);
+      imgList = JSON.parse(files).slice(0, 1000);
       displayNewDrawings();
   });
 }
-function displayNewDrawings() {
 
-  //Only keep the X most recent URLs.
+function displayNewDrawings() {
   loadPortion = imgList.slice(loadStart, loadStart+40);
   loadPortion.forEach(function(val) {
     $(".gallery").append($("<div class='drawing'><img src=drawings/" + val + "></img></div>"));
@@ -25,8 +25,14 @@ function displayNewDrawings() {
     displayNewDrawings();
   })
   loadStart += 40;
+
 }
 
-
+  $(window).scroll(function() {
+     if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+        $('.loader').remove();
+         displayNewDrawings();
+     }
+  });
 
 initializeGallery();

@@ -2,28 +2,35 @@
 header {
   height: 80px; }
 
-/* line 28, gallery.scss */
+/* line 29, gallery.scss */
 .row p {
   font-family: "Open Sans" ,sans-serif;
   color: #fff;
   text-align: center;
-  font-size: 16px; }
+  font-size: 16px;
+  margin: 5px; }
+/* line 36, gallery.scss */
+.row a {
+  color: #ddd; }
+  /* line 38, gallery.scss */
+  .row a:hover {
+    color: #bbb; }
 
-/* line 34, gallery.scss */
+/* line 45, gallery.scss */
 .drawing {
   height: auto;
   float: left;
   position: relative;
   width: 25%;
   padding: 10px; }
-  /* line 40, gallery.scss */
+  /* line 51, gallery.scss */
   .drawing img {
     width: 100%;
     height: auto;
     border-radius: 5px;
     box-shadow: 0 2px 0 0 #222; }
 
-/* line 48, gallery.scss */
+/* line 59, gallery.scss */
 .loader {
   margin: 0 auto;
   position: relative;
@@ -51,11 +58,11 @@ header {
 
 @media only screen and (max-width: 650px) {
   /* Tablet & phone view: 2 tiles */
-  /* line 57, gallery.scss */
+  /* line 68, gallery.scss */
   .drawing {
     width: 50%; } }
 @media only screen and (max-width: 1050px) and (min-width: 651px) {
   /* Small desktop / ipad view: 3 tiles */
-  /* line 63, gallery.scss */
+  /* line 74, gallery.scss */
   .drawing {
     width: 33.3%; } }
