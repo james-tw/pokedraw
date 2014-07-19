@@ -374,14 +374,21 @@ footer {
 	background: #444;
 	color: #eee;
 	padding: 20px 0;
-	#galleryLink {
+	.footerLink {
 		float: left;
+		width: 100%;
 	}
 	#byline {
+		float: right;
+		width: 100%;
+		text-align: right;
+	}
+	.fb-like-box {
 		float: right;
 	}
 	a {
 		text-decoration: none;
+		font-weight: bold;
 		color: #BD9E70;
 		&:hover{
 			color: #E4C08A;

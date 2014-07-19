@@ -32,6 +32,16 @@
 	         fjs.parentNode.insertBefore(js, fjs);
 	       }(document, 'script', 'facebook-jssdk'));
 	</script>
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+		    var js, fjs = d.getElementsByTagName(s)[0];
+		    if (d.getElementById(id)) return;
+		    js = d.createElement(s); js.id = id;
+		    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=351920294960632&version=v2.0";
+		    fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
 
 	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
 
@@ -108,10 +118,18 @@
 	</div>
 	<footer>
 		<div class="container">
-			<div id="galleryLink">Visit the <a href="gallery.html">Gallery</a> to see all the drawings!</div><br/>
-			<div id="galleryLink">Parents: There is a <a href="kids.html">kids version</a> where children can play/view safely.</div><br/>
-			<div id="galleryLink"><a href="kids.html">Privacy policy</a></div>
-			<div id="byline">Made by <a href="http://www.jamestw.net">James TW</a></div>
+			<div class="row">
+				<div class="columns eight">
+					<div class="footerLink"><a href="gallery.html">Gallery</a> - See all the most recent drawings!</div><br/>
+					<div class="footerLink"><a href="kids.html">Kids version</a> - Where children can play & view safely.</div><br/>
+					<div class="footerLink"><a href="privacy.html">Privacy Policy</a></div></br>
+					<p>230,000 Pokedraws and counting!</p>
+				</div>
+				<div class="columns four">
+					<div class="fb-like-box" data-href="https://www.facebook.com/pokedrawdotnet" data-width="150px" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
+					<div id="byline">Made by <a href="http://www.jamestw.net">James TW</a></div>
+				</div>
+			</div>
 		</div>
 	</footer>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>

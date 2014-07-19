@@ -9,7 +9,8 @@ for (var i = 1; i < 151; i++) {
   pokedex[i] = pokeArray[i-1];
 }
 var introMode = true;
-var recentPokemon = [];
+var recentPokemon = [],
+    sec;
 
 //Adds an anchor tag to each color choice to make it work with sketch.js
 $('.controls ul li').append('<a></a>');
@@ -107,8 +108,9 @@ function whiteOutCanvasBackground() {
   //draw background / rect on entire canvas
   context.fillRect(0,0,canvas.width, canvas.height);
 }
-
+var canSave = true;
 function saveImage() {
+  if (canSave) {
     //Sets the background of the saved canvas to white.
     whiteOutCanvasBackground();
     //encode the drawing, send to saveImage.php which saves the image to ../drawings.
@@ -127,6 +129,11 @@ function saveImage() {
       // need is to return the url to the file, you just saved 
       // and than put the image in your browser.
     });
+    canSave = false;
+    setTimeout(function() {
+      canSave = true;
+    }, 40000);
+  }    
 }
 
 //Timer function initiated when #newRound is clicked.
@@ -149,7 +156,9 @@ function startTimer() {
       clearInterval(timer);
       //This function sets the CSS of the interface when a round has ended.
       setInactiveInterface();
-      saveImage(); //Calls getRecentDrawings() in callback.
+      if ($canvas.sketch().actions.length > 0) {
+        saveImage(); //Calls getRecentDrawings() in callback.
+      }
     } 
   }, 1000);
 }
@@ -289,3 +298,7 @@ getRecentDrawings();
         }, {scope: 'publish_stream'});
     });
 })();
+
+function getActions () {
+  console.log($canvas.sketch().actions);
+}

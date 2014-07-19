@@ -439,15 +439,22 @@ footer {
   color: #eee;
   padding: 20px 0; }
   /* line 377, painter.scss */
-  footer #galleryLink {
-    float: left; }
-  /* line 380, painter.scss */
+  footer .footerLink {
+    float: left;
+    width: 100%; }
+  /* line 381, painter.scss */
   footer #byline {
+    float: right;
+    width: 100%;
+    text-align: right; }
+  /* line 386, painter.scss */
+  footer .fb-like-box {
     float: right; }
-  /* line 383, painter.scss */
+  /* line 389, painter.scss */
   footer a {
     text-decoration: none;
+    font-weight: bold;
     color: #BD9E70; }
-    /* line 386, painter.scss */
+    /* line 393, painter.scss */
     footer a:hover {
       color: #E4C08A; }
