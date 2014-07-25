@@ -258,6 +258,7 @@ function getRecentDrawings() {
     type: "POST",
     url: "php/getDrawingFilenames.php"
   }).done(function(files) {
+      //console.log(files);
       imgList = JSON.parse(files).slice(0, 12);
       updateShareLink(imgList[0]);
       //On success, send imgList to another function which updates the jQuery header with the images.
