@@ -1,4 +1,5 @@
-
+$(document).ready(function(){
+  
 var color = $('.selected').css('background-color');
 
 //Construction of the Pokedex
@@ -259,3 +260,4 @@ function updateHeaderDrawings(images) {
 }
 console.log('getting recent drawings...');
 getRecentDrawings();
+})

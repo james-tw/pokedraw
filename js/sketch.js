@@ -79,9 +79,7 @@ var __slice = Array.prototype.slice;
       return window.open(this.el.toDataURL(mime));
     };
     Sketch.prototype.clear = function() {
-      console.log(this.actions);
       this.actions = [];
-      console.log(this.action);
       this.action = null;
       return this.redraw();
     };
