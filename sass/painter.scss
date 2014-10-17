@@ -60,6 +60,7 @@ $mq-phone: "only screen and (max-width : 381px)";
 $mq-phone-landscape: "only screen and (max-width : 481px)";
 $mq-tablet: "only screen and (max-width : 900px)";
 $mq-1110: "only screen and (max-width : 1110px)";
+$mq-1400: "only screen and (max-width : 1400px)";
 /***** COLORS ********************/
 $rainbow-color-names: red, orange, yellow, light-green, green, light-blue, blue, pink, purple, brown, gray;
 $rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #FAD0DE,#946D9B, #875E37, #8E969B;
@@ -99,6 +100,17 @@ header {
 	@media #{$mq-phone-landscape} {
 		height: 90px;
 	}
+	#hide-drawings {
+		position: absolute;
+		right: 10px;
+		top: 5px;
+		text-decoration: none;
+		font-size: 20px;
+		color: black;
+		&:active {
+			color: red;
+		}
+	}
 }
 
 /************ NAVIGATION ***************************/
@@ -123,6 +135,10 @@ nav {
 		border-top: 1px solid #666;
 		&:hover {
 			background: #EBE2B5;
+		}
+		@media #{$mq-1400} {
+			font-size: 14px;
+			padding: 5px;
 		}
 	}
 	div {
