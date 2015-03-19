@@ -3,9 +3,9 @@ $(document).ready(function(){
 	var recentDrawingID;
 	//Construction of the Pokedex
 	var pokedex = {};
-	var pokeList = "Bulbasaur Ivysaur Venusaur Charmander Charmeleon Charizard Squirtle Wartortle Blastoise Caterpie Metapod Butterfree Weedle Kakuna Beedrill Pidgey Pidgeotto Pidgeot Rattata Raticate Spearow Fearow Ekans Arbok Pikachu Raichu Sandshrew Sandslash Nidoran♀ Nidorina Nidoqueen Nidoran♂ Nidorino Nidoking Clefairy Clefable Vulpix Ninetales Jigglypuff Wigglytuff Zubat Golbat Oddish Gloom Vileplume Paras Parasect Venonat Venomoth Diglett Dugtrio Meowth Persian Psyduck Golduck Mankey Primeape Growlithe Arcanine Poliwag Poliwhirl Poliwrath Abra Kadabra Alakazam Machop Machoke Machamp Bellsprout Weepinbell Victreebel Tentacool Tentacruel Geodude Graveler Golem Ponyta Rapidash Slowpoke Slowbro Magnemite Magneton Farfetchd Doduo Dodrio Seel Dewgong Grimer Muk Shellder Cloyster Gastly Haunter Gengar Onix Drowzee Hypno Krabby Kingler Voltorb Electrode Exeggcute Exeggutor Cubone Marowak Hitmonlee Hitmonchan Lickitung Koffing Weezing Rhyhorn Rhydon Chansey Tangela Kangaskhan Horsea Seadra Goldeen Seaking Staryu Starmie Mr.Mime Scyther Jynx Electabuzz Magmar Pinsir Tauros Magikarp Gyarados Lapras Ditto Eevee Vaporeon Jolteon Flareon Porygon Omanyte Omastar Kabuto Kabutops Aerodactyl Snorlax Articuno Zapdos Moltres Dratini Dragonair Dragonite Mewtwo";
+	var pokeList = "Bulbasaur Ivysaur Venusaur Charmander Charmeleon Charizard Squirtle Wartortle Blastoise Caterpie Metapod Butterfree Weedle Kakuna Beedrill Pidgey Pidgeotto Pidgeot Rattata Raticate Spearow Fearow Ekans Arbok Pikachu Raichu Sandshrew Sandslash Nidoran♀ Nidorina Nidoqueen Nidoran♂ Nidorino Nidoking Clefairy Clefable Vulpix Ninetales Jigglypuff Wigglytuff Zubat Golbat Oddish Gloom Vileplume Paras Parasect Venonat Venomoth Diglett Dugtrio Meowth Persian Psyduck Golduck Mankey Primeape Growlithe Arcanine Poliwag Poliwhirl Poliwrath Abra Kadabra Alakazam Machop Machoke Machamp Bellsprout Weepinbell Victreebel Tentacool Tentacruel Geodude Graveler Golem Ponyta Rapidash Slowpoke Slowbro Magnemite Magneton Farfetchd Doduo Dodrio Seel Dewgong Grimer Muk Shellder Cloyster Gastly Haunter Gengar Onix Drowzee Hypno Krabby Kingler Voltorb Electrode Exeggcute Exeggutor Cubone Marowak Hitmonlee Hitmonchan Lickitung Koffing Weezing Rhyhorn Rhydon Chansey Tangela Kangaskhan Horsea Seadra Goldeen Seaking Staryu Starmie Mr.Mime Scyther Jynx Electabuzz Magmar Pinsir Tauros Magikarp Gyarados Lapras Ditto Eevee Vaporeon Jolteon Flareon Porygon Omanyte Omastar Kabuto Kabutops Aerodactyl Snorlax Articuno Zapdos Moltres Dratini Dragonair Dragonite Mewtwo Mew";
 	var pokeArray = pokeList.split(' ');
-	for (var i = 1; i < 151; i++) {
+	for (var i = 1; i <= 151; i++) {
 		pokedex[i] = pokeArray[i-1];
 	}
 	var introMode = true;
@@ -117,16 +117,6 @@ $(document).ready(function(){
 		context.fillRect(0,0,canvas.width, canvas.height);
 	}
 
-	function roundComplete() {
-		rounds++;
-		if (rounds == 3) {
-			$("#donationDropdown").slideDown("slow");
-		}
-	}
-	$("#donationButtons a").click(function(e){
-		e.preventDefault();
-		$("#donationDropdown").slideUp("500");
-	});
 	var canSave = true;
 	function saveImage() {
 		if (canSave) {
@@ -138,8 +128,10 @@ $(document).ready(function(){
 				type: "POST",
 				url: "/ajax/saveImage",
 				data: {
-					 imgBase64: dataURL,
-			 pokemon: currentPokemon
+					imgBase64: dataURL,
+					pokemon: currentPokemon,
+					browser: browser.name,
+					browser_version: browser.version
 				}
 			}).done(function(response) {
 				recentDrawingID = response._id;
@@ -179,25 +171,25 @@ $(document).ready(function(){
 				//This function sets the CSS of the interface when a round has ended.
 				setInactiveInterface();
 				if ($canvas.sketch().actions.length > 0) {
-					roundComplete();
 					saveImage(); //Calls getRecentDrawings() in callback.
 				}
+		  	ga('send', 'event', 'round-complete', 'trigger');
 			}
 		}, 1000);
 	}
 	//Current pokemon is kept track of just so that you don't get the same one twice in a row.
 	var currentPokemon;
 
-	//Generates a random number 001-150.
+	//Generates a random number 001-151.
 	function getNewPokemon() {
 		//Clear list of recent Pokemon if 149+.
 		if (recentPokemon.length >= 149) {
 			recentPokemon = [];
 		}
 		//If rand already shows up in recent pokemon, reroll until we get a new one.
-		var rand = (Math.floor(Math.random() * 150)+1);
+		var rand = (Math.floor(Math.random() * 151)+1);
 		while (recentPokemon.indexOf(rand) !== -1) {
-			rand = (Math.floor(Math.random() * 150)+1);
+			rand = (Math.floor(Math.random() * 151)+1);
 		}
 		recentPokemon.push(rand);
 		var s = "00" + rand;
@@ -213,13 +205,13 @@ $(document).ready(function(){
 
 	function setActiveInterface() {
 		//Hide the hero text once the button has been clicked once.
-		$('h1').css('visibility', 'hidden');
+		$('h1').slideUp('fast');
 		//If in mq-mobile resolution, don't show the regular timer.
 		if ($('#pip').css('display') == 'block') {
 			$('h1').css('height', '0px');
 		}
 		$('#newRound').attr('disabled', true);
-		$('#timer').text('45').css('color', 'white');
+		$('#timer').text('45').css('color', '#fff');
 		$('#pip-timer').text('45').css('color', '#666');
 		$('.share').css('display', 'none');
 		$('#save').css('display', 'none');
@@ -228,10 +220,11 @@ $(document).ready(function(){
 		//As soon as the round is over, change the CTA button to say "Draw a new Pokemon" and change the button css to match.
 		$('#newRound').attr('disabled', false)
 									.text('Draw a new Pokémon!')
-									.css({
-									 'font-size': '24px',
-									 'padding': '5px'
-									});
+									.removeClass('intro');
+									// .css({
+									//  'font-size': '24px',
+									//  'padding': '5px'
+									// });
 		$canvas.css('pointer-events', 'none');
 		$('.share').css('display', 'inline-block').fadeIn('fast');
 		$('#save').css('display', 'inline-block').fadeIn('fast');
@@ -251,23 +244,27 @@ $(document).ready(function(){
 		$canvas.sketch().clear();
 		$canvas.css('pointer-events', 'auto');
 		//Reset the timer and get a new Pokemon to draw.
-		sec = 45;
+		sec = 5;
 		getNewPokemon();
 		//If on mobile, Scroll to the canvas element.
 		if ($('#pip').css('display') == 'block') {
 			var target = $('#canvas');
 			if (target.length) {
 				$('html,body').animate({
-					scrollTop: target.offset().top
+					scrollTop: target.offset().top - 12
 				}, 500);
 				return false;
 			}
 		}
+  	ga('send', 'event', 'new-round', 'click');
 	});
 
 	$('#save').click(function(){
 		//Sets the background of the saved picture to white.
 		whiteOutCanvasBackground();
+
+
+		ga('send', 'event', 'save-button', 'click');
 	});
 
 	function getRecentDrawings() {
@@ -276,7 +273,7 @@ $(document).ready(function(){
 			type: "GET",
 			url: "/ajax/getDrawingFilenames/12"
 		}).done(function(files) {
-		console.log(files);
+		// console.log(files);
 				imgList = files; //no JSON.Parse needed since we set the JSON headers with express :-)
 				//On success, send imgList to another function which updates the jQuery header with the images.
 				updateHeaderDrawings(imgList);
@@ -290,45 +287,39 @@ $(document).ready(function(){
 		$('.share-twitter').attr('href', 'http://twitter.com/share?url=' + sharePic + '&text=I drew this ' + currentPokemon + ' all by myself on pokedraw.net!');
 	}
 	function updateHeaderDrawings(images) {
-		console.log(images);
+		// console.log(images);
 		$('header .recentDrawing').fadeOut('fast').remove();
 		images.forEach(function(val, i) {
 			$("header").append($("<img class='recentDrawing' src=drawings/" + val._id + "></img>").fadeIn('fast'));
 		});
 	}
-	console.log('getting recent drawings...');
+	// console.log('getting recent drawings...');
 	getRecentDrawings();
 
-
+// Facebook sharing button
 		(function() {
-
 			var fbShare = function() {
-					FB.ui({
-							method: "feed",
-							link: "http://pokedraw.net/",
-							caption: "I drew this Pokemon all by myself!!!!",
-							description: "Think you can draw a Pokemon better than this? Click here to try. It only takes 45 seconds.",
-							picture: sharePic
-					});
+				FB.ui({
+					method: "feed",
+					link: "http://pokedraw.net/",
+					caption: "I drew this Pokemon all by myself!!!!",
+					description: "Think you can draw a Pokemon better than this? Click here to try. It only takes 45 seconds.",
+					picture: sharePic
+				});
 			};
 			$(".share-facebook").click(function() {
 			FB.login(function(response) {
-							if (response.authResponse) {
-									fbShare();
-						 }
-					}, {scope: 'publish_stream'});
+					if (response.authResponse) {
+						fbShare();
+				 }
+				}, {scope: 'publish_stream'});
+		  	ga('send', 'event', 'share-facebook', 'click');
 			});
 	})();
 
-	function getActions () {
-		console.log($canvas.sketch().actions);
-	}
-
 	//Twitter Share button
-	//$('.twitter').attr('href', 'http://twitter.com/share?url=' + tweetURL);
-	// worked previously $('.twitter').attr('href', 'http://twitter.com/share?url=http%3A%2F%2Fpokedraw.net%2Fdrawings%2F54848a21f6cec28e1919995b');
 
-	$('.popup').click(function(event) {
+	$('.share-twitter').click(function(event) {
     var width  = 575,
         height = 400,
         left   = ($(window).width()  - width)  / 2,
@@ -343,6 +334,40 @@ $(document).ready(function(){
 
     window.open(url, 'twitter', opts);
 
+		ga('send', 'event', 'share-twitter', 'click');
     return false;
   });
+
+	// leanModal v1.1 by Ray Stone - http://finelysliced.com.au
+	// Dual licensed under the MIT and GPL
+	(function($){$.fn.extend({leanModal:function(options){var defaults={top:100,overlay:0.5,closeButton:null};var overlay=$("<div id='lean_overlay'></div>");$("body").append(overlay);options=$.extend(defaults,options);return this.each(function(){var o=options;$(this).click(function(e){var modal_id=$(this).attr("href");$("#lean_overlay").click(function(){close_modal(modal_id)});$(o.closeButton).click(function(){close_modal(modal_id)});var modal_height=$(modal_id).outerHeight();var modal_width=$(modal_id).outerWidth();
+	$("#lean_overlay").css({"display":"block",opacity:0});$("#lean_overlay").fadeTo(200,o.overlay);$(modal_id).css({"display":"block","position":"fixed","opacity":0,"z-index":11000,"left":50+"%","margin-left":-(modal_width/2)+"px","top":o.top+"px"});$(modal_id).fadeTo(200,1);e.preventDefault()})});function close_modal(modal_id){$("#lean_overlay").fadeOut(200);$(modal_id).css({"display":"none"})}}})})(jQuery);
+
+	$(".nav-update").leanModal({ top : 200, overlay : 0.4, closeButton: ".modal-close" });
+
+
+	//Analytics for miscellaneous events
+	$('#dropdownDonateButton').click(function(){
+		ga('send', 'event', 'donation-button', 'click');
+	})
 });
+
+//Browser detection function by StackOverflow users kennebec & Hermann Ingjaldsson
+function get_browser_info(){
+    var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if(/trident/i.test(M[1])){
+        tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
+        return {name:'IE ',version:(tem[1]||'')};
+        }
+    if(M[1]==='Chrome'){
+        tem=ua.match(/\bOPR\/(\d+)/)
+        if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+        }
+    M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+    if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+    return {
+      name: M[0],
+      version: M[1]
+    };
+ }
+var browser = get_browser_info();
