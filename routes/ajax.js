@@ -8,7 +8,9 @@ router.post('/saveImage', function(req, res,next) {
 	var image = {
 		base_64: req.body.imgBase64.replace("data:image/jpeg;base64,", "").replace(" ", "+"),
 		created: moment().format(), //current time
-		pokemon: req.body.pokemon.toLowerCase()
+		pokemon: req.body.pokemon.toLowerCase(),
+		browser: req.body.browser.toLowerCase(),
+		browser_version: req.body.browser_version.toLowerCase()
 	};
 	collection.insert(image, function(err, record){
 		if (err){
