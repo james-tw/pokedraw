@@ -1,40 +1,77 @@
-/* line 24, gallery.scss */
 header {
   height: 80px; }
 
-/* line 29, gallery.scss */
 .row p {
   font-family: "Open Sans" ,sans-serif;
   color: #fff;
   text-align: center;
-  font-size: 16px;
+  font-size: 1.25em;
   margin: 5px; }
-/* line 36, gallery.scss */
 .row a {
-  color: #ddd; }
-  /* line 38, gallery.scss */
+  color: #303030; }
   .row a:hover {
-    color: #bbb; }
+    color: #222222; }
 
-/* line 45, gallery.scss */
 .drawing {
-  height: auto;
   float: left;
   position: relative;
-  width: 25%;
-  padding: 10px; }
-  /* line 51, gallery.scss */
-  .drawing img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 2px 0 0 #222; }
+  width: 23%;
+  margin: 1%;
+  background-color: #fff;
+  background-image: url("none");
+  background-size: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 0 0 #222; }
+  @media only screen and (max-width: 650px) {
+    .drawing {
+      /* Tablet & phone view: 2 tiles */
+      width: 48%;
+      margin: 1%; } }
+  @media only screen and (max-width: 1050px) and (min-width: 651px) {
+    .drawing {
+      /* Small desktop / ipad view: 3 tiles */
+      width: 30%;
+      margin: 1.66%; } }
+  .drawing h1 {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #FAFAFA;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    background-color: #666;
+    margin: 0;
+    padding: 6px 0 3px;
+    border-radius: 0 0 3px 3px; }
+  .drawing a {
+    display: none;
+    font-size: 1.5em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 7px 10px 5px;
+    color: #FAFAFA;
+    background-color: #666;
+    border-radius: 3px 0 3px 0; }
+    .drawing a:hover {
+      color: #ccc; }
+  .drawing:hover a {
+    display: inline-block; }
+  .drawing:hover h1 {
+    display: inline-block; }
+  .drawing:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+    /* initial ratio of 1:1*/ }
 
-/* line 59, gallery.scss */
 .loader {
   margin: 0 auto;
   position: relative;
-  background: #78bc3f;
+  background: #78BC3F;
   box-shadow: 0 4px 0 0 #306901;
   color: #fff;
   outline: none;
@@ -48,21 +85,8 @@ header {
   clear: both;
   padding: 20px;
   font-size: 24px; }
-  /* line 15, gallery.scss */
   .loader:enabled:active {
     top: 4px;
     box-shadow: none; }
-  /* line 19, gallery.scss */
   .loader:disabled {
     opacity: 0.7; }
-
-@media only screen and (max-width: 650px) {
-  /* Tablet & phone view: 2 tiles */
-  /* line 68, gallery.scss */
-  .drawing {
-    width: 50%; } }
-@media only screen and (max-width: 1050px) and (min-width: 651px) {
-  /* Small desktop / ipad view: 3 tiles */
-  /* line 74, gallery.scss */
-  .drawing {
-    width: 33.3%; } }
