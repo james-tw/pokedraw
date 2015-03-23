@@ -27,6 +27,11 @@
 		top: 2px;
 		box-shadow: none;
 	}
+	@media #{$mq-phone-landscape} {
+    margin: 0 1% 5px;
+		width: 20%;
+		height: 30px;
+	}
 	@media #{$mq-phone} {
 		width:46px;
 		height: 46px;
@@ -56,17 +61,20 @@
 }
 
 /***** MEDIA QUERIES ************/
-$mq-phone: "only screen and (max-width : 381px)";
-$mq-phone-landscape: "only screen and (max-width : 481px)";
+$mq-phone: "only screen and (max-width : 480px)";
+$mq-phone-landscape: "only screen and (max-width : 568px)";
 $mq-tablet: "only screen and (max-width : 900px)";
-$mq-1110: "only screen and (max-width : 1110px)";
+$mq-1400: "only screen and (max-width : 1400px)";
 /***** COLORS ********************/
-$rainbow-color-names: red, orange, yellow, light-green, green, light-blue, blue, pink, purple, brown, gray;
+$rainbow-color-names: "red", "orange", "yellow", "light-green", "green", "light-blue", "blue", "pink", "purple", "brown", "gray";
 $rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #FAD0DE,#946D9B, #875E37, #8E969B;
 
 
 * {
 	box-sizing: border-box;
+}
+a {
+  text-decoration: none;
 }
 html, body, .row, .columns, .container {
 	@include clearfix;
@@ -75,10 +83,58 @@ body {
 	margin:0;
 	background: #777;
 	font-family: Helvetica,Arial,sans-serif;
+  font-size: 12px;
 }
 .container {
 	max-width: 1080px;
+  padding-top: 10px;
 }
+/*********** UPDATE MODAL **********************/
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+#update-modal {
+  width: 404px;
+  padding: 10px 20px;
+  display: none;
+  background: #FFF;
+  text-align: center;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7);
+  -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
+  ul {
+    margin: 30px;
+    padding: 0;
+    text-align: left;
+    font-size: 1.5em;
+    li {
+      padding: 3px 0;
+    }
+  }
+}
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 2em;
+  padding: 8px;
+  z-index: 2;
+  color: #111;
+  &:hover {
+    color: #666;
+  }
+}
+
 /************ HEADER *******************************/
 
 header {
@@ -87,7 +143,7 @@ header {
 	height: 140px;
 	overflow: hidden;
 	background: white;
-	box-shadow: 0px 3px 2px 0px #111;
+	box-shadow: 0px 2px 2px 0px #111;
 	padding-right: 18px;
 	.recentDrawing {
 		max-height: 100%;
@@ -98,7 +154,7 @@ header {
 		padding: 4px;
 	}
 	@media #{$mq-phone-landscape} {
-		height: 90px;
+		height: 85px;
 	}
 }
 .header-control {
@@ -118,88 +174,60 @@ header {
 /************ NAVIGATION ***************************/
 
 nav {
-	margin: 0px 20px;
+	margin: 0px 10px -30px;
 	z-index: 0;
-	width: 120px;
-	box-shadow: 0px 2px 2px 0px #111;
-	position: absolute;
-	text-align: center;
+  @include clearfix;
 	a {
 		background: #EEDF8E;
-		display: block;
 		text-decoration: none;
 		color: black;
-		font-size: 16px;
-		width: 100%;
 		padding: 10px;
-		position: relative;
 		font-family: 'Open Sans', sans-serif;
-		border-top: 1px solid #666;
+    float: left;
+    box-shadow: 0px 2px 0px 0px #111;
+    border-radius: 0 0 4px 4px;
+    margin: 0 3px;
+    font-size: 1em;
+    -webkit-transition: 0.1s ease-in-out;
+    -moz-transition: 0.1s ease-in-out;
+    -o-transition: 0.1s ease-in-out;
 		&:hover {
 			background: #EBE2B5;
+      margin-top:2px;
+      margin-bottom: -2px;
 		}
 	}
-	div {
-		background: white;
-		border-top: 1px solid;
-		padding: 5px;
-	}
+  .nav-link-right {
+    float:right;
+  }
 	@media #{$mq-phone-landscape} {
 		display: none;
 	}
-	@media #{$mq-1110} {
+  @media #{$mq-1400} {
 		position: relative;
-	}
-}
-/************ DONATION BAR *************************/
-
-#donationDropdown {
-	display:none;
-	padding: 20px;
-	text-align: center;
-	margin: 0 auto;
-	width: 70%;
-	background-color:#4E8FD5;
-	box-shadow: 0px 2px 2px 0px #111;
-	p {
-		color: #fff;
-		text-shadow: 0 1px #666;
-		font-family: 'Open Sans', sans-serif;
-		font-size: 20px;
-		margin: 5px 0;
-		&:nth-child(2) {
-			font-size: .8em;
-			width:75%;
-			margin: 5px auto;
-		}
-	}
-	@media #{$mq-1110} {
-		width: 50%;
-	}
-	@media #{$mq-phone} {
-		position: absolute;
-		top: -9999px;
-	}
-	#donationButtons {
-		form {
-			display: inline;
-		}
-		a {
-			font-family: 'Open Sans', sans-serif;
-			color: #ddd;
-			margin: 5px;
-		}
+    margin: 0 10px 0;
 	}
 }
 
 /************ HERO TEXT ****************************/
 
-h1 {
+h1.title {
 	font-family: 'Open Sans', sans-serif;
 	color: white;
 	text-align: center;
 	text-shadow: 0 1px #333;
-	margin: 10px 0 0;
+	margin: 0 0 10px;
+  font-size: 3em;
+
+  @media #{$mq-tablet} {
+    font-size: 2em;
+  }
+  @media #{$mq-phone-landscape} {
+    font-size: 1.2em;
+  }
+  @media #{$mq-phone} {
+    font-size: 1.5em;
+  }
 }
 
 /************ LEFT COLUMN **************************/
@@ -210,7 +238,7 @@ h1 {
 	height: auto;
 	background: #bbb;
 	display:block;
-	margin: 10px auto 0px;
+	margin: 0 auto;
 	@include box-round;
 	box-shadow: 0 2px 0 0 #222;
 	text-align: center;
@@ -225,7 +253,7 @@ h1 {
 		display: inline-block;
 		vertical-align: middle;
 		font: 16px/1 Arial sans-serif;
-		max-width: 100%;
+		width: 100%;
 		max-height: 100%;
 		@include box-round;
 	}
@@ -237,56 +265,109 @@ h1 {
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 	color: white;
-	font-size: 36px;
-	margin: 10px 0;
+	font-size: 3em;
+	margin: 5px 0;
 	text-shadow: 0 2px #333;
+
+  @media #{$mq-phone-landscape} {
+    font-size: 2em;
+  }
+  @media #{$mq-phone} {
+    font-size: 3em;
+  }
 }
 /************ CENTER COLUMN **************************/
 .center-column {
-	padding-top: 30px;
 	text-align:center;
-	@media #{$mq-phone} {
-		padding-top: 0;
-	}
 }
 #timer {
 	color: #fff;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 48px;
+	font-size: 4em;
 	display: none;
-	@media #{$mq-phone} {
+  @media #{$mq-phone-landscape} {
+    font-size: 3em;
+  }
+  @media #{$mq-phone} {
 		display: hidden;
 	}
 }
 #newRound {
 	@include button(#78BC3F,#306901);
 	@include box-round;
-	font-size: 36px;
-	line-height: 36px;
+	font-size: 1.5em;
 	margin: 10px auto;
-	padding: 8px 20px;
+	padding: 8px 6px;
+  margin-top: 30px;
 	@media #{$mq-tablet} {
-		font-size: 24px;
-		line-height: 24px;
-		padding: 8px 10px; 
+		font-size: 1.2em;
+		padding: 10px 6px;
+    width: 100%;
+    margin-top: 10px;
 	}
+  @media #{$mq-phone} {
+    font-size: 2em;
+    width: auto;
+    padding: 8px 20px;
+    margin: 0 auto 10px;
+  }
+
+  &.intro {
+    font-size: 3em;
+  	padding: 8px 20px;
+
+  	@media #{$mq-tablet} {
+  		font-size: 2em;
+  		padding: 10px 12px;
+  	}
+    @media #{$mq-phone-landscape} {
+      font-size: 1.5em;
+  		line-height: 1.5em;
+  		padding: 10px 6px;
+    }
+    @media #{$mq-phone} {
+      font-size: 2em;
+      width: auto;
+      padding: 8px 20px;
+    }
+  }
 }
 .share, #save, {
 	@include button(#478E95, #095057);
 	@include box-round;
 	margin: 10px auto;
-	font-size: 24px;
-	line-height: 24px;
-	padding: 10px 20px;
+	font-size: 2em;
+	padding: 8px 0;
+  width: 47%;
 	display: none;
 	text-decoration: none;
+
 	&:active {
 		top: 2px;
 		box-shadow: none;
 	}
+  @media #{$mq-phone} {
+    margin: 0 auto 10px;
+  }
+}
+.share {
+  @media #{$mq-phone} {
+    max-width: 20%;
+  }
+}
+#save {
+  width: 100%;
+  max-width: 200px;
+  @media #{$mq-tablet} {
+    font-size: 1.5em;
+  }
+  @media #{$mq-phone} {
+    font-size: 2em;
+    max-width: 40%;
+  }
 }
 #save [class^="icon-"] {
-	font-size: 18px;
+	font-size: 1em;
 	margin-right: 5px;
 }
 
@@ -299,12 +380,12 @@ h1 {
 		height: auto;
 		background: #bbb;
 		display:block;
-		margin: 10px auto 0px;
+		margin: 0 auto;
 		@include box-round;
 		box-shadow: 0 2px 0 0 #222;
 		pointer-events: none;
 		cursor: url(../img/cursor.png), crosshair;
-		
+
 	}
 	#pip {
 		display: none;
@@ -340,7 +421,6 @@ h1 {
 	@include box-round;
 	ul {
 		list-style: none;
-		float:left;
 		padding: 0;
 		width: 100%;
 		text-align: center;
@@ -349,7 +429,7 @@ h1 {
 			margin: 0 5px 5px;
 			position: relative;
 			@include shared-color-properties;
-			
+
 			a {
 				display: block;
 				height: 100%;

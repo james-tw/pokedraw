@@ -1,77 +1,116 @@
-@mixin button($color, $side-color) {
-	position:relative;
-	background: $color;
-	box-shadow: 0 4px 0 0 $side-color;
-	color: #fff;
-	outline: none;
-	text-shadow: 0 1px $side-color;
-	display: block;
-	font-size: 16px;
-	border:none;
-	cursor: pointer;
-	font-family: 'Open Sans', sans-serif;
-	border-radius: 5px;
-	clear:both;
-	&:enabled:active {
-		top: 4px;
-		box-shadow: none;
-	}
-	&:disabled {
-		opacity: 0.7;
-	}
-}
+@import "painter";
+
+
 
 header {
 	height: 80px;
 }
-
+.container {
+	max-width: 1300px;
+}
 .row {
 	p {
 		font-family: "Open Sans" ,sans-serif;
 		color: #fff;
 		text-align: center;
-		font-size: 16px;
+		font-size: 1.25em;
 		margin: 5px;
 	}
 	a {
-		color: #ddd;
+		color: #303030;
 		&:hover {
-			color: #bbb;
+			color: #222222;
 		}
 	}
-	
-
 }
-.drawing {
-	height: auto;
-	float: left;
-	position: relative;
-	width: 25%;
-	padding: 10px;
-	img {
-		width: 100%;
-		height: auto;
-		border-radius: 5px;
-		box-shadow: 0 2px 0 0 #222;
+
+.options {
+	text-align: center;
+	p {
+		display: inline-block;
+		font-size: 2em;
+		@media #{$mq-phone} {
+			font-size: 1.5em;
+		}
+		span {
+			color: #FF7575;
+		}
+	}
+	select {
+		font-size: 2em;
+		@media #{$mq-phone-landscape} {
+			font-size: 1em;
+		}
 	}
 }
+.drawing {
+	float: left;
+	position: relative;
+	width: 24%;
+	margin: .5%;
+	background-color: #fff;
+	background-image: url("none");
+	// Background image loaded dynamically via ajax call
+	background-size: cover;
+	border-radius: 4px;
+	box-shadow: 0 2px 0 0 #222;
+
+	@media only screen and (max-width : 650px) {
+	  /* Tablet & phone view: 2 tiles */
+	    width: 48%;
+			margin: 1%;
+  }
+	@media only screen and (max-width : 1050px) and (min-width : 651px) {
+	  /* Small desktop / ipad view: 3 tiles */
+    width: 31.33%;
+		margin: 1%;
+  }
+	h1 {
+		display: none;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		color: #FAFAFA;
+		text-align: center;
+		font-family: "Open sans", Arial, Helvetica, sans-serif;
+		font-weight: 400;
+		background-color: #666;
+		margin: 0;
+		padding: 0;
+		border-radius: 0 0 3px 3px;
+	}
+	a {
+		display: none;
+		font-size: 2em;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 0 10px;
+		color: #FAFAFA;
+		background-color: #666;
+		border-radius: 3px 0 3px 0;
+		&:hover {
+			color: #ccc;
+		}
+	}
+	&:hover a {
+		display: inline-block;
+	}
+	&:hover h1 {
+		display: inline-block;
+	}
+	&:before {
+	content: "";
+	display: block;
+	padding-top: 100%; 	/* initial ratio of 1:1*/
+	}
+}
+
 
 .loader {
 	margin: 0 auto;
 	@include button(#78BC3F,#306901);
 	padding: 20px;
 	font-size:24px;
-}
-
-@media only screen and (max-width : 650px) {
-  /* Tablet & phone view: 2 tiles */
-  .drawing {
-    width: 50%;
-  }
-}
-@media only screen and (max-width : 1050px) and (min-width : 651px) {
-  /* Small desktop / ipad view: 3 tiles */
-  .drawing {
-    width: 33.3%;
-  }
 }

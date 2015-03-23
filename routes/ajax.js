@@ -8,7 +8,9 @@ router.post('/saveImage', function(req, res,next) {
 	var image = {
 		base_64: req.body.imgBase64.replace("data:image/jpeg;base64,", "").replace(" ", "+"),
 		created: moment().format(), //current time
-		pokemon: req.body.pokemon.toLowerCase()
+		pokemon: req.body.pokemon.toLowerCase(),
+		browser: req.body.browser.toLowerCase(),
+		browser_version: req.body.browser_version.toLowerCase()
 	};
 	collection.insert(image, function(err, record){
 		if (err){
@@ -28,6 +30,21 @@ router.get('/getDrawingFilenames/:limit', function(req, res) {
 		fields: {_id: 1, created: 1, pokemon: 1}
 	};
 	collection.find({}, options, function(err, records){
+		if (err){
+			console.log(err);
+		}
+		res.contentType('application/json');
+		res.send(JSON.stringify(records));
+	});
+});
+router.get('/getDrawingsByPokemon/:name', function(req, res) {
+	var collection = req.db.get('images');
+	var options = {
+		limit: 1000,
+		sort: [['_id','desc']],
+		fields: {_id: 1, created: 1, pokemon: 1}
+	};
+	collection.find({pokemon: req.param('name')}, options, function(err, records){
 		if (err){
 			console.log(err);
 		}

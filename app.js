@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var monk = require('monk');
 //Set to production MongoDB server or local MongoDB server.
-var db = monk('localhost:27017/pokedraw');
+var db = monk('104.131.197.147:27017/pokedraw');
 
 var ajax = require('./routes/ajax');
 var drawings = require('./routes/drawings');
