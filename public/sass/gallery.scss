@@ -1,30 +1,13 @@
-@mixin button($color, $side-color) {
-	position:relative;
-	background: $color;
-	box-shadow: 0 4px 0 0 $side-color;
-	color: #fff;
-	outline: none;
-	text-shadow: 0 1px $side-color;
-	display: block;
-	font-size: 16px;
-	border:none;
-	cursor: pointer;
-	font-family: 'Open Sans', sans-serif;
-	border-radius: 5px;
-	clear:both;
-	&:enabled:active {
-		top: 4px;
-		box-shadow: none;
-	}
-	&:disabled {
-		opacity: 0.7;
-	}
-}
+@import "painter";
+
+
 
 header {
 	height: 80px;
 }
-
+.container {
+	max-width: 1300px;
+}
 .row {
 	p {
 		font-family: "Open Sans" ,sans-serif;
@@ -39,14 +22,32 @@ header {
 			color: #222222;
 		}
 	}
+}
 
-
+.options {
+	text-align: center;
+	p {
+		display: inline-block;
+		font-size: 2em;
+		@media #{$mq-phone} {
+			font-size: 1.5em;
+		}
+		span {
+			color: #FF7575;
+		}
+	}
+	select {
+		font-size: 2em;
+		@media #{$mq-phone-landscape} {
+			font-size: 1em;
+		}
+	}
 }
 .drawing {
 	float: left;
 	position: relative;
-	width: 23%;
-	margin: 1%;
+	width: 24%;
+	margin: .5%;
 	background-color: #fff;
 	background-image: url("none");
 	// Background image loaded dynamically via ajax call
@@ -61,8 +62,8 @@ header {
   }
 	@media only screen and (max-width : 1050px) and (min-width : 651px) {
 	  /* Small desktop / ipad view: 3 tiles */
-    width: 30%;
-		margin: 1.66%;
+    width: 31.33%;
+		margin: 1%;
   }
 	h1 {
 		display: none;

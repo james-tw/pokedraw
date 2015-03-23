@@ -2,12 +2,10 @@ $(document).ready(function(){
 	var color = $('.selected').css('background-color');
 	var recentDrawingID;
 	//Construction of the Pokedex
-	var pokedex = {};
 	var pokeList = "Bulbasaur Ivysaur Venusaur Charmander Charmeleon Charizard Squirtle Wartortle Blastoise Caterpie Metapod Butterfree Weedle Kakuna Beedrill Pidgey Pidgeotto Pidgeot Rattata Raticate Spearow Fearow Ekans Arbok Pikachu Raichu Sandshrew Sandslash Nidoran♀ Nidorina Nidoqueen Nidoran♂ Nidorino Nidoking Clefairy Clefable Vulpix Ninetales Jigglypuff Wigglytuff Zubat Golbat Oddish Gloom Vileplume Paras Parasect Venonat Venomoth Diglett Dugtrio Meowth Persian Psyduck Golduck Mankey Primeape Growlithe Arcanine Poliwag Poliwhirl Poliwrath Abra Kadabra Alakazam Machop Machoke Machamp Bellsprout Weepinbell Victreebel Tentacool Tentacruel Geodude Graveler Golem Ponyta Rapidash Slowpoke Slowbro Magnemite Magneton Farfetchd Doduo Dodrio Seel Dewgong Grimer Muk Shellder Cloyster Gastly Haunter Gengar Onix Drowzee Hypno Krabby Kingler Voltorb Electrode Exeggcute Exeggutor Cubone Marowak Hitmonlee Hitmonchan Lickitung Koffing Weezing Rhyhorn Rhydon Chansey Tangela Kangaskhan Horsea Seadra Goldeen Seaking Staryu Starmie Mr.Mime Scyther Jynx Electabuzz Magmar Pinsir Tauros Magikarp Gyarados Lapras Ditto Eevee Vaporeon Jolteon Flareon Porygon Omanyte Omastar Kabuto Kabutops Aerodactyl Snorlax Articuno Zapdos Moltres Dratini Dragonair Dragonite Mewtwo Mew";
-	var pokeArray = pokeList.split(' ');
-	for (var i = 1; i <= 151; i++) {
-		pokedex[i] = pokeArray[i-1];
-	}
+	var pokedex = pokeList.split(' ');
+
+	console.log(pokedex);
 	var introMode = true;
 	var recentPokemon = [],
 			sec,
@@ -135,13 +133,14 @@ $(document).ready(function(){
 				}
 			}).done(function(response) {
 				recentDrawingID = response._id;
+				//Update the Share link based on the recent drawing.
 				updateShareLink(recentDrawingID); //Todo: The save feature should return an image ID, not this.
-				$("#save").attr("href", "/drawings/"+recentDrawingID);
+				//Update the Save link so that it downloads the recently drawn file.
+				$("#save").attr({
+					href: "drawings/" + recentDrawingID,
+					download: currentPokemon + ".jpeg"
+				});
 				getRecentDrawings();
-				// If you want the file to be visible in the browser
-				// - please modify the callback in javascript. All you
-				// need is to return the url to the file, you just saved
-				// and than put the image in your browser.
 			});
 			canSave = false;
 			setTimeout(function() {
@@ -199,7 +198,7 @@ $(document).ready(function(){
 		$('#pip img').attr('src', "img/" + index + ".png")
 								 .load(startTimer()); //Start the timer once the image is fully loaded.
 		//Fetched the proper name from the pokedex object.
-	currentPokemon = pokedex[rand];
+	currentPokemon = pokedex[rand-1];
 		$('#pokemonName').text(currentPokemon);
 	}
 
@@ -221,10 +220,6 @@ $(document).ready(function(){
 		$('#newRound').attr('disabled', false)
 									.text('Draw a new Pokémon!')
 									.removeClass('intro');
-									// .css({
-									//  'font-size': '24px',
-									//  'padding': '5px'
-									// });
 		$canvas.css('pointer-events', 'none');
 		$('.share').css('display', 'inline-block').fadeIn('fast');
 		$('#save').css('display', 'inline-block').fadeIn('fast');
@@ -349,7 +344,7 @@ $(document).ready(function(){
 	//Analytics for miscellaneous events
 	$('#dropdownDonateButton').click(function(){
 		ga('send', 'event', 'donation-button', 'click');
-	})
+	});
 });
 
 //Browser detection function by StackOverflow users kennebec & Hermann Ingjaldsson
