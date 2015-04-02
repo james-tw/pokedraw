@@ -1,94 +1,16 @@
+@import "foundations";
 
-@mixin clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-@mixin box-round {
-	border-radius: 5px;
-}
-
-@mixin color-class($color-name, $color) {
-	.#{$color-name} {
-		background: $color;
-	}
-}
-@mixin shared-color-properties {
-	height: 50px;
-	width: 50px;
-	border-radius: 50px;
-	cursor: pointer;
-	border: 0;
-	box-shadow: 0 2px 0 0 #222;
-	&.selected {
-		border: 2px solid #ccc;
-		top: 2px;
-		box-shadow: none;
-	}
-	@media #{$mq-phone-landscape} {
-    margin: 0 1% 5px;
-		width: 20%;
-		height: 30px;
-	}
-	@media #{$mq-phone} {
-		width:46px;
-		height: 46px;
-	}
-}
-@mixin button($color, $side-color) {
-	position:relative;
-	background: $color;
-	box-shadow: 0 4px 0 0 $side-color;
-	color: #fff;
-	outline: none;
-	text-shadow: 0 1px $side-color;
-	display: block;
-	font-size: 16px;
-	border:none;
-	cursor: pointer;
-	font-family: 'Open Sans', sans-serif;
-	@include box-round;
-	clear:both;
-	&:enabled:active {
-		top: 4px;
-		box-shadow: none;
-	}
-	&:disabled {
-		opacity: 0.7;
-	}
-}
-
-/***** MEDIA QUERIES ************/
-$mq-phone: "only screen and (max-width : 480px)";
-$mq-phone-landscape: "only screen and (max-width : 568px)";
-$mq-tablet: "only screen and (max-width : 900px)";
-$mq-1400: "only screen and (max-width : 1400px)";
-/***** COLORS ********************/
-$rainbow-color-names: "red", "orange", "yellow", "light-green", "green", "light-blue", "blue", "pink", "purple", "brown", "gray";
-$rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #FAD0DE,#946D9B, #875E37, #8E969B;
-
-
-* {
-	box-sizing: border-box;
-}
-a {
-  text-decoration: none;
-}
-html, body, .row, .columns, .container {
-	@include clearfix;
-}
 body {
 	margin:0;
-	background: #777;
+	background: #f7f7f7;
 	font-family: Helvetica,Arial,sans-serif;
   font-size: 12px;
 }
 .container {
-	max-width: 1080px;
+	max-width: 1000px;
   padding-top: 10px;
 }
+
 /*********** UPDATE MODAL **********************/
 #lean_overlay {
     position: fixed;
@@ -137,14 +59,26 @@ body {
 
 /************ HEADER *******************************/
 
-header {
+header.row {
 	z-index: 1;
 	position: relative;
 	height: 140px;
 	overflow: hidden;
 	background: white;
-	box-shadow: 0px 2px 2px 0px #111;
-	padding-right: 18px;
+	padding-right: 2em;
+  padding-bottom: .5em;
+
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    height: .5em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: stripes($border-colors);
+  }
+
 	.recentDrawing {
 		max-height: 100%;
 		float: right;
@@ -156,21 +90,23 @@ header {
 	@media #{$mq-phone-landscape} {
 		height: 85px;
 	}
+
+  .header-control {
+  	position: absolute;
+  	right: 5px;
+  	text-decoration: none;
+  	color: #000;
+    font-weight: 100;
+    &.hide-drawings {
+      font-size: 2.5em;
+    }
+    &.refresh-drawings {
+    	bottom: 8px;
+    	font-size: 1.5em;
+    }
+  }
 }
-.header-control {
-	position: absolute;
-	right: 5px;
-	text-decoration: none;
-	color: #000;
-	font-size: 20px;
-}
-.hide-drawings {
-	top: 5px;
-}
-.refresh-drawings {
-	bottom: 5px;
-	font-size: 12px;
-}
+
 /************ NAVIGATION ***************************/
 
 nav {
@@ -184,16 +120,16 @@ nav {
 		padding: 10px;
 		font-family: 'Open Sans', sans-serif;
     float: left;
-    box-shadow: 0px 2px 0px 0px #111;
+    box-shadow: 0px 1px 4px -2px #4F4F4F;
     border-radius: 0 0 4px 4px;
-    margin: 0 3px;
+    margin: -2px 3px 0;
     font-size: 1em;
     -webkit-transition: 0.1s ease-in-out;
     -moz-transition: 0.1s ease-in-out;
     -o-transition: 0.1s ease-in-out;
 		&:hover {
-			background: #EBE2B5;
-      margin-top:2px;
+			background: #EFE29E;
+      margin-top: 0px;
       margin-bottom: -2px;
 		}
 	}
@@ -213,9 +149,9 @@ nav {
 
 h1.title {
 	font-family: 'Open Sans', sans-serif;
-	color: white;
+	color: #333;
 	text-align: center;
-	text-shadow: 0 1px #333;
+	//text-shadow: 0 1px #333;
 	margin: 0 0 10px;
   font-size: 3em;
 
@@ -233,29 +169,28 @@ h1.title {
 /************ LEFT COLUMN **************************/
 
 #imageContainer {
-	max-width: 100%;
-	width:100%;
-	height: auto;
-	background: #bbb;
-	display:block;
-	margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 	@include box-round;
-	box-shadow: 0 2px 0 0 #222;
-	text-align: center;
-	font: 0/0 a;
-	&:before {
-		content: ' ';
-	    display: inline-block;
-	    vertical-align: middle;  /* vertical alignment of the inline element */
-	    height: 100%;
-	}
+  background: #fff;
+	box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
 	img {
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 		display: inline-block;
-		vertical-align: middle;
-		font: 16px/1 Arial sans-serif;
-		width: 100%;
+		max-width: 100%;
 		max-height: 100%;
-		@include box-round;
+    width: auto;
+    height: auto;
+    &.intro {
+      width: 100%;
+      padding: 0;
+    }
 	}
 	@media #{$mq-phone} {
 		display: none;
@@ -264,10 +199,9 @@ h1.title {
 #pokemonName {
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
-	color: white;
+	color: #333;
 	font-size: 3em;
 	margin: 5px 0;
-	text-shadow: 0 2px #333;
 
   @media #{$mq-phone-landscape} {
     font-size: 2em;
@@ -276,100 +210,109 @@ h1.title {
     font-size: 3em;
   }
 }
-/************ CENTER COLUMN **************************/
-.center-column {
-	text-align:center;
-}
-#timer {
-	color: #fff;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 4em;
-	display: none;
-  @media #{$mq-phone-landscape} {
-    font-size: 3em;
-  }
-  @media #{$mq-phone} {
-		display: hidden;
-	}
-}
+/************ CONTROLS **************************/
 #newRound {
-	@include button(#78BC3F,#306901);
-	@include box-round;
-	font-size: 1.5em;
-	margin: 10px auto;
-	padding: 8px 6px;
-  margin-top: 30px;
-	@media #{$mq-tablet} {
-		font-size: 1.2em;
-		padding: 10px 6px;
-    width: 100%;
-    margin-top: 10px;
-	}
+  @include button(#76C038,#306901);
+  @include box-round;
+  font-size: 2em;
+  margin: 0px auto 10px;
+  padding: 8px 6px;
+  width: 80%;
+
   @media #{$mq-phone} {
     font-size: 2em;
-    width: auto;
     padding: 8px 20px;
     margin: 0 auto 10px;
   }
 
   &.intro {
     font-size: 3em;
-  	padding: 8px 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 60%;
+    height: 20%;
 
-  	@media #{$mq-tablet} {
-  		font-size: 2em;
-  		padding: 10px 12px;
-  	}
+    @media #{$mq-tablet} {
+      font-size: 2em;
+      padding: 10px 12px;
+    }
     @media #{$mq-phone-landscape} {
       font-size: 1.5em;
-  		line-height: 1.5em;
-  		padding: 10px 6px;
+      line-height: 1.5em;
+      padding: 10px 6px;
     }
     @media #{$mq-phone} {
       font-size: 2em;
-      width: auto;
       padding: 8px 20px;
     }
   }
 }
-.share, #save, {
-	@include button(#478E95, #095057);
-	@include box-round;
-	margin: 10px auto;
-	font-size: 2em;
-	padding: 8px 0;
-  width: 47%;
-	display: none;
-	text-decoration: none;
 
-	&:active {
-		top: 2px;
-		box-shadow: none;
-	}
-  @media #{$mq-phone} {
-    margin: 0 auto 10px;
-  }
-}
-.share {
-  @media #{$mq-phone} {
-    max-width: 20%;
-  }
-}
-#save {
+.round-controls {
+	text-align:center;
+  display: none;
   width: 100%;
-  max-width: 200px;
-  @media #{$mq-tablet} {
-    font-size: 1.5em;
+
+  #timer {
+  	color: #fff;
+  	font-family: 'Open Sans', sans-serif;
+  	font-size: 4em;
+  	display: none !important;
+    @media #{$mq-phone-landscape} {
+      font-size: 3em;
+    }
+    @media #{$mq-phone} {
+  		display: hidden;
+  	}
   }
-  @media #{$mq-phone} {
-    font-size: 2em;
-    max-width: 40%;
+
+  .share, #save, {
+  	@include button(#946D9B, #57405B);
+  	@include box-round;
+  	margin: 0 auto;
+  	font-size: 2em;
+  	padding: 8px 0;
+  	text-decoration: none;
+    display: inline-block;
+    &.share-facebook {
+      background: #3b5998;
+    	box-shadow: 0 3px 0 0 #082665, 0px 3px 5px -1px #4F4F4F;
+    	text-shadow: 0 1px #082665;
+    }
+    &.share-twitter {
+      background: #00aced;
+    	box-shadow: 0 3px 0 0 #0079BA, 0px 3px 5px -1px #4F4F4F;
+    	text-shadow: 0 1px #0079BA;
+    }
+  	&:active {
+  		top: 2px;
+  		box-shadow: none;
+
+      -webkit-transition: top 0.4s ease-in-out;
+      -moz-transition: 0.1s ease-in-out;
+      -o-transition: 0.1s ease-in-out;
+  	}
+    @media #{$mq-phone} {
+      margin: 0 auto 10px;
+    }
+  }
+
+  .share {
+    width: 18%;
+  }
+  #save {
+    width: 60%;
+  }
+  #save [class^="icon-"] {
+  	font-size: 1em;
+  	margin-right: 5px;
   }
 }
-#save [class^="icon-"] {
-	font-size: 1em;
-	margin-right: 5px;
-}
+
 
 /************ RIGHT COLUMN **************************/
 #canvas-container {
@@ -378,11 +321,11 @@ h1.title {
 		max-width: 100%;
 		width:100%;
 		height: auto;
-		background: #bbb;
+		background: #d3d3d3;
 		display:block;
 		margin: 0 auto;
 		@include box-round;
-		box-shadow: 0 2px 0 0 #222;
+		box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
 		pointer-events: none;
 		cursor: url(../img/cursor.png), crosshair;
 
@@ -417,11 +360,12 @@ h1.title {
 }
 
 .controls {
-	margin: 0 auto;
+	margin: 10px auto;
 	@include box-round;
 	ul {
 		list-style: none;
 		padding: 0;
+    margin: 0;
 		width: 100%;
 		text-align: center;
 		li {
@@ -500,15 +444,82 @@ h1.title {
 	}
 }
 
+/********** SEARCH BY POKEMON *************/
+.search-by-pokemon {
+  margin-top: 30px;
+  .options {
+  	text-align: center;
+  	p {
+  		display: inline-block;
+  		font-size: 2em;
+  		@media #{$mq-phone} {
+  			font-size: 1.5em;
+  		}
+  		span {
+  			color: #FF7575;
+  		}
+  	}
+  	select {
+  		font-size: 2em;
+  		@media #{$mq-phone-landscape} {
+  			font-size: 1em;
+  		}
+  	}
+  }
+  @media #{$mq-phone-landscape} {
+    display: none;
+  }
+}
+.mini-gallery {
+  display: none;
+	text-align: center;
+	height: 150px;
+	overflow: hidden;
+	background: white;
+  @media #{$mq-tablet} {
+    height: 120px;
+  }
+  @media #{$mq-phone-landscape} {
+    display: none !important;
+  }
+	img {
+		max-height: 100%;
+    float: right;
+	}
+  .gallery-button-container {
+    display: table;
+    float: right;
+    height: 100%;
+    padding: 20px;
+    .gallery-button {
+    	@include button(#946D9B, #57405B);
+    	@include box-round;
+      display: table-cell;
+      vertical-align: middle;
+      padding: 20px;
+    }
 
+  }
+}
 
 /********** FOOTER **********************/
 
 footer {
-	margin-top: 40px;
 	background: #444;
 	color: #eee;
 	padding: 20px 0;
+  position: relative;
+  padding-bottom: .5em;
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    height: .5em;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: stripes($border-colors);
+  }
 	.footerLink {
 		float: left;
 		width: 100%;

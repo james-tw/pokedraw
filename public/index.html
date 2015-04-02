@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="/css/painter.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="/css/icons.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="/css/animate.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
@@ -46,15 +48,13 @@
 	       }(document, 'script', 'facebook-jssdk'));
 	</script>
 	<div id="fb-root"></div>
-	<script>
-		(function(d, s, id) {
-		    var js, fjs = d.getElementsByTagName(s)[0];
-		    if (d.getElementById(id)) return;
-		    js = d.createElement(s); js.id = id;
-		    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=351920294960632&version=v2.0";
-		    fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-		</script>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=351920294960632&version=v2.3";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 
 	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
 	<div id="update-modal">
@@ -85,27 +85,21 @@
 			<h1 class="title">You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
 		</div>
 		<section class="row">
-			<div class="left-column columns five">
+			<div class="left-column columns six">
 				<div id="imageContainer">
 					<!--Image of Pokemon goes here-->
-					<img src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+					<img class="intro" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
 				</div>
 				<p id="pokemonName"></p>
 			</div>
-			<div class="center-column columns two">
-				<button id="newRound" class="intro">Let's Draw!</button>
-				<span id="timer">45</span>
-				<button class="share share-facebook"><span class="icon-facebook"></span></button>
-				<a class="share share-twitter" href="http://twitter.com/share?url=http%3A%2F%2Fpokedraw.net" data-dnt="true"><span class="icon-twitter"></span></a>
-				<a href="#" id="save" download="#"><span class="icon-disk"></span>Save</a>
-			</div>
-			<div class="right-column columns five ">
+			<div class="right-column columns six ">
 				<div id="canvas-container">
 					<div id="pip">
 						<img src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
 					</div>
 					<span id="pip-timer">45</span>
 					<canvas id="canvas" width="400" height="400"></canvas>
+					<button id="newRound" class="intro">Let's Draw!</button>
 				</div>
 				<div class="controls">
 					<ul>
@@ -122,10 +116,28 @@
 						<li class="gray"></li>
 						<li class="black selected"></li>
 					</ul>
+					<div class="round-controls">
+						<span id="timer">45</span>
+						<button class="share share-facebook"><span class="icon-facebook"></span></button>
+						<a class="share share-twitter" href="http://twitter.com/share?url=http%3A%2F%2Fpokedraw.net" data-dnt="true"><span class="icon-twitter"></span></a>
+						<a href="#" id="save" download="#"><span class="icon-disk"></span>Save</a>
+					</div>
 				</div>
 			</div>
 		</section>
+		<section class="search-by-pokemon">
+			<div class="row options">
+				<p><span>NEW!&nbsp;-&nbsp;</span>See the latest drawings of&nbsp;</p>
+				<select class="pokemon-list" name="pokemon-list">
+					<option value="0">Choose a Pokemon...</option>
+					<!-- Dropdown gets populated with a list of all Pokemon on pageload. -->
+				</select>
+			</div>
+		</section>
 	</div>
+	<section class="mini-gallery">
+		<!--Here's where drawings get dynamically added on pageload. -->
+	</section>
 	<footer>
 		<div class="container">
 			<div class="row">
@@ -143,7 +155,7 @@
 					<p>Pokémon and all respective names are &trade; &amp; &copy; of Nintendo 1996-2015</p>
 				</div>
 				<div class="columns four">
-					<div class="fb-like-box" data-href="https://www.facebook.com/pokedrawdotnet" data-width="150px" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
+					<div class="fb-page" data-href="https://www.facebook.com/pokedrawdotnet" data-width="100%" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"></div>
 					<div id="byline">Made by <a href="http://jamestw.net">James TW</a></div>
 				</div>
 			</div>

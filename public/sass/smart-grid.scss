@@ -9,7 +9,7 @@ $flexbox_support: false;
 
 .container,
 .row {
-    @include clearfix;
+    // @include clearfix;
 }
 
 @if $flexbox_support == true {

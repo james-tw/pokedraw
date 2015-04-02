@@ -151,6 +151,7 @@ $(document).ready(function(){
 
 	//Timer function initiated when #newRound is clicked.
 	function startTimer() {
+		alert('timer started!');
 		var timer = setInterval(function() {
 			//If in mq-mobile resolution, don't show the regular timer.
 			if ($('#pip').css('display') !== 'block') {
@@ -163,7 +164,7 @@ $(document).ready(function(){
 			$('#pip-timer').text(sec);
 			if (sec == 5) {
 				$('#timer').css('color', '#FF6A62');
-				$('#pip-timer').css('color', '#FF6A62');
+				$('#pip-timer').css('color', '#FF6A62').addClass('animated pulse infinite');
 			}
 			if (sec === 0) {
 				clearInterval(timer);
@@ -196,9 +197,10 @@ $(document).ready(function(){
 		//Fetches the proper image file for that pokemon.
 		$('#imageContainer img').attr('src', "img/" + index + ".png");
 		$('#pip img').attr('src', "img/" + index + ".png")
-								 .load(startTimer()); //Start the timer once the image is fully loaded.
+
+		$('#imageContainer').waitForImages(startTimer()); //Start the timer once the image is fully loaded.
 		//Fetched the proper name from the pokedex object.
-	currentPokemon = pokedex[rand-1];
+		currentPokemon = pokedex[rand-1];
 		$('#pokemonName').text(currentPokemon);
 	}
 
@@ -209,20 +211,29 @@ $(document).ready(function(){
 		if ($('#pip').css('display') == 'block') {
 			$('h1').css('height', '0px');
 		}
-		$('#newRound').attr('disabled', true);
+		$('#newRound.intro').css('display', 'none');
+		$('#newRound').removeClass('animated bounce');
 		$('#timer').text('45').css('color', '#fff');
-		$('#pip-timer').text('45').css('color', '#666');
-		$('.share').css('display', 'none');
-		$('#save').css('display', 'none');
+		$('#pip-timer').text('45').css({
+			'color': '#666',
+			'display': 'inline'}).fadeIn('fast');
+		$('.round-controls').css('display', 'none');
+		$('.controls ul').css('display', 'inline-block');
 	}
 	function setInactiveInterface() {
 		//As soon as the round is over, change the CTA button to say "Draw a new Pokemon" and change the button css to match.
-		$('#newRound').attr('disabled', false)
+		$('#newRound').css('display', 'block')
 									.text('Draw a new Pokémon!')
-									.removeClass('intro');
+									.removeClass('intro')
+									.prependTo($('.round-controls'));
+		var bounceDelay = setInterval(function() {
+			$('#newRound').addClass('animated bounce');
+			clearInterval(bounceDelay);
+		}, 3500);
 		$canvas.css('pointer-events', 'none');
-		$('.share').css('display', 'inline-block').fadeIn('fast');
-		$('#save').css('display', 'inline-block').fadeIn('fast');
+		$('.round-controls').css('display', 'inline-block').fadeIn('fast');
+		$('.controls ul').css('display', 'none');
+		$('#pip-timer').fadeOut('slow').removeClass('animated pulse infinite');
 	}
 
 	$('#newRound').click(function(){
@@ -230,8 +241,7 @@ $(document).ready(function(){
 		if (introMode) {
 			//Remove the Who's That Pokemon image, and un-dim the canvas.
 			$('#canvas').css('background', "#fff");
-			$('#imageContainer').css('background', '#fff');
-			$('#imageContainer img').attr('src', '').css('padding', '20px');
+			$('#imageContainer img').attr('src', '').removeClass('intro');
 		}
 		//This function changes the CSS of the interface during a round.
 		setActiveInterface();
@@ -239,7 +249,7 @@ $(document).ready(function(){
 		$canvas.sketch().clear();
 		$canvas.css('pointer-events', 'auto');
 		//Reset the timer and get a new Pokemon to draw.
-		sec = 45;
+		sec = 8;
 		getNewPokemon();
 		//If on mobile, Scroll to the canvas element.
 		if ($('#pip').css('display') == 'block') {
@@ -290,6 +300,48 @@ $(document).ready(function(){
 	}
 	// console.log('getting recent drawings...');
 	getRecentDrawings();
+
+
+// Search By Pokemon on Homepage
+var $galleryButton = $('<div class="gallery-button-container"><a class="gallery-button" href="gallery.html">See more<br/>in the Gallery!</a><div>');
+var SBPimageList = [];
+function displayNewDrawings() {
+  loadPortion = SBPimageList.slice(0, 10);
+  if (loadPortion.length !== 0) {
+		loadPortion.forEach(function(val, i) {
+			$(".mini-gallery").prepend($("<img class='recentDrawing' src=drawings/" + val._id + "></img>").fadeIn('fast'));
+		});
+		$('.mini-gallery').prepend($galleryButton);
+  }
+}
+
+function getDrawingsByPokemon(name) {
+  $.ajax({
+    type: "GET",
+    url: "/ajax/getDrawingsByPokemon/" + name
+  }).done(function(files) {
+    $('.mini-gallery').empty();
+    SBPimageList = files;
+    displayNewDrawings();
+  });
+}
+
+pokedex.forEach(function(val){
+  var $option = $('<option>' + val + '</option>');
+  $('.options .pokemon-list').append($option);
+});
+
+$('.pokemon-list').on("change", function() {
+  // If this is not the default option
+  if ($(this).val() != 0) {
+		//Remove the "Choose a Pokemon..." option.
+	  $('option[value="0"]').remove();
+    var filterOption = $('.pokemon-list').val().toLowerCase();
+		//Search for 1500 pokemon to populate the SBP section.
+		getDrawingsByPokemon(filterOption);
+		$('.mini-gallery').slideDown('1000');
+  }
+});
 
 // Facebook sharing button
 		(function() {
@@ -346,6 +398,9 @@ $(document).ready(function(){
 		ga('send', 'event', 'donation-button', 'click');
 	});
 });
+
+/*! waitForImages jQuery Plugin 2015-02-25 */
+!function(a){var b="waitForImages";a.waitForImages={hasImageProperties:["backgroundImage","listStyleImage","borderImage","borderCornerImage","cursor"],hasImageAttributes:["srcset"]},a.expr[":"].uncached=function(b){if(!a(b).is('img[src][src!=""]'))return!1;var c=new Image;return c.src=b.src,!c.complete},a.fn.waitForImages=function(){var c,d,e,f=0,g=0,h=a.Deferred();if(a.isPlainObject(arguments[0])?(e=arguments[0].waitForAll,d=arguments[0].each,c=arguments[0].finished):1===arguments.length&&"boolean"===a.type(arguments[0])?e=arguments[0]:(c=arguments[0],d=arguments[1],e=arguments[2]),c=c||a.noop,d=d||a.noop,e=!!e,!a.isFunction(c)||!a.isFunction(d))throw new TypeError("An invalid callback was supplied.");return this.each(function(){var i=a(this),j=[],k=a.waitForImages.hasImageProperties||[],l=a.waitForImages.hasImageAttributes||[],m=/url\(\s*(['"]?)(.*?)\1\s*\)/g;e?i.find("*").addBack().each(function(){var b=a(this);b.is("img:uncached")&&j.push({src:b.attr("src"),element:b[0]}),a.each(k,function(a,c){var d,e=b.css(c);if(!e)return!0;for(;d=m.exec(e);)j.push({src:d[2],element:b[0]})}),a.each(l,function(c,d){var e,f=b.attr(d);return f?(e=f.split(","),void a.each(e,function(c,d){d=a.trim(d).split(" ")[0],j.push({src:d,element:b[0]})})):!0})}):i.find("img:uncached").each(function(){j.push({src:this.src,element:this})}),f=j.length,g=0,0===f&&(c.call(i[0]),h.resolveWith(i[0])),a.each(j,function(e,j){var k=new Image,l="load."+b+" error."+b;a(k).one(l,function m(b){var e=[g,f,"load"==b.type];return g++,d.apply(j.element,e),h.notifyWith(j.element,e),a(this).off(l,m),g==f?(c.call(i[0]),h.resolveWith(i[0]),!1):void 0}),k.src=j.src})}),h.promise()}}(jQuery);
 
 //Browser detection function by StackOverflow users kennebec & Hermann Ingjaldsson
 function get_browser_info(){

@@ -58,11 +58,12 @@ pokedex.forEach(function(val){
 $('.pokemon-list').on("change", function() {
   // If this is not the default option
   if ($(this).val() != 0) {
+    $('option[value="0"]').remove();
     var filterOption = $('.pokemon-list').val().toLowerCase();
     loadStart = 0;
     getDrawingsByPokemon(filterOption);
   }
-})
+});
 
 $(window).scroll(function() {
   if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {

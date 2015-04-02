@@ -13,12 +13,12 @@ html:after, body:after, .row:after, .columns:after, .container:after {
 
 body {
   margin: 0;
-  background: #777;
+  background: #f7f7f7;
   font-family: Helvetica,Arial,sans-serif;
   font-size: 12px; }
 
 .container {
-  max-width: 1080px;
+  max-width: 1000px;
   padding-top: 10px; }
 
 /*********** UPDATE MODAL **********************/
@@ -64,37 +64,44 @@ body {
     color: #666; }
 
 /************ HEADER *******************************/
-header {
+header.row {
   z-index: 1;
   position: relative;
   height: 140px;
   overflow: hidden;
   background: white;
-  box-shadow: 0px 2px 2px 0px #111;
-  padding-right: 18px; }
-  header .recentDrawing {
+  padding-right: 2em;
+  padding-bottom: .5em; }
+  header.row:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    height: .5em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: -webkit-linear-gradient(0deg, #F42A35 6.25%, #FFA200 6.25%, #FFA200 12.5%, #FFD500 12.5%, #FFD500 18.75%, #A8BF12 18.75%, #A8BF12 25%, #2EB52F 25%, #2EB52F 31.25%, #00AAB5 31.25%, #00AAB5 37.5%, #325BC5 37.5%, #325BC5 43.75%, #946D9B 43.75%, #946D9B 50%, #F42A35 50%, #F42A35 56.25%, #FFA200 56.25%, #FFA200 62.5%, #FFD500 62.5%, #FFD500 68.75%, #A8BF12 68.75%, #A8BF12 75%, #2EB52F 75%, #2EB52F 81.25%, #00AAB5 81.25%, #00AAB5 87.5%, #325BC5 87.5%, #325BC5 93.75%, #946D9B 93.75%);
+    background: linear-gradient(90deg, #F42A35 6.25%, #FFA200 6.25%, #FFA200 12.5%, #FFD500 12.5%, #FFD500 18.75%, #A8BF12 18.75%, #A8BF12 25%, #2EB52F 25%, #2EB52F 31.25%, #00AAB5 31.25%, #00AAB5 37.5%, #325BC5 37.5%, #325BC5 43.75%, #946D9B 43.75%, #946D9B 50%, #F42A35 50%, #F42A35 56.25%, #FFA200 56.25%, #FFA200 62.5%, #FFD500 62.5%, #FFD500 68.75%, #A8BF12 68.75%, #A8BF12 75%, #2EB52F 75%, #2EB52F 81.25%, #00AAB5 81.25%, #00AAB5 87.5%, #325BC5 87.5%, #325BC5 93.75%, #946D9B 93.75%); }
+  header.row .recentDrawing {
     max-height: 100%;
     float: right; }
-  header #logo {
+  header.row #logo {
     max-height: 100%;
     padding: 4px; }
   @media only screen and (max-width: 568px) {
-    header {
+    header.row {
       height: 85px; } }
-
-.header-control {
-  position: absolute;
-  right: 5px;
-  text-decoration: none;
-  color: #000;
-  font-size: 20px; }
-
-.hide-drawings {
-  top: 5px; }
-
-.refresh-drawings {
-  bottom: 5px;
-  font-size: 12px; }
+  header.row .header-control {
+    position: absolute;
+    right: 5px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 100; }
+    header.row .header-control.hide-drawings {
+      font-size: 2.5em; }
+    header.row .header-control.refresh-drawings {
+      bottom: 8px;
+      font-size: 1.5em; }
 
 /************ NAVIGATION ***************************/
 nav {
@@ -111,16 +118,16 @@ nav {
     padding: 10px;
     font-family: 'Open Sans', sans-serif;
     float: left;
-    box-shadow: 0px 2px 0px 0px #111;
+    box-shadow: 0px 1px 4px -2px #4F4F4F;
     border-radius: 0 0 4px 4px;
-    margin: 0 3px;
+    margin: -2px 3px 0;
     font-size: 1em;
     -webkit-transition: 0.1s ease-in-out;
     -moz-transition: 0.1s ease-in-out;
     -o-transition: 0.1s ease-in-out; }
     nav a:hover {
-      background: #EBE2B5;
-      margin-top: 2px;
+      background: #EFE29E;
+      margin-top: 0px;
       margin-bottom: -2px; }
   nav .nav-link-right {
     float: right; }
@@ -135,9 +142,8 @@ nav {
 /************ HERO TEXT ****************************/
 h1.title {
   font-family: 'Open Sans', sans-serif;
-  color: white;
+  color: #333;
   text-align: center;
-  text-shadow: 0 1px #333;
   margin: 0 0 10px;
   font-size: 3em; }
   @media only screen and (max-width: 900px) {
@@ -152,29 +158,27 @@ h1.title {
 
 /************ LEFT COLUMN **************************/
 #imageContainer {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  background: #bbb;
-  display: block;
-  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
   border-radius: 5px;
-  box-shadow: 0 2px 0 0 #222;
-  text-align: center;
-  font: 0/0 a; }
-  #imageContainer:before {
-    content: ' ';
-    display: inline-block;
-    vertical-align: middle;
-    /* vertical alignment of the inline element */
-    height: 100%; }
+  background: #fff;
+  box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F; }
   #imageContainer img {
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
     display: inline-block;
-    vertical-align: middle;
-    font: 16px/1 Arial sans-serif;
-    width: 100%;
+    max-width: 100%;
     max-height: 100%;
-    border-radius: 5px; }
+    width: auto;
+    height: auto; }
+    #imageContainer img.intro {
+      width: 100%;
+      padding: 0; }
   @media only screen and (max-width: 480px) {
     #imageContainer {
       display: none; } }
@@ -182,10 +186,9 @@ h1.title {
 #pokemonName {
   font-family: 'Open Sans', sans-serif;
   text-align: center;
-  color: white;
+  color: #333;
   font-size: 3em;
-  margin: 5px 0;
-  text-shadow: 0 2px #333; }
+  margin: 5px 0; }
   @media only screen and (max-width: 568px) {
     #pokemonName {
       font-size: 2em; } }
@@ -193,26 +196,11 @@ h1.title {
     #pokemonName {
       font-size: 3em; } }
 
-/************ CENTER COLUMN **************************/
-.center-column {
-  text-align: center; }
-
-#timer {
-  color: #fff;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 4em;
-  display: none; }
-  @media only screen and (max-width: 568px) {
-    #timer {
-      font-size: 3em; } }
-  @media only screen and (max-width: 480px) {
-    #timer {
-      display: hidden; } }
-
+/************ CONTROLS **************************/
 #newRound {
   position: relative;
-  background: #78BC3F;
-  box-shadow: 0 4px 0 0 #306901;
+  background: #76C038;
+  box-shadow: 0 3px 0 0 #306901, 0px 3px 5px -1px #4F4F4F;
   color: #fff;
   outline: none;
   text-shadow: 0 1px #306901;
@@ -224,30 +212,30 @@ h1.title {
   border-radius: 5px;
   clear: both;
   border-radius: 5px;
-  font-size: 1.5em;
-  margin: 10px auto;
+  font-size: 2em;
+  margin: 0px auto 10px;
   padding: 8px 6px;
-  margin-top: 30px; }
+  width: 80%; }
   #newRound:enabled:active {
-    top: 4px;
+    top: 3px;
     box-shadow: none; }
   #newRound:disabled {
     opacity: 0.7; }
-  @media only screen and (max-width: 900px) {
-    #newRound {
-      font-size: 1.2em;
-      padding: 10px 6px;
-      width: 100%;
-      margin-top: 10px; } }
   @media only screen and (max-width: 480px) {
     #newRound {
       font-size: 2em;
-      width: auto;
       padding: 8px 20px;
       margin: 0 auto 10px; } }
   #newRound.intro {
     font-size: 3em;
-    padding: 8px 20px; }
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 60%;
+    height: 20%; }
     @media only screen and (max-width: 900px) {
       #newRound.intro {
         font-size: 2em;
@@ -260,60 +248,72 @@ h1.title {
     @media only screen and (max-width: 480px) {
       #newRound.intro {
         font-size: 2em;
-        width: auto;
         padding: 8px 20px; } }
 
-.share, #save {
-  position: relative;
-  background: #478E95;
-  box-shadow: 0 4px 0 0 #095057;
-  color: #fff;
-  outline: none;
-  text-shadow: 0 1px #095057;
-  display: block;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  border-radius: 5px;
-  clear: both;
-  border-radius: 5px;
-  margin: 10px auto;
-  font-size: 2em;
-  padding: 8px 0;
-  width: 47%;
+.round-controls {
+  text-align: center;
   display: none;
-  text-decoration: none; }
-  .share:enabled:active, #save:enabled:active {
-    top: 4px;
-    box-shadow: none; }
-  .share:disabled, #save:disabled {
-    opacity: 0.7; }
-  .share:active, #save:active {
-    top: 2px;
-    box-shadow: none; }
-  @media only screen and (max-width: 480px) {
-    .share, #save {
-      margin: 0 auto 10px; } }
-
-@media only screen and (max-width: 480px) {
-  .share {
-    max-width: 20%; } }
-
-#save {
-  width: 100%;
-  max-width: 200px; }
-  @media only screen and (max-width: 900px) {
-    #save {
-      font-size: 1.5em; } }
-  @media only screen and (max-width: 480px) {
-    #save {
-      font-size: 2em;
-      max-width: 40%; } }
-
-#save [class^="icon-"] {
-  font-size: 1em;
-  margin-right: 5px; }
+  width: 100%; }
+  .round-controls #timer {
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 4em;
+    display: none !important; }
+    @media only screen and (max-width: 568px) {
+      .round-controls #timer {
+        font-size: 3em; } }
+    @media only screen and (max-width: 480px) {
+      .round-controls #timer {
+        display: hidden; } }
+  .round-controls .share, .round-controls #save {
+    position: relative;
+    background: #946D9B;
+    box-shadow: 0 3px 0 0 #57405B, 0px 3px 5px -1px #4F4F4F;
+    color: #fff;
+    outline: none;
+    text-shadow: 0 1px #57405B;
+    display: block;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 5px;
+    clear: both;
+    border-radius: 5px;
+    margin: 0 auto;
+    font-size: 2em;
+    padding: 8px 0;
+    text-decoration: none;
+    display: inline-block; }
+    .round-controls .share:enabled:active, .round-controls #save:enabled:active {
+      top: 3px;
+      box-shadow: none; }
+    .round-controls .share:disabled, .round-controls #save:disabled {
+      opacity: 0.7; }
+    .round-controls .share.share-facebook, .round-controls #save.share-facebook {
+      background: #3b5998;
+      box-shadow: 0 3px 0 0 #082665, 0px 3px 5px -1px #4F4F4F;
+      text-shadow: 0 1px #082665; }
+    .round-controls .share.share-twitter, .round-controls #save.share-twitter {
+      background: #00aced;
+      box-shadow: 0 3px 0 0 #0079BA, 0px 3px 5px -1px #4F4F4F;
+      text-shadow: 0 1px #0079BA; }
+    .round-controls .share:active, .round-controls #save:active {
+      top: 2px;
+      box-shadow: none;
+      -webkit-transition: top 0.4s ease-in-out;
+      -moz-transition: 0.1s ease-in-out;
+      -o-transition: 0.1s ease-in-out; }
+    @media only screen and (max-width: 480px) {
+      .round-controls .share, .round-controls #save {
+        margin: 0 auto 10px; } }
+  .round-controls .share {
+    width: 18%; }
+  .round-controls #save {
+    width: 60%; }
+  .round-controls #save [class^="icon-"] {
+    font-size: 1em;
+    margin-right: 5px; }
 
 /************ RIGHT COLUMN **************************/
 #canvas-container {
@@ -322,11 +322,11 @@ h1.title {
     max-width: 100%;
     width: 100%;
     height: auto;
-    background: #bbb;
+    background: #d3d3d3;
     display: block;
     margin: 0 auto;
     border-radius: 5px;
-    box-shadow: 0 2px 0 0 #222;
+    box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
     pointer-events: none;
     cursor: url(../img/cursor.png), crosshair; }
   #canvas-container #pip {
@@ -355,11 +355,12 @@ h1.title {
         display: block; } }
 
 .controls {
-  margin: 0 auto;
+  margin: 10px auto;
   border-radius: 5px; }
   .controls ul {
     list-style: none;
     padding: 0;
+    margin: 0;
     width: 100%;
     text-align: center; }
     .controls ul li {
@@ -371,9 +372,8 @@ h1.title {
       border-radius: 50px;
       cursor: pointer;
       border: 0;
-      box-shadow: 0 2px 0 0 #222; }
+      box-shadow: 0 2px 0 0 #222, 0px 3px 5px -1px #4F4F4F; }
       .controls ul li.selected {
-        border: 2px solid #ccc;
         top: 2px;
         box-shadow: none; }
       @media only screen and (max-width: 568px) {
@@ -452,7 +452,7 @@ h1.title {
 #addNewColor {
   position: relative;
   background: #946D9B;
-  box-shadow: 0 4px 0 0 #5B575C;
+  box-shadow: 0 3px 0 0 #5B575C, 0px 3px 5px -1px #4F4F4F;
   color: #fff;
   outline: none;
   text-shadow: 0 1px #5B575C;
@@ -469,7 +469,7 @@ h1.title {
   width: 90%;
   font-size: 20px; }
   #addNewColor:enabled:active {
-    top: 4px;
+    top: 3px;
     box-shadow: none; }
   #addNewColor:disabled {
     opacity: 0.7; }
@@ -492,12 +492,89 @@ h1.title {
     width: 60%;
     top: 4px; }
 
+/********** SEARCH BY POKEMON *************/
+.search-by-pokemon {
+  margin-top: 30px; }
+  .search-by-pokemon .options {
+    text-align: center; }
+    .search-by-pokemon .options p {
+      display: inline-block;
+      font-size: 2em; }
+      @media only screen and (max-width: 480px) {
+        .search-by-pokemon .options p {
+          font-size: 1.5em; } }
+      .search-by-pokemon .options p span {
+        color: #FF7575; }
+    .search-by-pokemon .options select {
+      font-size: 2em; }
+      @media only screen and (max-width: 568px) {
+        .search-by-pokemon .options select {
+          font-size: 1em; } }
+  @media only screen and (max-width: 568px) {
+    .search-by-pokemon {
+      display: none; } }
+
+.mini-gallery {
+  display: none;
+  text-align: center;
+  height: 150px;
+  overflow: hidden;
+  background: white; }
+  @media only screen and (max-width: 900px) {
+    .mini-gallery {
+      height: 120px; } }
+  @media only screen and (max-width: 568px) {
+    .mini-gallery {
+      display: none !important; } }
+  .mini-gallery img {
+    max-height: 100%;
+    float: right; }
+  .mini-gallery .gallery-button-container {
+    display: table;
+    float: right;
+    height: 100%;
+    padding: 20px; }
+    .mini-gallery .gallery-button-container .gallery-button {
+      position: relative;
+      background: #946D9B;
+      box-shadow: 0 3px 0 0 #57405B, 0px 3px 5px -1px #4F4F4F;
+      color: #fff;
+      outline: none;
+      text-shadow: 0 1px #57405B;
+      display: block;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Open Sans', sans-serif;
+      border-radius: 5px;
+      clear: both;
+      border-radius: 5px;
+      display: table-cell;
+      vertical-align: middle;
+      padding: 20px; }
+      .mini-gallery .gallery-button-container .gallery-button:enabled:active {
+        top: 3px;
+        box-shadow: none; }
+      .mini-gallery .gallery-button-container .gallery-button:disabled {
+        opacity: 0.7; }
+
 /********** FOOTER **********************/
 footer {
-  margin-top: 40px;
   background: #444;
   color: #eee;
-  padding: 20px 0; }
+  padding: 20px 0;
+  position: relative;
+  padding-bottom: .5em; }
+  footer:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    height: .5em;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: -webkit-linear-gradient(0deg, #F42A35 6.25%, #FFA200 6.25%, #FFA200 12.5%, #FFD500 12.5%, #FFD500 18.75%, #A8BF12 18.75%, #A8BF12 25%, #2EB52F 25%, #2EB52F 31.25%, #00AAB5 31.25%, #00AAB5 37.5%, #325BC5 37.5%, #325BC5 43.75%, #946D9B 43.75%, #946D9B 50%, #F42A35 50%, #F42A35 56.25%, #FFA200 56.25%, #FFA200 62.5%, #FFD500 62.5%, #FFD500 68.75%, #A8BF12 68.75%, #A8BF12 75%, #2EB52F 75%, #2EB52F 81.25%, #00AAB5 81.25%, #00AAB5 87.5%, #325BC5 87.5%, #325BC5 93.75%, #946D9B 93.75%);
+    background: linear-gradient(90deg, #F42A35 6.25%, #FFA200 6.25%, #FFA200 12.5%, #FFD500 12.5%, #FFD500 18.75%, #A8BF12 18.75%, #A8BF12 25%, #2EB52F 25%, #2EB52F 31.25%, #00AAB5 31.25%, #00AAB5 37.5%, #325BC5 37.5%, #325BC5 43.75%, #946D9B 43.75%, #946D9B 50%, #F42A35 50%, #F42A35 56.25%, #FFA200 56.25%, #FFA200 62.5%, #FFD500 62.5%, #FFD500 68.75%, #A8BF12 68.75%, #A8BF12 75%, #2EB52F 75%, #2EB52F 81.25%, #00AAB5 81.25%, #00AAB5 87.5%, #325BC5 87.5%, #325BC5 93.75%, #946D9B 93.75%); }
   footer .footerLink {
     float: left;
     width: 100%; }

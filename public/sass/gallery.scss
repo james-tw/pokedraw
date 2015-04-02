@@ -1,4 +1,4 @@
-@import "painter";
+@import "foundations";
 
 
 
@@ -11,7 +11,7 @@ header {
 .row {
 	p {
 		font-family: "Open Sans" ,sans-serif;
-		color: #fff;
+		color: #333;
 		text-align: center;
 		font-size: 1.25em;
 		margin: 5px;
@@ -52,13 +52,13 @@ header {
 	background-image: url("none");
 	// Background image loaded dynamically via ajax call
 	background-size: cover;
-	border-radius: 4px;
-	box-shadow: 0 2px 0 0 #222;
+	border-radius: 5px;
+	box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
 
 	@media only screen and (max-width : 650px) {
 	  /* Tablet & phone view: 2 tiles */
-	    width: 48%;
-			margin: 1%;
+    width: 48%;
+		margin: 1%;
   }
 	@media only screen and (max-width : 1050px) and (min-width : 651px) {
 	  /* Small desktop / ipad view: 3 tiles */
