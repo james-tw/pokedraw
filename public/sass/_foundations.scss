@@ -22,11 +22,7 @@
 	cursor: pointer;
 	border: 0;
 	box-shadow: 0 2px 0 0 #222, 0px 3px 5px -1px #4F4F4F;
-	&.selected {
-		//border: 2px solid #ccc;
-		top: 2px;
-		box-shadow: none;
-	}
+	
 	@media #{$mq-phone-landscape} {
     margin: 0 1% 5px;
 		width: 20%;
@@ -97,6 +93,14 @@ $rainbow-color-names: "red", "orange", "yellow", "light-green", "green", "light-
 $rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #FAD0DE,#946D9B, #875E37, #8E969B;
 $border-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #946D9B, #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #946D9B;
 
+/*for each item in $rainbow-color-names, create a class with a background set to the corresponding color in $rainbow-colors.*/
+@for $i from 1 through length($rainbow-colors) {
+	@include color-class(nth($rainbow-color-names, $i), nth($rainbow-colors, $i));
+}
+.black {
+	background: #000;
+}
+
 
 * {
 	box-sizing: border-box;
@@ -106,4 +110,14 @@ a {
 }
 html, body, .row, .columns, .container {
 	@include clearfix;
+}
+
+%color-stripes {
+	position: absolute;
+	display: inline-block;
+	content: '';
+	height: 0.5em;
+	left: 0;
+	right: 0;
+	background: stripes($border-colors);
 }

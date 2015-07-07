@@ -6,13 +6,13 @@ $(document).ready(function(){
 		recentPokemon = [],
 		sec,
 		sharePic,
-		$galleryButton = $('<div class="gallery-button-container"><a class="gallery-button" href="gallery.html">See more<br/>in the Gallery!</a><div>');
+		$galleryButton = $('<div class="gallery-button__container"><a class="gallery-button" href="gallery.html">See more<br/>in the Gallery!</a><div>');
 		
 	(function init() {
 		getRecentDrawings();
 		pokedex.forEach(function(val){
 			var $option = $('<option>' + val + '</option>');
-			$('.options .pokemon-list').append($option);
+			$('.js-sbp__dropdown').append($option);
 		});	
 	}());
 
@@ -21,36 +21,36 @@ $(document).ready(function(){
 // EVENT HANDLERS
 //
 	
-	$('.hide-drawings').on('click', function() {
-		$('.recentDrawing').css('display', 'none');
+	$('.js-header__control--hide').on('click', function() {
+		$('.recent-drawing').css('display', 'none');
 		return false;
 	});
-	$('.refresh-drawings').on('click', function() {
+	$('.js-header__control--refresh').on('click', function() {
 		getRecentDrawings();
 		return false;
 	});
 
 	//Adds an anchor tag to each color choice to make it work with sketch.js
-	$('.controls ul li').append('<a></a>');
-	$('.controls ul li a').each(function(){
+	$('.js-controls__color').append('<a></a>');
+	$('.js-controls__color a').each(function(){
 		var colorLink = $(this).parent().css('background-color');
 		$(this).attr({
 			'data-color': colorLink,
-			href: '#canvas'
+			href: '#js-canvas'
 		});
 	});
 
 	//Allows you to select a color from the list.
-	$('.controls').on('click', 'li', function(){
-		$(this).siblings().removeClass('selected');
-		$(this).addClass('selected');
+	$('.js-controls__color').on('click', function(){
+		$(this).siblings().removeClass('controls__color--selected');
+		$(this).addClass('controls__color--selected');
 	});
 
-	$('#newRound').click(function(){
+	$('.js-new-round').click(function(){
 
 		//Remove the Who's That Pokemon image, and un-dim the canvas.
-		$('#canvas').css('background', "#fff");
-		$('#imageContainer img').attr('src', '').removeClass('intro');
+		$('#js-canvas').css('background', "#fff");
+		$('.js-reference-image').attr('src', '').removeClass('intro');
 
 		//This function changes the CSS of the interface during a round.
 		setInterfaceActive();
@@ -60,28 +60,28 @@ $(document).ready(function(){
 		//Reset the timer and get a new Pokemon to draw.
 		sec = 8;
 		//If on mobile, Scroll to the canvas element.
-		if ($('#pip').css('display') === 'block') {
+		if ($('.pip__container').css('display') === 'block') {
 			$('html,body').animate({
-				scrollTop: $('#canvas').offset().top - 12
+				scrollTop: $('#js-canvas').offset().top - 12
 			}, 500);
 		}
 		getNewPokemon();
   		ga('send', 'event', 'new-round', 'click');
 	});
 
-	$('.pokemon-list').on("change", function() {
+	$('.js-sbp__dropdown').on("change", function() {
 		// If this is not the default option
 		if ($(this).val() !== 0) {
 			//Remove the "Choose a Pokemon..." option.
-			$('option[value="0"]').remove();
-			var filterOption = $('.pokemon-list').val().toLowerCase();
+			$('.js-sbp__dropdown option[value="0"]').remove();
+			var filterOption = $('.js-sbp__dropdown').val().toLowerCase();
 			//Search for pokemon to populate the SBP section.
 			getDrawingsByPokemon(filterOption);
-			$('.mini-gallery').slideDown('1000');
+			$('.js-sbp-gallery').slideDown('1000');
 		}
 	});
 
-	$('#save').click(function(){
+	$('.js-save').click(function(){
 		//Sets the background of the saved picture to white.
 		// TODO: Check if necessary.
 		whiteOutCanvasBackground();
@@ -110,7 +110,7 @@ $(document).ready(function(){
 			type: "GET",
 			url: "/ajax/getDrawingsByPokemon/" + name
 		}).done(function(files) {
-			$('.mini-gallery').empty();
+			$('.js-sbp-gallery').empty();
 			displayNewDrawings(files);
 		});
 	}
@@ -143,17 +143,17 @@ $(document).ready(function(){
 		var s = "00" + rand;
 		var index =  s.substr(s.length-3);
 		//Fetches the proper image file for that pokemon.
-		$('#imageContainer img').attr('src', "img/" + index + ".png");
-		$('#pip img').attr('src', "img/" + index + ".png");
+		$('.js-reference-image').attr('src', "img/" + index + ".png");
+		$('.pip').attr('src', "img/" + index + ".png");
 
 		//Start the timer once the image is fully loaded. 
 		// TODO: Add loading animation, then remove it in the following function
-		$('#imageContainer').waitForImages(function () {
+		$('.js-reference-image__container').waitForImages(function () {
 			startTimer();
 		});
 		//Fetch the proper name from the pokedex object.
 		currentPokemon = pokedex[rand-1];
-		$('#pokemonName').text(currentPokemon);
+		$('.js-pokemon-name').text(currentPokemon);
 	}
 
 	function saveImage() {
@@ -176,7 +176,7 @@ $(document).ready(function(){
 				//Update the Share link based on the recent drawing.
 				updateShareLink(recentDrawingID);
 				//Update the Save link so that it downloads the recently drawn file.
-				$("#save").attr({
+				$(".js-save").attr({
 					href: "drawings/" + recentDrawingID,
 					download: currentPokemon + ".jpeg"
 				});
@@ -191,48 +191,48 @@ $(document).ready(function(){
 
 	function setInterfaceActive() {
 		//Hide the hero text once the button has been clicked once.
-		$('h1').slideUp('fast');
+		$('.hero').slideUp('fast');
 		//If in mq-mobile resolution, don't show the regular timer.
-		if ($('#pip').css('display') === 'block') {
-			$('h1').css('height', '0px');
+		if ($('.pip__container').css('display') === 'block') {
+			$('.hero').css('height', '0px');
 		}
 
-		$('#newRound.intro').css('display', 'none');
-		$('#newRound').removeClass('animated bounce');
-		$('#pip-timer').text('45')
-			    	   .css({
-							'color': '#666',
-							'display': 'inline'
-						})
-					   .fadeIn('fast');
+		$('.js-new-round.intro').css('display', 'none');
+		$('.js-new-round').removeClass('animated bounce');
+		$('.js-canvas__timer').text('45')
+					    	  .css({
+								'color': '#666',
+								'display': 'inline'
+							  })
+							  .fadeIn('fast');
 		$('.round-controls').css('display', 'none');
-		$('.controls ul').css('display', 'inline-block');
+		$('.js-controls__color-list').css('display', 'inline-block');
 	}
 
 	function setInterfaceInactive() {
 		//As soon as the round is over, change the CTA button to say "Draw a new Pokemon" and change the button css to match.
-		$('#newRound').css('display', 'block')
-					  .text('Draw a new Pokémon!')
-					  .removeClass('intro')
-					  .prependTo($('.round-controls'));
+		$('.js-new-round').css('display', 'block')
+						  .text('Draw a new Pokémon!')
+						  .removeClass('intro')
+						  .prependTo($('.round-controls'));
 		var bounceDelay = setInterval(function() {
-			$('#newRound').addClass('animated bounce');
+			$('.js-new-round').addClass('animated bounce');
 			clearInterval(bounceDelay);
 		}, 3500);
 		$canvas.css('pointer-events', 'none');
 		$('.round-controls').css('display', 'inline-block').fadeIn('fast');
-		$('.controls ul').css('display', 'none');
-		$('#pip-timer').fadeOut('slow').removeClass('animated pulse infinite');
+		$('.js-controls__color-list').css('display', 'none');
+		$('.js-canvas__timer').fadeOut('slow').removeClass('animated pulse infinite');
 	}
 
-	//Timer function initiated when #newRound is clicked.
+	//Timer function initiated when .js-new-round is clicked.
 	function startTimer() {
 		var timer = setInterval(function() {
 			//Updates the text shown on the timer.
 			sec -= 1;
-			$('#pip-timer').text(sec);
+			$('.js-canvas__timer').text(sec);
 			if (sec === 5) {
-				$('#pip-timer').css('color', '#FF6A62').addClass('animated pulse infinite');
+				$('.js-canvas__timer').css('color', '#FF6A62').addClass('animated pulse infinite');
 			}
 			if (sec === 0) {
 				clearInterval(timer);
@@ -247,9 +247,9 @@ $(document).ready(function(){
 	}
 
 	function updateHeaderDrawings(images) {
-		$('header .recentDrawing').fadeOut('fast').remove();
+		$('.header .recent-drawing').fadeOut('fast').remove();
 		images.forEach(function(val) {
-			$("header").append($("<img class='recentDrawing' src=drawings/" + val._id + "></img>").fadeIn('fast'));
+			$(".header").append($("<img class='recent-drawing' src=drawings/" + val._id + "></img>").fadeIn('fast'));
 		});
 	}
 
@@ -258,9 +258,9 @@ $(document).ready(function(){
 		var loadPortion = images.slice(0, 10);
 		if (loadPortion.length !== 0) {
 			loadPortion.forEach(function(val) {
-				$(".mini-gallery").prepend($("<img class='recentDrawing' src=drawings/" + val._id + "></img>").fadeIn('fast'));
+				$(".js-sbp-gallery").prepend($("<img class='recent-drawing' src=drawings/" + val._id + "></img>").fadeIn('fast'));
 			});
-			$('.mini-gallery').prepend($galleryButton);
+			$('.js-sbp-gallery').prepend($galleryButton);
 		}
 	}
 
@@ -268,21 +268,21 @@ $(document).ready(function(){
 		// sharePic is used by both the Facebook and Twitter share functions
 		sharePic = ("http://"+document.domain+ "/drawings/" + fileURL);
 		//Update Tweet button URL
-		$('.share-twitter').attr('href', 'http://twitter.com/share?url=' + sharePic + '&text=I drew this ' + currentPokemon + ' all by myself on pokedraw.net!');
+		$('.js-share-twitter').attr('href', 'http://twitter.com/share?url=' + sharePic + '&text=I drew this ' + currentPokemon + ' all by myself on pokedraw.net!');
 	}
 
 	function whiteOutCanvasBackground() {
 		// TODO: Examine which of these is necessary. data, canvas, and compositeOperation are not defined/used
 		//get the current ImageData for the canvas.
-		var data = context.getImageData(0, 0, canvas.width, canvas.height);
+		// var data = context.getImageData(0, 0, canvas.width, canvas.height);
 		//store the current globalCompositeOperation
-		var compositeOperation = context.globalCompositeOperation;
+		// var compositeOperation = context.globalCompositeOperation;
 		//set to draw behind current content
 		context.globalCompositeOperation = "destination-over";
 		//set background color to white
 		context.fillStyle = '#fff';
 		//draw background / rect on entire canvas
-		context.fillRect(0,0,canvas.width, canvas.height);
+		// context.fillRect(0,0,canvas.width, canvas.height);
 	}
 //
 // END FUNCTION DECLARATIONS
@@ -293,8 +293,8 @@ $(document).ready(function(){
 // CANVAS CREATION AND CALIBRATION
 //
 
-	var $canvas = $('#canvas');
-	var context = $('canvas')[0].getContext('2d');
+	var $canvas = $('#js-canvas');
+	var context = $canvas[0].getContext('2d');
 
 	//Initiate sketch.js
 	$canvas.sketch();
@@ -306,7 +306,7 @@ $(document).ready(function(){
 			height: $canvas.css('height')
 		});
 		$canvas.sketch().redraw();
-		$('#imageContainer').css('height', $canvas.css('height'));
+		$('.js-reference-image__container').css('height', $canvas.css('height'));
 	}
 	//Canvas will calibrate each time the window resizes.
 	$(window).resize(calibrateCanvas);
@@ -331,7 +331,7 @@ $(document).ready(function(){
 				picture: sharePic
 			});
 		};
-		$(".share-facebook").click(function() {
+		$(".js-share-facebook").click(function() {
 			FB.login(function(response) {
 				if (response.authResponse) {
 					fbShare();
@@ -343,7 +343,7 @@ $(document).ready(function(){
 	})();
 
 	//Twitter Share button
-	$('.share-twitter').click(function(event) {
+	$('.js-share-twitter').click(function(event) {
 		var width  = 575,
 		    height = 400,
 		    left   = ($(window).width()  - width)  / 2,
@@ -373,7 +373,7 @@ $(document).ready(function(){
 (function($){$.fn.extend({leanModal:function(options){var defaults={top:100,overlay:0.5,closeButton:null};var overlay=$("<div id='lean_overlay'></div>");$("body").append(overlay);options=$.extend(defaults,options);return this.each(function(){var o=options;$(this).click(function(e){var modal_id=$(this).attr("href");$("#lean_overlay").click(function(){close_modal(modal_id)});$(o.closeButton).click(function(){close_modal(modal_id)});var modal_height=$(modal_id).outerHeight();var modal_width=$(modal_id).outerWidth();
 $("#lean_overlay").css({"display":"block",opacity:0});$("#lean_overlay").fadeTo(200,o.overlay);$(modal_id).css({"display":"block","position":"fixed","opacity":0,"z-index":11000,"left":50+"%","margin-left":-(modal_width/2)+"px","top":o.top+"px"});$(modal_id).fadeTo(200,1);e.preventDefault()})});function close_modal(modal_id){$("#lean_overlay").fadeOut(200);$(modal_id).css({"display":"none"})}}})})(jQuery);
 
-$(".nav-update").leanModal({ top : 120, overlay : 0.6, closeButton: ".modal-close" });
+$(".nav-update").leanModal({ top : 120, overlay : 0.6, closeButton: ".js-modal__close" });
 
 /*! waitForImages jQuery Plugin 2015-02-25 */
 !function(a){var b="waitForImages";a.waitForImages={hasImageProperties:["backgroundImage","listStyleImage","borderImage","borderCornerImage","cursor"],hasImageAttributes:["srcset"]},a.expr[":"].uncached=function(b){if(!a(b).is('img[src][src!=""]'))return!1;var c=new Image;return c.src=b.src,!c.complete},a.fn.waitForImages=function(){var c,d,e,f=0,g=0,h=a.Deferred();if(a.isPlainObject(arguments[0])?(e=arguments[0].waitForAll,d=arguments[0].each,c=arguments[0].finished):1===arguments.length&&"boolean"===a.type(arguments[0])?e=arguments[0]:(c=arguments[0],d=arguments[1],e=arguments[2]),c=c||a.noop,d=d||a.noop,e=!!e,!a.isFunction(c)||!a.isFunction(d))throw new TypeError("An invalid callback was supplied.");return this.each(function(){var i=a(this),j=[],k=a.waitForImages.hasImageProperties||[],l=a.waitForImages.hasImageAttributes||[],m=/url\(\s*(['"]?)(.*?)\1\s*\)/g;e?i.find("*").addBack().each(function(){var b=a(this);b.is("img:uncached")&&j.push({src:b.attr("src"),element:b[0]}),a.each(k,function(a,c){var d,e=b.css(c);if(!e)return!0;for(;d=m.exec(e);)j.push({src:d[2],element:b[0]})}),a.each(l,function(c,d){var e,f=b.attr(d);return f?(e=f.split(","),void a.each(e,function(c,d){d=a.trim(d).split(" ")[0],j.push({src:d,element:b[0]})})):!0})}):i.find("img:uncached").each(function(){j.push({src:this.src,element:this})}),f=j.length,g=0,0===f&&(c.call(i[0]),h.resolveWith(i[0])),a.each(j,function(e,j){var k=new Image,l="load."+b+" error."+b;a(k).one(l,function m(b){var e=[g,f,"load"==b.type];return g++,d.apply(j.element,e),h.notifyWith(j.element,e),a(this).off(l,m),g==f?(c.call(i[0]),h.resolveWith(i[0]),!1):void 0}),k.src=j.src})}),h.promise()}}(jQuery);

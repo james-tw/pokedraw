@@ -1,0 +1,543 @@
+@import "_normalize";
+@import "_smart-grid";
+@import "_foundations";
+@import "_icons";
+@import "_animate";
+
+body {
+	margin:0;
+	background: #f7f7f7;
+	font-family: Helvetica,Arial,sans-serif;
+  font-size: 12px;
+}
+.container {
+	max-width: 1000px;
+  padding-top: 10px;
+}
+
+/*********** UPDATE MODAL **********************/
+
+#lean_overlay {
+  position: fixed;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  display: none;
+}
+
+.modal {
+  width: 404px;
+  padding: 10px 20px;
+  display: none;
+  background: #FFF;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
+
+  &__list {
+    margin: 30px;
+    padding: 0;
+    text-align: left;
+    font-size: 1.5em;
+  }
+
+  &__list-item {
+    padding: 3px 0;
+  }
+
+}
+
+.modal__close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 2em;
+  padding: 8px;
+  z-index: 2;
+  color: #111;
+
+  &:hover {
+    color: #666;
+  }
+
+}
+
+/************ HEADER *******************************/
+
+.header {
+	z-index: 1;
+	position: relative;
+	height: 140px;
+	overflow: hidden;
+	background: white;
+	padding-right: 2em;
+  padding-bottom: 0.5em;
+
+  &:after {
+    @extend %color-stripes;
+    bottom: 0;
+  }
+  // This class is repeated in the SBP code. Confirm whether this class is used there.
+	.recent-drawing {
+		max-height: 100%;
+		float: right;
+	}
+
+	@media #{$mq-phone-landscape} {
+		height: 85px;
+	}
+
+}
+
+.logo {
+  max-height: 100%;
+  padding: 4px;
+}
+
+.header__control {
+  position: absolute;
+  right: 5px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 100;
+
+  &--hide {
+    font-size: 2.5em;
+  }
+
+  &--refresh {
+    bottom: 8px;
+    font-size: 1.5em;
+  }
+
+}
+/************ NAVIGATION ***************************/
+
+.nav {
+  @include clearfix;
+	margin: 0px 10px -30px;
+	z-index: 0;
+
+	@media #{$mq-phone-landscape} {
+		display: none;
+	}
+
+  @media #{$mq-1400} {
+		position: relative;
+    margin: 0 10px 0;
+	}
+
+}
+
+.nav__link {
+  background: #EEDF8E;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  float: left;
+  box-shadow: 0px 1px 4px -2px #4F4F4F;
+  border-radius: 0 0 4px 4px;
+  margin: -2px 3px 0;
+  font-size: 1em;
+  transition: 0.1s ease-in-out;
+
+  &--update {
+    float: right;
+  }
+
+  &:hover {
+    background: #EFE29E;
+    margin-top: 0px;
+    margin-bottom: -2px;
+  }
+
+}
+
+/************ HERO TEXT ****************************/
+
+.hero {
+	font-family: 'Open Sans', sans-serif;
+	color: #333;
+	text-align: center;
+	margin: 0 0 10px;
+  font-size: 3em;
+
+  @media #{$mq-tablet} {
+    font-size: 2em;
+  }
+
+  @media #{$mq-phone-landscape} {
+    font-size: 1.2em;
+  }
+
+  @media #{$mq-phone} {
+    font-size: 1.5em;
+  }
+
+}
+
+/************ LEFT COLUMN **************************/
+
+.reference-image {
+  position: absolute;
+  padding: 20px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: inline-block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+
+  &.intro {
+    width: 100%;
+    padding: 0;
+  }
+
+  &__container {
+    @include box-round;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
+
+    @media #{$mq-phone} {
+      display: none;
+    }
+
+  }
+
+}
+
+.pokemon-name {
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	color: #333;
+	font-size: 3em;
+	margin: 5px 0;
+
+  @media #{$mq-phone-landscape} {
+    font-size: 2em;
+  }
+
+  @media #{$mq-phone} {
+    font-size: 3em;
+  }
+
+}
+
+/************ CONTROLS **************************/
+.new-round {
+  @include button(#76C038,#306901);
+  @include box-round;
+  font-size: 2em;
+  margin: 0px auto 10px;
+  padding: 8px 6px;
+  width: 80%;
+
+  @media #{$mq-phone} {
+    font-size: 2em;
+    padding: 8px 20px;
+    margin: 0 auto 10px;
+  }
+
+  &.intro {
+    font-size: 3em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 60%;
+    height: 20%;
+
+    @media #{$mq-tablet} {
+      font-size: 2em;
+      padding: 10px 12px;
+    }
+
+    @media #{$mq-phone-landscape} {
+      font-size: 1.5em;
+      line-height: 1.5em;
+      padding: 10px 6px;
+    }
+
+    @media #{$mq-phone} {
+      font-size: 2em;
+      padding: 8px 20px;
+    }
+
+  }
+
+}
+
+.controls {
+  @include box-round;
+  margin: 10px auto;
+
+  &__color-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__color {
+    @include shared-color-properties;
+    display: inline-block;
+    margin: 0 5px 5px;
+    position: relative;
+
+    a {
+      display: block;
+      height: 100%;
+    }
+
+    &--selected {
+      top: 2px;
+      box-shadow: none;
+    }
+
+  }
+}
+
+.round-controls {
+	text-align:center;
+  display: none;
+  width: 100%;
+
+  #timer {
+  	color: #fff;
+  	font-family: 'Open Sans', sans-serif;
+  	font-size: 4em;
+  	display: none !important;
+    @media #{$mq-phone-landscape} {
+      font-size: 3em;
+    }
+    @media #{$mq-phone} {
+  		display: hidden;
+  	}
+  }
+
+  &__button {
+    @include button(#946D9B, #57405B);
+    @include box-round;
+    margin: 0 auto;
+    font-size: 2em;
+    padding: 8px 0;
+    text-decoration: none;
+    display: inline-block;
+
+    &--share {
+      width: 18%;
+
+      &.share-facebook {
+        background: #3b5998;
+        box-shadow: 0 3px 0 0 #082665, 0px 3px 5px -1px #4F4F4F;
+        text-shadow: 0 1px #082665;
+      }
+
+      &.share-twitter {
+        background: #00aced;
+        box-shadow: 0 3px 0 0 #0079BA, 0px 3px 5px -1px #4F4F4F;
+        text-shadow: 0 1px #0079BA;
+      }
+
+    }
+
+    &--save {
+      width: 60%;
+
+      [class^="icon-"] {
+        font-size: 1em;
+        margin-right: 5px;
+      }
+
+    }
+
+  	&:active {
+  		top: 2px;
+  		box-shadow: none;
+      transition: top 0.4s ease-in-out;
+
+  	}
+
+    @media #{$mq-phone} {
+      margin: 0 auto 10px;
+    }
+  }
+}
+
+/************ RIGHT COLUMN **************************/
+
+.canvas {
+  @include box-round;
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+	background: #d3d3d3;
+	display: block;
+	margin: 0 auto;
+	box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
+	pointer-events: none;
+	cursor: url(../img/cursor.png), crosshair;
+
+  &__container {
+    position: relative;
+  }
+
+	&__timer {
+		display: none;
+		position: absolute;
+		right: 10px;
+		top: 5px;
+		font-size: 36px;
+
+		@media #{$mq-phone} {
+			display: block;
+		}
+	}
+}
+
+.pip {
+  @include box-round;
+  max-width: 100%;
+  max-height: 100%;
+
+  &__container {
+    @include box-round;
+    display: none;
+    position: absolute;
+    max-height: 25%;
+    max-width: 25%;
+    top: 5px;
+    left: 5px;
+
+    @media #{$mq-phone} {
+      display: block;
+    }
+  }
+}
+
+/********** SEARCH BY POKEMON *************/
+
+.sbp {
+  margin-top: 30px;
+  text-align: center;
+	&__header {
+		display: inline-block;
+		font-size: 2em;
+		
+    @media #{$mq-phone} {
+			font-size: 1.5em;
+		}
+		
+	}
+	&__dropdown {
+		font-size: 2em;
+		@media #{$mq-phone-landscape} {
+			font-size: 1em;
+		}
+	}
+  @media #{$mq-phone-landscape} {
+    display: none;
+  }
+}
+
+.sbp-gallery {
+  display: none;
+	text-align: center;
+	height: 150px;
+	overflow: hidden;
+	background: white;
+
+  @media #{$mq-tablet} {
+    height: 120px;
+  }
+
+  @media #{$mq-phone-landscape} {
+    display: none !important;
+  }
+  
+  // Correct to a class name after investigating whether these images need .recent-drawing
+	img {
+		max-height: 100%;
+    float: right;
+	}
+
+}
+
+.gallery-button {
+  @include button(#946D9B, #57405B);
+  @include box-round;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 20px;
+
+  &__container {
+    display: table;
+    float: right;
+    height: 100%;
+    padding: 20px;
+  }
+}
+
+/********** FOOTER **********************/
+
+.footer {
+	background: #444;
+	color: #eee;
+	padding: 20px 0;
+  position: relative;
+  padding-bottom: .5em;
+
+  &:after {
+    @extend %color-stripes;
+    top: 0;
+  }
+
+  &__link-list {
+    list-style-type: none;
+    margin: 0 0 20px;
+    padding: 0;
+  }
+  
+  &__byline {
+    float: right;
+    width: 100%;
+    text-align: right;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #BD9E70;
+    &:hover{
+      color: #E4C08A;
+    }
+  }
+
+	// .fb-like-box {
+	// 	float: right;
+	// }
+	
+}
+
+/********** FACEBOOK PANEL **********************/
+#panel {
+  padding: 5px;
+  text-align: center;
+  background-color: #e5eecc;
+  border: solid 1px #c3c3c3;
+  padding: 50px;
+  display: none;
+}

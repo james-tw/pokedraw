@@ -1,26 +1,27 @@
-@import "foundations";
+@import "pokedraw";
 
-
-
-header {
+.header {
 	height: 80px;
 }
+
 .container {
 	max-width: 1300px;
 }
-.row {
-	p {
+
+.hero {
+	&__copy {
 		font-family: "Open Sans" ,sans-serif;
 		color: #333;
 		text-align: center;
 		font-size: 1.25em;
 		margin: 5px;
 	}
-	a {
-		color: #303030;
-		&:hover {
-			color: #222222;
-		}
+}
+
+a {
+	color: #303030;
+	&:hover {
+		color: #222222;
 	}
 }
 
@@ -36,13 +37,16 @@ header {
 			color: #FF7575;
 		}
 	}
-	select {
-		font-size: 2em;
-		@media #{$mq-phone-landscape} {
-			font-size: 1em;
-		}
+	
+}
+.sbp {
+	display: block;
+	margin: 0;
+	&__header {
+		font-size: 1.5em;
 	}
 }
+
 .drawing {
 	float: left;
 	position: relative;
