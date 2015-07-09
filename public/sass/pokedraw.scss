@@ -15,56 +15,6 @@ body {
   padding: 0 1%;
 }
 
-/*********** UPDATE MODAL **********************/
-
-#lean_overlay {
-  position: fixed;
-  z-index: 100;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
-  background: #000;
-  display: none;
-}
-
-.modal {
-  width: 404px;
-  padding: 10px 20px;
-  display: none;
-  background: #FFF;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
-
-  &__list {
-    margin: 30px;
-    padding: 0;
-    text-align: left;
-    font-size: 1.5em;
-  }
-
-  &__list-item {
-    padding: 3px 0;
-  }
-
-}
-
-.modal__close {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  font-size: 2em;
-  padding: 8px;
-  z-index: 2;
-  color: #111;
-
-  &:hover {
-    color: #666;
-  }
-
-}
-
 /************ HEADER *******************************/
 
 .header {
@@ -145,10 +95,6 @@ body {
   font-size: 1em;
   transition: 0.1s ease-in-out;
 
-  &--update {
-    float: right;
-  }
-
   &:hover {
     background: #EFE29E;
     margin-top: 0px;
@@ -163,18 +109,15 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	color: #333;
 	text-align: center;
-	margin: 0 0 10px;
+	margin: 10px 0 10px;
   font-size: 3em;
+  line-height: 1.25em;
 
   @media #{$mq-tablet} {
     font-size: 2em;
   }
 
   @media #{$mq-phone-landscape} {
-    font-size: 1.2em;
-  }
-
-  @media #{$mq-phone} {
     font-size: 1.5em;
   }
 
