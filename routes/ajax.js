@@ -37,10 +37,11 @@ router.get('/getDrawingFilenames/:limit', function(req, res) {
 		res.send(JSON.stringify(records));
 	});
 });
-router.get('/getDrawingsByPokemon/:name', function(req, res) {
+router.get('/getDrawingsByPokemon/:name/:limit', function(req, res) {
+	var limit = req.param('limit') || 100;
 	var collection = req.db.get('images');
 	var options = {
-		limit: 1000,
+		limit: limit,
 		sort: [['_id','desc']],
 		fields: {_id: 1, created: 1, pokemon: 1}
 	};

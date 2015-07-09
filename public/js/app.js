@@ -74,9 +74,9 @@ $(document).ready(function(){
 		if ($(this).val() !== 0) {
 			//Remove the "Choose a Pokemon..." option.
 			$('.js-sbp__dropdown option[value="0"]').remove();
-			var filterOption = $('.js-sbp__dropdown').val().toLowerCase();
+			var filterOption = $(this).val().toLowerCase();
 			//Search for pokemon to populate the SBP section.
-			getDrawingsByPokemon(filterOption);
+			getDrawingsByPokemon(filterOption, 12);
 			$('.js-sbp-gallery').slideDown('1000');
 		}
 	});
@@ -104,11 +104,11 @@ $(document).ready(function(){
 		return pokeList.split(' ');
 	}
 
-	// AJAX call to MongoDB to get most recent <=1000 drawings by a pokemon's name.
-	function getDrawingsByPokemon(name) {
+	// AJAX call to MongoDB to get most recent <=X drawings by a pokemon's name.
+	function getDrawingsByPokemon(name, limit) {
 		$.ajax({
 			type: "GET",
-			url: "/ajax/getDrawingsByPokemon/" + name
+			url: "/ajax/getDrawingsByPokemon/" + name + "/" + limit
 		}).done(function(files) {
 			$('.js-sbp-gallery').empty();
 			displayNewDrawings(files);

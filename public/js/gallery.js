@@ -14,8 +14,8 @@ $(document).ready(function(){
     });
 
     pokedex.forEach(function(val){
-      var $option = $('<option>' + val + '</option>');
-      $('.options .pokemon-list').append($option);
+      var $option = $('<option value=' + val + '>' + val + '</option>');
+      $('.js-sbp__dropdown').append($option);
     });
   }());
 
@@ -23,13 +23,13 @@ $(document).ready(function(){
 // EVENT HANDLERS
 //
 
-  $('.pokemon-list').on("change", function() {
+  $('.js-sbp__dropdown').on("change", function() {
     // If this is not the default option
-    if ($(this).val() != 0) {
+    if ($(this).val() !== 0) {
       $('option[value="0"]').remove();
-      var filterOption = $('.pokemon-list').val().toLowerCase();
+      var filterOption = $(this).val().toLowerCase();
       loadStart = 0;
-      getDrawingsByPokemon(filterOption);
+      getDrawingsByPokemon(filterOption, 1000);
     }
   });
 
@@ -81,10 +81,10 @@ $(document).ready(function(){
     }
   }
 
-  function getDrawingsByPokemon(name) {
+  function getDrawingsByPokemon(name, limit) {
     $.ajax({
       type: "GET",
-      url: "/ajax/getDrawingsByPokemon/" + name
+      url: "/ajax/getDrawingsByPokemon/" + name + "/" + limit
     }).done(function(files) {
       $('.gallery').empty();
       imgList = files;
