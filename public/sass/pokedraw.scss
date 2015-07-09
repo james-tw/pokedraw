@@ -1,5 +1,4 @@
 @import "_normalize";
-@import "_smart-grid";
 @import "_foundations";
 @import "_icons";
 @import "_animate";
@@ -12,7 +11,8 @@ body {
 }
 .container {
 	max-width: 1000px;
-  padding-top: 10px;
+  margin: 0 auto;
+  padding: 0 1%;
 }
 
 /*********** UPDATE MODAL **********************/
@@ -181,6 +181,11 @@ body {
 }
 
 /************ LEFT COLUMN **************************/
+
+.reference-pane {
+  @include column(49%);
+  margin-right: 2%;
+}
 
 .reference-image {
   position: absolute;
@@ -379,6 +384,10 @@ body {
 
 /************ RIGHT COLUMN **************************/
 
+.drawing-pane {
+  @include column(49%);
+}
+
 .canvas {
   @include box-round;
 	max-width: 100%;
@@ -498,11 +507,16 @@ body {
 	color: #eee;
 	padding: 20px 0;
   position: relative;
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
 
   &:after {
     @extend %color-stripes;
     top: 0;
+  }
+
+  &__content {
+    @include column(69%);
+    margin-right: 2%;
   }
 
   &__link-list {
@@ -512,8 +526,7 @@ body {
   }
   
   &__byline {
-    float: right;
-    width: 100%;
+    @include column(29%);
     text-align: right;
   }
 
@@ -521,7 +534,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     color: #BD9E70;
-    &:hover{
+    &:hover {
       color: #E4C08A;
     }
   }

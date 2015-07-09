@@ -10,6 +10,17 @@
 	border-radius: 5px;
 }
 
+@mixin column($percent) {
+	float: left;
+	width: $percent;
+
+	@media #{$mq-phone} {
+		width: 100%;
+		margin-right: 0;
+	}
+}
+
+
 @mixin shared-color-properties {
 	height: 50px;
 	width: 50px;

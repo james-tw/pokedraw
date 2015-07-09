@@ -20,50 +20,48 @@
 
 		<h1 class="hero">You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
 
-		<section class="row">
-			<div class="left-column columns six">
+		<section class="reference-pane">
 
-				<div class="reference-image__container js-reference-image__container">
-					<img class="reference-image js-reference-image intro" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+			<div class="reference-image__container js-reference-image__container">
+				<img class="reference-image js-reference-image intro" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+			</div>
+			<p class="pokemon-name js-pokemon-name"></p>
+
+		</section>
+
+		<section class="drawing-pane">
+
+			<div class="canvas__container">
+				<div class="pip__container">
+					<img class="pip" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
 				</div>
-				<p class="pokemon-name js-pokemon-name"></p>
-
+				<span class="canvas__timer js-canvas__timer">45</span>
+				<canvas id="js-canvas" class="canvas" width="400" height="400"></canvas>
+				<button class="new-round js-new-round intro">Let's Draw!</button>
 			</div>
 
-			<div class="right-column columns six ">
+			<div class="controls">
 
-				<div class="canvas__container">
-					<div class="pip__container">
-						<img class="pip" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
-					</div>
-					<span class="canvas__timer js-canvas__timer">45</span>
-					<canvas id="js-canvas" class="canvas" width="400" height="400"></canvas>
-					<button class="new-round js-new-round intro">Let's Draw!</button>
+				<ul class="controls__color-list js-controls__color-list">
+					<li class="controls__color js-controls__color red"></li>
+					<li class="controls__color js-controls__color orange"></li>
+					<li class="controls__color js-controls__color yellow"></li>
+					<li class="controls__color js-controls__color light-green"></li>
+					<li class="controls__color js-controls__color green"></li>
+					<li class="controls__color js-controls__color light-blue"></li>
+					<li class="controls__color js-controls__color blue"></li>
+					<li class="controls__color js-controls__color pink"></li>
+					<li class="controls__color js-controls__color purple"></li>
+					<li class="controls__color js-controls__color brown"></li>
+					<li class="controls__color js-controls__color gray"></li>
+					<li class="controls__color js-controls__color black controls__color--selected"></li>
+				</ul>
+
+				<div class="round-controls">
+					<span id="timer">45</span>
+					<a href="#" class="round-controls__button round-controls__button--save js-save" download="#"><span class="icon-disk"></span>Save</a>
 				</div>
 
-				<div class="controls">
-
-					<ul class="controls__color-list js-controls__color-list">
-						<li class="controls__color js-controls__color red"></li>
-						<li class="controls__color js-controls__color orange"></li>
-						<li class="controls__color js-controls__color yellow"></li>
-						<li class="controls__color js-controls__color light-green"></li>
-						<li class="controls__color js-controls__color green"></li>
-						<li class="controls__color js-controls__color light-blue"></li>
-						<li class="controls__color js-controls__color blue"></li>
-						<li class="controls__color js-controls__color pink"></li>
-						<li class="controls__color js-controls__color purple"></li>
-						<li class="controls__color js-controls__color brown"></li>
-						<li class="controls__color js-controls__color gray"></li>
-						<li class="controls__color js-controls__color black controls__color--selected"></li>
-					</ul>
-
-					<div class="round-controls">
-						<span id="timer">45</span>
-						<a href="#" class="round-controls__button round-controls__button--save js-save" download="#"><span class="icon-disk"></span>Save</a>
-					</div>
-
-				</div>
 			</div>
 		</section>
 	</div>

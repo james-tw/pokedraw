@@ -51,7 +51,7 @@ a {
 	float: left;
 	position: relative;
 	width: 24%;
-	margin: .5%;
+	margin: 0.5%;
 	background-color: #fff;
 	background-image: url("none");
 	// Background image loaded dynamically via ajax call
@@ -60,15 +60,15 @@ a {
 	box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
 
 	@media only screen and (max-width : 650px) {
-	  /* Tablet & phone view: 2 tiles */
-    width: 48%;
+		/* Tablet & phone view: 2 tiles */
+		width: 48%;
 		margin: 1%;
-  }
+	}
 	@media only screen and (max-width : 1050px) and (min-width : 651px) {
-	  /* Small desktop / ipad view: 3 tiles */
-    width: 31.33%;
+		/* Small desktop / ipad view: 3 tiles */
+		width: 31.33%;
 		margin: 1%;
-  }
+	}
 	h1 {
 		display: none;
 		position: absolute;
