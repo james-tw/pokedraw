@@ -10,11 +10,6 @@
 	border-radius: 5px;
 }
 
-@mixin color-class($color-name, $color) {
-	.#{$color-name} {
-		background: $color;
-	}
-}
 @mixin shared-color-properties {
 	height: 50px;
 	width: 50px;
@@ -34,6 +29,7 @@
 	}
 }
 @mixin button($color, $side-color) {
+	@include box-round;
 	position:relative;
 	background: $color;
 	box-shadow: 0 3px 0 0 $side-color, 0px 3px 5px -1px #4F4F4F;
@@ -45,8 +41,6 @@
 	border:none;
 	cursor: pointer;
 	font-family: 'Open Sans', sans-serif;
-	@include box-round;
-	clear:both;
 	&:enabled:active {
 		top: 3px;
 		box-shadow: none;
@@ -56,14 +50,9 @@
 	}
 }
 
+/* Generates the rainbow stripes  */
 @function stripes($colors, $direction: 90deg, $random: false) {
   $type: 'equal';
-  @if $random {
-    $type: 'random';
-  }
-  @else if length(nth($colors, 1)) > 1 {
-    $type: 'custom';
-  }
   @return linear-gradient($direction, call('_stripes-#{$type}-stops', $colors));
 }
 
@@ -81,24 +70,36 @@
   @return $gradients;
 }
 
-
-
 /***** MEDIA QUERIES ************/
 $mq-phone: "only screen and (max-width : 480px)";
 $mq-phone-landscape: "only screen and (max-width : 568px)";
 $mq-tablet: "only screen and (max-width : 900px)";
 $mq-1400: "only screen and (max-width : 1400px)";
+
+
 /***** COLORS ********************/
-$rainbow-color-names: "red", "orange", "yellow", "light-green", "green", "light-blue", "blue", "pink", "purple", "brown", "gray";
-$rainbow-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #FAD0DE,#946D9B, #875E37, #8E969B;
 $border-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #946D9B, #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #946D9B;
 
-/*for each item in $rainbow-color-names, create a class with a background set to the corresponding color in $rainbow-colors.*/
-@for $i from 1 through length($rainbow-colors) {
-	@include color-class(nth($rainbow-color-names, $i), nth($rainbow-colors, $i));
-}
-.black {
-	background: #000;
+$brush-colors: (
+	"red": #F42A35,
+	"orange": #FFA200,
+	"yellow": #FFD500,
+	"light-green": #A8BF12,
+	"green": #2EB52F,
+	"light-blue": #00AAB5,
+	"blue": #325BC5,
+	"pink": #FAD0DE,
+	"purple": #946D9B,
+	"brown": #875E37,
+	"gray": #8E969B,
+	"black": #000
+);
+
+/*for each item in $brush-names, create a class with a background set to the corresponding color in $rainbow-colors.*/
+@each $color-name, $bgcolor in $brush-colors {
+	.#{$color-name} {
+		background: $bgcolor;
+	}
 }
 
 

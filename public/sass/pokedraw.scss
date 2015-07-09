@@ -281,7 +281,7 @@ body {
 
 .controls {
   @include box-round;
-  margin: 10px auto;
+  margin: 10px auto 2em;
 
   &__color-list {
     list-style: none;
@@ -431,11 +431,11 @@ body {
 /********** SEARCH BY POKEMON *************/
 
 .sbp {
-  margin-top: 30px;
   text-align: center;
 	&__header {
 		display: inline-block;
 		font-size: 2em;
+    margin: 0 0 1em;
 		
     @media #{$mq-phone} {
 			font-size: 1.5em;

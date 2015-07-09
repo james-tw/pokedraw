@@ -11,7 +11,7 @@ $(document).ready(function(){
 	(function init() {
 		getRecentDrawings();
 		pokedex.forEach(function(val){
-			var $option = $('<option>' + val + '</option>');
+			var $option = $('<option value="' + val + '">' + val + '</option>');
 			$('.js-sbp__dropdown').append($option);
 		});	
 	}());
@@ -238,6 +238,8 @@ $(document).ready(function(){
 				clearInterval(timer);
 				//This function sets the CSS of the interface when a round has ended.
 				setInterfaceInactive();
+				console.log(currentPokemon);
+				$('.js-sbp__dropdown').val(currentPokemon).change();
 				if ($canvas.sketch().actions.length > 0) {
 					saveImage(); //Calls getRecentDrawings() in callback.
 				}
