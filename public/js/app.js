@@ -89,6 +89,14 @@ $(document).ready(function() {
         ga('send', 'event', 'save-button', 'click');
     });
 
+    $('.header__slick-slider').slick({
+        infinite: true,
+        variableWidth: true,
+        arrows: false,
+        swipeToSlide: true
+    });
+
+
 //
 // END EVENT HANDLERS
 ////////////////////////////////////////////////////////////////

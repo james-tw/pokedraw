@@ -4,6 +4,7 @@
     <title>Pokedraw - Draw a Pokemon in 45 seconds!</title>
     <link rel="stylesheet" href="/css/pokedraw.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
     <meta name="description=" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds.">
@@ -23,79 +24,98 @@
     <!--[if IE]><script src="excanvas.js"></script><![endif]-->
 
     <header class="header">
-        <a href="/"><img class="logo" src="img/logo.png" alt="Pokedraw"/></a>
-        <a class="header__control header__control--refresh js-header__control--refresh" href="#" title="Refresh recent drawings"><span class="icon-spinner"></span></a>
-        <a class="header__control header__control--hide js-header__control--hide" href="#" title="Hide these drawings">&times;</a>
+        <a class="logo__container" href="/"><img class="logo" src="http://placehold.it/200x200" alt="Pokedraw"/></a>
+       
+        <div class="header__slider">
+            <div class="header__slick-slider">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt="">
+                <img src="http://placehold.it/200x200" alt=""> 
+            </div>
+            <a class="header__control header__control--refresh js-header__control--refresh" href="#" title="Refresh recent drawings"><span class="icon-spinner"></span></a>
+            <a class="header__control header__control--hide js-header__control--hide" href="#" title="Hide these drawings">&times;</a>
+        </div>
+        <nav class="nav">
+            <a href="kids.html" class="nav__link"><span class="nav__link-text">Kid Safe Version!</span></a>
+            <a href="gallery.html" class="nav__link"><span class="nav__link-text">Gallery</span></a>
+        </nav>
     </header>
 
-    <nav class="nav">
-        <a href="gallery.html" class="nav__link"><span>Gallery</span></a>
-        <a href="kids.html" class="nav__link"><span>Kid Safe Version!</span></a>
-    </nav>
+    <section class="main-content">
+    
+        <div class="container">
 
-    <div class="container">
 
-        <h1 class="hero">You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
+            <h1 class="hero"><!-- You have 45 seconds to draw a random Pok&#xe9;mon -->.</h1>
 
-        <section class="reference-pane">
+            <section class="reference-pane">
 
-            <div class="reference-image__container js-reference-image__container">
-                <img class="reference-image js-reference-image intro" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
-            </div>
-            <p class="pokemon-name js-pokemon-name"></p>
-
-        </section>
-
-        <section class="drawing-pane">
-
-            <div class="canvas__container">
-                <div class="pip__container">
-                    <img class="pip" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+                <div class="reference-image__container js-reference-image__container">
+                    <img class="reference-image js-reference-image intro" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
                 </div>
-                <span class="canvas__timer js-canvas__timer">45</span>
-                <canvas id="js-canvas" class="canvas" width="400" height="400"></canvas>
-                <button class="new-round js-new-round intro">Let's Draw!</button>
-            </div>
+                <p class="pokemon-name js-pokemon-name"></p>
 
-            <div class="controls">
+            </section>
 
-                <ul class="controls__color-list js-controls__color-list">
-                    <li class="controls__color js-controls__color red"></li>
-                    <li class="controls__color js-controls__color orange"></li>
-                    <li class="controls__color js-controls__color yellow"></li>
-                    <li class="controls__color js-controls__color light-green"></li>
-                    <li class="controls__color js-controls__color green"></li>
-                    <li class="controls__color js-controls__color light-blue"></li>
-                    <li class="controls__color js-controls__color blue"></li>
-                    <li class="controls__color js-controls__color pink"></li>
-                    <li class="controls__color js-controls__color purple"></li>
-                    <li class="controls__color js-controls__color brown"></li>
-                    <li class="controls__color js-controls__color gray"></li>
-                    <li class="controls__color js-controls__color black controls__color--selected"></li>
-                </ul>
+            <section class="drawing-pane">
 
-                <div class="round-controls">
-                    <!-- <span id="timer">45</span> -->
-                    <button class="round-controls__button round-controls__button--share share-facebook js-share-facebook"><span class="icon-facebook"></span></button>
-                    <a class="round-controls__button round-controls__button--share share-twitter js-share-twitter" href="http://twitter.com/share?url=http%3A%2F%2Fpokedraw.net" data-dnt="true"><span class="icon-twitter"></span></a>
-                    <a href="#" class="round-controls__button round-controls__button--save js-save" download="#"><span class="icon-disk"></span>Save</a>
+                <div class="canvas__container">
+                    <div class="pip__container">
+                        <img class="pip" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+                    </div>
+                    <span class="canvas__timer js-canvas__timer">45</span>
+                    <canvas id="js-canvas" class="canvas" width="400" height="400"></canvas>
+                    <button class="new-round js-new-round intro">Let's Draw!</button>
                 </div>
 
-            </div>
-        </section>
+                <div class="controls">
 
-        <section class="sbp">
-            <p class="sbp__header">See the latest drawings of&nbsp;</p>
-            <select class="sbp__dropdown js-sbp__dropdown" name="pokemon-list">
-                <option value="0">Choose a Pok&#xe9;mon...</option>
-                <!-- Dropdown gets populated with a list of all Pokemon on pageload. -->
-            </select>
-        </section>
+                    <ul class="controls__color-list js-controls__color-list">
+                        <li class="controls__color js-controls__color red"></li>
+                        <li class="controls__color js-controls__color orange"></li>
+                        <li class="controls__color js-controls__color yellow"></li>
+                        <li class="controls__color js-controls__color light-green"></li>
+                        <li class="controls__color js-controls__color green"></li>
+                        <li class="controls__color js-controls__color light-blue"></li>
+                        <li class="controls__color js-controls__color blue"></li>
+                        <li class="controls__color js-controls__color pink"></li>
+                        <li class="controls__color js-controls__color purple"></li>
+                        <li class="controls__color js-controls__color brown"></li>
+                        <li class="controls__color js-controls__color gray"></li>
+                        <li class="controls__color js-controls__color black controls__color--selected"></li>
+                    </ul>
 
-    </div>
+                    <div class="round-controls">
+                        <!-- <span id="timer">45</span> -->
+                        <button class="round-controls__button round-controls__button--share share-facebook js-share-facebook"><span class="icon-facebook"></span></button>
+                        <a class="round-controls__button round-controls__button--share share-twitter js-share-twitter" href="http://twitter.com/share?url=http%3A%2F%2Fpokedraw.net" data-dnt="true"><span class="icon-twitter"></span></a>
+                        <a href="#" class="round-controls__button round-controls__button--save js-save" download="#"><span class="icon-disk"></span>Save</a>
+                    </div>
 
-    <section class="sbp-gallery js-sbp-gallery">
-        <!--Here's where drawings get dynamically added on pageload. -->
+                </div>
+            </section>
+
+            <section class="sbp">
+                <p class="sbp__header">See the latest drawings of&nbsp;</p>
+                <select class="sbp__dropdown js-sbp__dropdown" name="pokemon-list">
+                    <option value="0">Choose a Pok&#xe9;mon...</option>
+                    <!-- Dropdown gets populated with a list of all Pokemon on pageload. -->
+                </select>
+            </section>
+
+
+            <section class="sbp-gallery js-sbp-gallery">
+                <!--Here's where drawings get dynamically added on pageload. -->
+            </section>
+        </div>
     </section>
 
     <footer class="footer">
@@ -120,6 +140,7 @@
     </footer>
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"></script>
     <script src="/js/min/sketch.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/min/app.min.js" type="text/javascript" charset="utf-8"></script>
     <script>

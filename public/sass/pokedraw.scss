@@ -3,9 +3,10 @@
 @import "_icons";
 @import "_animate";
 
+
 body {
 	margin:0;
-	background: #f7f7f7;
+	background: stripes($border-colors, 45deg);
 	font-family: Helvetica,Arial,sans-serif;
   font-size: 12px;
 }
@@ -15,93 +16,150 @@ body {
   padding: 0 1%;
 }
 
+.main-content {
+  background: rgba(255, 255, 255, 0.88);
+  margin: 0.5em 0;
+  padding: 0.5em 0;
+}
 /************ HEADER *******************************/
+$header-height-phone-landscape: 85px;
+$header-height-tablet: 110px;
+$header-height-desktop: 140px;
 
 .header {
-	z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
 	position: relative;
-	height: 140px;
 	overflow: hidden;
 	background: white;
-	padding-right: 2em;
-  padding-bottom: 0.5em;
 
-  &:after {
-    @extend %color-stripes;
-    bottom: 0;
+  &__slider {
+    width: 100%;
+    flex: 1;
+    position: relative;
   }
+
+  &__slick-slider {
+    img {
+      height: $header-height-desktop;
+
+      @media #{$mq-tablet} {
+        height: $header-height-tablet;
+      }
+      @media #{$mq-phone-landscape} {
+        height: $header-height-phone-landscape;
+      }
+    }
+  }
+
+	&__control {
+    position: absolute;
+    right: 5px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 100;
+    line-height: 1;
+
+    &--hide {
+      font-size: 2.5em;
+      top: 0;
+    }
+
+    &--refresh {
+      bottom: 8px;
+      font-size: 1.5em;
+    }
+  }
+
   // This class is repeated in the SBP code. Confirm whether this class is used there.
-	.recent-drawing {
+  .recent-drawing {
 		max-height: 100%;
 		float: right;
-	}
-
-	@media #{$mq-phone-landscape} {
-		height: 85px;
 	}
 
 }
 
 .logo {
-  max-height: 100%;
-  padding: 4px;
-}
+  height: $header-height-desktop;
 
-.header__control {
-  position: absolute;
-  right: 5px;
-  text-decoration: none;
-  color: #000;
-  font-weight: 100;
-
-  &--hide {
-    font-size: 2.5em;
+  @media #{$mq-tablet} {
+    height: $header-height-tablet;
   }
 
-  &--refresh {
-    bottom: 8px;
-    font-size: 1.5em;
+  @media #{$mq-phone-landscape} {
+    height: $header-height-phone-landscape;
   }
 
+  &__container {
+    display: block;
+    line-height: 0;
+    transform: rotate(90deg);
+  }
 }
+
 /************ NAVIGATION ***************************/
 
 .nav {
-  @include clearfix;
-	margin: 0px 10px -30px;
-	z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5em;
+  height: $header-height-desktop;
 
-	@media #{$mq-phone-landscape} {
-		display: none;
-	}
+  @media #{$mq-tablet} {
+    height: $header-height-tablet;
+  }
 
-  @media #{$mq-1400} {
-		position: relative;
-    margin: 0 10px 0;
-	}
+  @media #{$mq-phone-landscape} {
+    height: auto;
+  }
 
-}
+  @media #{$mq-phone-landscape} {
+    width: 100%;
+    flex-direction: row;
+  }
 
-.nav__link {
-  background: #EEDF8E;
-  text-decoration: none;
-  color: black;
-  padding: 10px;
-  font-family: 'Open Sans', sans-serif;
-  float: left;
-  box-shadow: 0px 1px 4px -2px #4F4F4F;
-  border-radius: 0 0 4px 4px;
-  margin: -2px 3px 0;
-  font-size: 1em;
-  transition: 0.1s ease-in-out;
 
-  &:hover {
-    background: #EFE29E;
-    margin-top: 0px;
-    margin-bottom: -2px;
+  
+  &__link {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    padding: 0.5em;
+    font-size: 1.25em;
+    font-weight: 300;
+    letter-spacing: 0.7px;
+    display: flex;
+    justify-content: space-around;
+    background: tomato;
+    color: white;
+
+    @media #{$mq-phone-landscape} {
+      width: 49%;
+    }
+
+    &:hover {
+      // background: #666666;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 5%;
+
+      @media #{$mq-phone-landscape} {
+        margin-bottom: 0;
+      }
+    }
+
+  }
+
+  &__link-text {
+    align-self: center;
   }
 
 }
+
 
 /************ HERO TEXT ****************************/
 
@@ -109,7 +167,7 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	color: #333;
 	text-align: center;
-	margin: 10px 0 10px;
+	margin: 0 0 10px;
   font-size: 3em;
   line-height: 1.25em;
 
@@ -262,19 +320,6 @@ body {
 	text-align:center;
   display: none;
   width: 100%;
-
-  #timer {
-  	color: #fff;
-  	font-family: 'Open Sans', sans-serif;
-  	font-size: 4em;
-  	display: none !important;
-    @media #{$mq-phone-landscape} {
-      font-size: 3em;
-    }
-    @media #{$mq-phone} {
-  		display: hidden;
-  	}
-  }
 
   &__button {
     @include button(#946D9B, #57405B);
@@ -453,7 +498,7 @@ body {
   padding-bottom: 0.5em;
 
   &:after {
-    @extend %color-stripes;
+    // @extend %color-stripes;
     top: 0;
   }
 
