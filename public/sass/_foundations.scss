@@ -113,15 +113,11 @@ $brush-colors: (
 	}
 }
 
-
 * {
 	box-sizing: border-box;
 }
 a {
   text-decoration: none;
-}
-html, body, .row, .columns, .container {
-	@include clearfix;
 }
 
 %color-stripes {
