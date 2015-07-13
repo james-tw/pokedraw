@@ -4,7 +4,7 @@
     <title>Pokedraw - Draw a Pokemon in 45 seconds!</title>
     <link rel="stylesheet" href="/css/pokedraw.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
     <meta name="description=" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds.">
@@ -27,8 +27,8 @@
         <a class="logo__container" href="/"><img class="logo" src="http://placehold.it/200x200" alt="Pokedraw"/></a>
        
         <div class="header__slider">
-            <div class="header__slick-slider">
-            </div>
+            <div class="header__flickity-slider js-header__flickity-slider"><!-- Pokedraw images are loaded into here --></div>
+            <div class="header__slider-mask"></div>
             <a class="header__control header__control--refresh js-header__control--refresh" href="#" title="Refresh recent drawings"><span class="icon-spinner"></span></a>
             <a class="header__control header__control--hide js-header__control--hide" href="#" title="Hide these drawings">&times;</a>
         </div>
@@ -41,7 +41,6 @@
     <section class="main-content">
     
         <div class="container">
-
 
             <h1 class="hero"><!-- You have 45 seconds to draw a random Pok&#xe9;mon -->.</h1>
 
@@ -101,8 +100,9 @@
             </section>
 
 
-            <section class="sbp-gallery js-sbp-gallery">
+            <section class="sbp-slider js-sbp-slider">
                 <!--Here's where drawings get dynamically added on pageload. -->
+                <a class="sbp-slider__button sbp-slider__button--gallery" href="gallery.html">See more<br/>in the Gallery!</a>
             </section>
         </div>
     </section>
@@ -129,7 +129,7 @@
     </footer>
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
     <script src="/js/min/sketch.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/min/app.min.js" type="text/javascript" charset="utf-8"></script>
     <script>

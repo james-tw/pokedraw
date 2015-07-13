@@ -6,9 +6,24 @@ $(document).ready(function() {
         recentPokemon = [],
         sec,
         sharePic,
-        $galleryButton = $('<div class="gallery-button__container"><a class="gallery-button" href="gallery.html">See more<br/>in the Gallery!</a><div>');
-        
+        $headerSlider = $('.js-header__flickity-slider'),
+        $sbpSlider = $('.js-sbp-slider');
     (function init() {
+        $headerSlider.flickity({
+            wrapAround: true,
+            prevNextButtons: false,
+            pageDots: false,
+            imagesLoaded: true,
+            cellAlign: 'left'
+        });
+        $sbpSlider.flickity({
+            wrapAround: true,
+            prevNextButtons: false,
+            pageDots: false,
+            imagesLoaded: true,
+            cellAlign: 'left'
+        });
+
         getRecentDrawings();
         pokedex.forEach(function(item){
             var $option = $('<option value="' + item + '">' + item + '</option>');
@@ -89,13 +104,6 @@ $(document).ready(function() {
         ga('send', 'event', 'save-button', 'click');
     });
 
-    $('.header__slick-slider').slick({
-        infinite: true,
-        variableWidth: true,
-        arrows: false,
-        swipeToSlide: true
-    });
-
 
 //
 // END EVENT HANDLERS
@@ -118,9 +126,15 @@ $(document).ready(function() {
             type: "GET",
             url: "/ajax/getDrawingsByPokemon/" + name + "/" + limit
         }).done(function(files) {
-            $('.js-sbp-gallery').empty();
-            displayNewDrawings(files);
+
+            updateSBPDrawings(files);
         });
+
+        // REMOVE DRAWINGS
+        var images = [{"created":"2015-07-13T11:00:04-04:00","pokemon":"cubone","_id":"55a3d2748c864ca0040fc8b2"},{"created":"2015-07-13T11:00:03-04:00","pokemon":"beedrill","_id":"55a3d2738c864ca0040fc8b1"},{"created":"2015-07-13T10:59:57-04:00","pokemon":"blastoise","_id":"55a3d26d8c864ca0040fc8b0"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"krabby","_id":"55a3d26c8c864ca0040fc8af"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"tangela","_id":"55a3d26c8c864ca0040fc8ae"},{"created":"2015-07-13T10:59:55-04:00","pokemon":"parasect","_id":"55a3d26b8c864ca0040fc8ad"},{"created":"2015-07-13T10:59:50-04:00","pokemon":"venonat","_id":"55a3d2668c864ca0040fc8ac"},{"created":"2015-07-13T10:59:48-04:00","pokemon":"ninetales","_id":"55a3d2648c864ca0040fc8ab"},{"created":"2015-07-13T10:59:45-04:00","pokemon":"chansey","_id":"55a3d2618c864ca0040fc8aa"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"ponyta","_id":"55a3d25b8c864ca0040fc8a9"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"electabuzz","_id":"55a3d25b8c864ca0040fc8a8"},{"created":"2015-07-13T10:59:37-04:00","pokemon":"krabby","_id":"55a3d2598c864ca0040fc8a7"}];
+        
+        // REMOVE
+        updateSBPDrawings(images);
     }
 
     // AJAX call to MongoDB to get 12 most recent images.
@@ -134,8 +148,11 @@ $(document).ready(function() {
             //On success, send files to another function which updates the jQuery header with the images.
             updateHeaderDrawings(files);
         });
+        // REMOVE DRAWINGS
+        var images = [{"created":"2015-07-13T11:00:04-04:00","pokemon":"cubone","_id":"55a3d2748c864ca0040fc8b2"},{"created":"2015-07-13T11:00:03-04:00","pokemon":"beedrill","_id":"55a3d2738c864ca0040fc8b1"},{"created":"2015-07-13T10:59:57-04:00","pokemon":"blastoise","_id":"55a3d26d8c864ca0040fc8b0"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"krabby","_id":"55a3d26c8c864ca0040fc8af"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"tangela","_id":"55a3d26c8c864ca0040fc8ae"},{"created":"2015-07-13T10:59:55-04:00","pokemon":"parasect","_id":"55a3d26b8c864ca0040fc8ad"},{"created":"2015-07-13T10:59:50-04:00","pokemon":"venonat","_id":"55a3d2668c864ca0040fc8ac"},{"created":"2015-07-13T10:59:48-04:00","pokemon":"ninetales","_id":"55a3d2648c864ca0040fc8ab"},{"created":"2015-07-13T10:59:45-04:00","pokemon":"chansey","_id":"55a3d2618c864ca0040fc8aa"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"ponyta","_id":"55a3d25b8c864ca0040fc8a9"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"electabuzz","_id":"55a3d25b8c864ca0040fc8a8"},{"created":"2015-07-13T10:59:37-04:00","pokemon":"krabby","_id":"55a3d2598c864ca0040fc8a7"}];
+        
         // REMOVE
-        updateHeaderDrawings([]);
+        updateHeaderDrawings(images);
     }
 
     function getNewPokemon() {
@@ -260,32 +277,31 @@ $(document).ready(function() {
     }
 
     function updateHeaderDrawings(images) {
-        // TEMP DRAWINGS
-        var images = [{"created":"2015-07-13T11:00:04-04:00","pokemon":"cubone","_id":"55a3d2748c864ca0040fc8b2"},{"created":"2015-07-13T11:00:03-04:00","pokemon":"beedrill","_id":"55a3d2738c864ca0040fc8b1"},{"created":"2015-07-13T10:59:57-04:00","pokemon":"blastoise","_id":"55a3d26d8c864ca0040fc8b0"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"krabby","_id":"55a3d26c8c864ca0040fc8af"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"tangela","_id":"55a3d26c8c864ca0040fc8ae"},{"created":"2015-07-13T10:59:55-04:00","pokemon":"parasect","_id":"55a3d26b8c864ca0040fc8ad"},{"created":"2015-07-13T10:59:50-04:00","pokemon":"venonat","_id":"55a3d2668c864ca0040fc8ac"},{"created":"2015-07-13T10:59:48-04:00","pokemon":"ninetales","_id":"55a3d2648c864ca0040fc8ab"},{"created":"2015-07-13T10:59:45-04:00","pokemon":"chansey","_id":"55a3d2618c864ca0040fc8aa"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"ponyta","_id":"55a3d25b8c864ca0040fc8a9"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"electabuzz","_id":"55a3d25b8c864ca0040fc8a8"},{"created":"2015-07-13T10:59:37-04:00","pokemon":"krabby","_id":"55a3d2598c864ca0040fc8a7"}];
-        
-        // $('.header .recent-drawing').fadeOut('fast').remove();
-        // images.forEach(function(item) {
-        //     console.log(item);
-        //     $(".header").append($("<img class='recent-drawing' src=drawings/" + item._id + "></img>").fadeIn('fast'));
-        // });
-
-
-        $('.header__drawing').remove();
+        $headerSlider.flickity('remove', $headerSlider.find('img'));
         images.forEach(function(item) {
-            $(".header__slick-slider").prepend($("<img class='header__drawing' src=http://pokedraw.net/drawings/" + item._id + "></img>"));
+            // REMOVE: absolute url
+            $image = $("<img src=http://pokedraw.net/drawings/" + item._id + "></img>")
+            $headerSlider.flickity('append', $image);
+        });
+        // Once all images have loaded, resize the slider to fit images correctly.
+        $headerSlider.waitForImages(function() {
+            $headerSlider.flickity('resize');
         });
     }
 
     // Update the images in the Search By Pokemon (SBP) section.
     function updateSBPDrawings(images) {
-        console.log(images);
-        var loadPortion = images.slice(0, 10);
-        if (loadPortion.length !== 0) {
-            loadPortion.forEach(function(item) {
-                $(".js-sbp-gallery").prepend($("<img class='recent-drawing' src=drawings/" + item._id + "></img>").fadeIn('fast'));
-            });
-            $('.js-sbp-gallery').prepend($galleryButton);
-        }
+        $sbpSlider.slideDown('fast').flickity('remove', $sbpSlider.find('img'));
+        images.forEach(function(item) {
+            // REMOVE: absolute url
+            var $image = $("<img src=http://pokedraw.net/drawings/" + item._id + "></img>")
+            $sbpSlider.flickity('append', $image);
+        });
+
+        // Once all images have loaded, resize the slider to fit images correctly.
+        $sbpSlider.waitForImages(function() {
+            $sbpSlider.flickity('resize');
+        });
     }
 
     function updateShareLink(fileURL) {

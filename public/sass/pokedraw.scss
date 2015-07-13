@@ -2,6 +2,7 @@
 @import "_foundations";
 @import "_icons";
 @import "_animate";
+@import "_flickity";
 
 
 body {
@@ -42,7 +43,7 @@ $header-height-desktop: 140px;
     position: relative;
   }
 
-  &__slick-slider {
+  &__flickity-slider {
     img {
       height: $header-height-desktop;
 
@@ -55,8 +56,20 @@ $header-height-desktop: 140px;
     }
   }
 
+  &__slider-mask {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    background-color: rgba(255,255,255,1);
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 85%, rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );  }
+
 	&__control {
     position: absolute;
+    z-index: 3;
     right: 5px;
     text-decoration: none;
     color: #000;
@@ -451,7 +464,7 @@ $header-height-desktop: 140px;
   }
 }
 
-.sbp-gallery {
+.sbp-slider {
   display: none;
 	text-align: center;
 	height: 150px;
@@ -465,28 +478,24 @@ $header-height-desktop: 140px;
   @media #{$mq-phone-landscape} {
     display: none !important;
   }
+
+  &__button {
+    padding: 20px;
+    width: 150px;
+    height: 80%;
+    margin: 2%;
+
+    &--gallery {
+      @include button(#946D9B, #57405B);
+    }
+  }
   
   // Correct to a class name after investigating whether these images need .recent-drawing
 	img {
-		max-height: 100%;
-    float: right;
+		height: 100px;
+    width: auto;
 	}
 
-}
-
-.gallery-button {
-  @include button(#946D9B, #57405B);
-  @include box-round;
-  display: table-cell;
-  vertical-align: middle;
-  padding: 20px;
-
-  &__container {
-    display: table;
-    float: right;
-    height: 100%;
-    padding: 20px;
-  }
 }
 
 /********** FOOTER **********************/
