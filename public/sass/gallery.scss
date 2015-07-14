@@ -4,6 +4,10 @@
 	height: 80px;
 }
 
+.logo {
+	height: 80px;
+}
+
 .container {
 	max-width: 1300px;
 }
@@ -18,27 +22,6 @@
 	}
 }
 
-a {
-	color: #303030;
-	&:hover {
-		color: #222222;
-	}
-}
-
-.options {
-	text-align: center;
-	p {
-		display: inline-block;
-		font-size: 2em;
-		@media #{$mq-phone} {
-			font-size: 1.5em;
-		}
-		span {
-			color: #FF7575;
-		}
-	}
-	
-}
 .sbp {
 	display: block;
 	margin: 0;
@@ -55,9 +38,11 @@ a {
 	background-color: #fff;
 	background-image: url("none");
 	// Background image loaded dynamically via ajax call
-	background-size: cover;
+	background-size: contain;
 	border-radius: 5px;
 	box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
+	font-size: 1.8em;
+	line-height: 1.5;
 
 	@media only screen and (max-width : 650px) {
 		/* Tablet & phone view: 2 tiles */
@@ -69,45 +54,45 @@ a {
 		width: 31.33%;
 		margin: 1%;
 	}
-	h1 {
-		display: none;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
+	&__name {
+		position: relative;
 		color: #FAFAFA;
 		text-align: center;
 		font-family: "Open sans", Arial, Helvetica, sans-serif;
 		font-weight: 400;
-		background-color: #666;
+		font-size: inherit;
+		line-height: inherit;
+		background-color: #444;
 		margin: 0;
 		padding: 0;
 		border-radius: 0 0 3px 3px;
+		&:after {
+		  @extend %color-stripes;
+		  top: 0;
+		  height: 2px;
+		}
 	}
-	a {
+	&__download {
 		display: none;
-		font-size: 2em;
 		position: absolute;
-		bottom: 0;
+		bottom: -3px;
 		left: 0;
 		padding: 0 10px;
 		color: #FAFAFA;
-		background-color: #666;
 		border-radius: 3px 0 3px 0;
 		&:hover {
 			color: #ccc;
 		}
 	}
-	&:hover a {
+	// Download link appears on hovering over the drawing.
+	&:hover .drawing__download {
 		display: inline-block;
 	}
-	&:hover h1 {
-		display: inline-block;
-	}
+
 	&:before {
-	content: "";
-	display: block;
-	padding-top: 100%; 	/* initial ratio of 1:1*/
+		content: "";
+		display: block;
+		padding-top: 100%; 	/* initial ratio of 1:1*/
 	}
 }
 

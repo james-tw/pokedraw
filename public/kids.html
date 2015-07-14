@@ -4,6 +4,7 @@
 	<title>Pokedraw - Kids Version - Draw a Pokemon in 45 seconds!</title>
 	<link rel="stylesheet" href="/css/pokedraw.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
 	<meta name="description=" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds. (This site is kid friendly!)">
@@ -12,65 +13,79 @@
 
 	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
 	
-	<header class="header">
-		<img class="logo" src="img/logo.png" alt="Pokedraw"/>
-	</header>
+	<div class="content-wrapper">
 
-	<div class="container">
+	    <header class="header">
+	        <a class="logo__container" href="/"><img class="logo" src="img/logo.png" alt="Pokedraw"/></a>
+	       
+	        <div class="header__slider">
+	            <div class="header__flickity-slider js-header__flickity-slider"><!-- Pokedraw images are loaded into here --></div>
+	            <div class="header__slider-mask"></div>
+	        </div>
+	    </header>
 
-		<h1 class="hero">You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
+		<section class="main-content">
+			<div class="container">
 
-		<section class="reference-pane">
+				<h1 class="hero">You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
 
-			<div class="reference-image__container js-reference-image__container">
-				<img class="reference-image js-reference-image intro" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+				<section class="reference-pane">
+
+					<div class="reference-image__container js-reference-image__container">
+						<img class="reference-image js-reference-image intro" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+					</div>
+					<p class="pokemon-name js-pokemon-name"></p>
+
+				</section>
+
+				<section class="drawing-pane">
+
+					<div class="canvas__container">
+						<div class="pip__container">
+							<img class="pip" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+						</div>
+						<span class="canvas__timer js-canvas__timer">45</span>
+						<canvas id="js-canvas" class="canvas" width="400" height="400"></canvas>
+						<button class="new-round js-new-round intro">Let's Draw!</button>
+					</div>
+
+					<div class="controls">
+
+						<ul class="controls__color-list js-controls__color-list">
+							<li class="controls__color js-controls__color red"></li>
+							<li class="controls__color js-controls__color orange"></li>
+							<li class="controls__color js-controls__color yellow"></li>
+							<li class="controls__color js-controls__color light-green"></li>
+							<li class="controls__color js-controls__color green"></li>
+							<li class="controls__color js-controls__color light-blue"></li>
+							<li class="controls__color js-controls__color blue"></li>
+							<li class="controls__color js-controls__color pink"></li>
+							<li class="controls__color js-controls__color purple"></li>
+							<li class="controls__color js-controls__color brown"></li>
+							<li class="controls__color js-controls__color gray"></li>
+							<li class="controls__color js-controls__color black controls__color--selected"></li>
+						</ul>
+
+						<div class="round-controls">
+							<span id="timer">45</span>
+							<a href="#" class="round-controls__button round-controls__button--save js-save" download="#"><span class="icon-disk"></span>Save</a>
+						</div>
+
+					</div>
+				</section>
 			</div>
-			<p class="pokemon-name js-pokemon-name"></p>
-
 		</section>
 
-		<section class="drawing-pane">
-
-			<div class="canvas__container">
-				<div class="pip__container">
-					<img class="pip" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
-				</div>
-				<span class="canvas__timer js-canvas__timer">45</span>
-				<canvas id="js-canvas" class="canvas" width="400" height="400"></canvas>
-				<button class="new-round js-new-round intro">Let's Draw!</button>
+		<footer class="footer">
+			<div class="container">
+				<p>Parents, this is a kid friendly version of the site. No drawings from outside sources will be shown on this page (except the 10 original ones I drew).</p>
 			</div>
+		</footer>
 
-			<div class="controls">
+	</div> <!-- close .content-wrapper -->
 
-				<ul class="controls__color-list js-controls__color-list">
-					<li class="controls__color js-controls__color red"></li>
-					<li class="controls__color js-controls__color orange"></li>
-					<li class="controls__color js-controls__color yellow"></li>
-					<li class="controls__color js-controls__color light-green"></li>
-					<li class="controls__color js-controls__color green"></li>
-					<li class="controls__color js-controls__color light-blue"></li>
-					<li class="controls__color js-controls__color blue"></li>
-					<li class="controls__color js-controls__color pink"></li>
-					<li class="controls__color js-controls__color purple"></li>
-					<li class="controls__color js-controls__color brown"></li>
-					<li class="controls__color js-controls__color gray"></li>
-					<li class="controls__color js-controls__color black controls__color--selected"></li>
-				</ul>
-
-				<div class="round-controls">
-					<span id="timer">45</span>
-					<a href="#" class="round-controls__button round-controls__button--save js-save" download="#"><span class="icon-disk"></span>Save</a>
-				</div>
-
-			</div>
-		</section>
-	</div>
-	<footer class="footer">
-		<div class="container">
-			<p>Parents, this is a kid friendly version of the site. No drawings from outside sources will be shown on this page (except the 10 original ones I drew).</p>
-		</div>
-	</footer>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
 	<script src="/js/min/sketch.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/min/kids.min.js" type="text/javascript" charset="utf-8"></script>
 	<script>

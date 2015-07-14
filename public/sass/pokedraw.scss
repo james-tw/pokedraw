@@ -4,6 +4,7 @@
 @import "_animate";
 @import "_flickity";
 
+html, body { height: 100%; min-height: 100%;}
 
 body {
 	margin:0;
@@ -11,6 +12,7 @@ body {
 	font-family: Helvetica,Arial,sans-serif;
   font-size: 12px;
 }
+
 .container {
   @include clearfix;
 	max-width: 1000px;
@@ -19,10 +21,19 @@ body {
 }
 
 .main-content {
+  // Flex property to aid sticky footer
+  flex: 1;
   background: rgba(255, 255, 255, 0.88);
   margin: 0.5em 0;
   padding: 0.5em 0;
 }
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
 /************ HEADER *******************************/
 $header-height-phone-landscape: 80px;
 $header-height-tablet: 110px;
@@ -87,16 +98,11 @@ $header-height-desktop: 140px;
     }
   }
 
-  // This class is repeated in the SBP code. Confirm whether this class is used there.
-  .recent-drawing {
-		max-height: 100%;
-		float: right;
-	}
-
 }
 
 .logo {
   height: $header-height-desktop;
+  padding: 5px;
 
   @media #{$mq-tablet} {
     height: $header-height-tablet;
@@ -109,7 +115,6 @@ $header-height-desktop: 140px;
   &__container {
     display: block;
     line-height: 0;
-    transform: rotate(90deg);
   }
 }
 
@@ -499,16 +504,13 @@ $header-height-desktop: 140px;
 }
 
 /********** FOOTER **********************/
-
 .footer {
 	background: #444;
 	color: #eee;
 	padding: 20px 0;
   position: relative;
-  padding-bottom: 0.5em;
 
   &:after {
-    // @extend %color-stripes;
     top: 0;
   }
 

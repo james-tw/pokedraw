@@ -4,13 +4,18 @@ $(document).ready(function() {
             loadStart = 0,
             pokedex = generatePokedex();
 
+
+    // REMOVE DRAWINGS
+    var imgList = [{"created":"2015-07-13T11:00:04-04:00","pokemon":"cubone","_id":"55a3d2748c864ca0040fc8b2"},{"created":"2015-07-13T11:00:03-04:00","pokemon":"beedrill","_id":"55a3d2738c864ca0040fc8b1"},{"created":"2015-07-13T10:59:57-04:00","pokemon":"blastoise","_id":"55a3d26d8c864ca0040fc8b0"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"krabby","_id":"55a3d26c8c864ca0040fc8af"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"tangela","_id":"55a3d26c8c864ca0040fc8ae"},{"created":"2015-07-13T10:59:55-04:00","pokemon":"parasect","_id":"55a3d26b8c864ca0040fc8ad"},{"created":"2015-07-13T10:59:50-04:00","pokemon":"venonat","_id":"55a3d2668c864ca0040fc8ac"},{"created":"2015-07-13T10:59:48-04:00","pokemon":"ninetales","_id":"55a3d2648c864ca0040fc8ab"},{"created":"2015-07-13T10:59:45-04:00","pokemon":"chansey","_id":"55a3d2618c864ca0040fc8aa"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"ponyta","_id":"55a3d25b8c864ca0040fc8a9"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"electabuzz","_id":"55a3d25b8c864ca0040fc8a8"},{"created":"2015-07-13T10:59:37-04:00","pokemon":"krabby","_id":"55a3d2598c864ca0040fc8a7"}];
+            
+
     (function initGallery() {
         $.ajax({
             type: "GET",
             url: "/ajax/getDrawingFilenames/1000"
         }).done(function(files) {
-                imgList = files;
-                displayNewDrawings();
+            imgList = files;
+            displayNewDrawings();
         });
 
         pokedex.forEach(function(item){
@@ -64,10 +69,10 @@ $(document).ready(function() {
         if (loadPortion.length !== 0) {
             loadPortion.forEach(function(item) {
                 var capitalizedName = item.pokemon.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-                        return letter.toUpperCase();
+                    return letter.toUpperCase();
                 });
                 //Set the background image of the drawing, add the Pokemon name to the drawing, and add a link to download the drawing.
-                var $drawing = $("<div class='drawing'><h1>" + capitalizedName + "</h1><a href='drawings/" + item._id + "' download='" + capitalizedName + ".jpeg'><span class='icon-disk'></span></a></div>").css('background-image', 'url(drawings/' + item._id + ')');
+                var $drawing = $("<div class='drawing'><h1 class='drawing__name'>" + capitalizedName + "</h1><a class='drawing__download' href='drawings/" + item._id + "' download='" + capitalizedName + ".jpeg'><span class='drawing__icon icon-disk'></span></a></div>").css('background-image', 'url(http://pokedraw.net/drawings/' + item._id + ')');
                 $(".gallery").append($drawing);
             });
 

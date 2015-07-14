@@ -4,8 +4,29 @@ $(document).ready(function(){
     currentPokemon,
     pokedex = generatePokedex(),
     recentPokemon = [],
-    sec;
+    sec,
+    imgList = ["img/kidpics/2014062708334353ad8ed754ada.jpeg","img/kidpics/2014062708343453ad8f0af3bad.jpeg", "img/kidpics/2014062708352853ad8f40eeaa8.jpeg", "img/kidpics/2014062708362553ad8f790de4c.jpeg", "img/kidpics/2014062708374053ad8fc464955.jpeg", "img/kidpics/2014062708385553ad900f65570.jpeg", "img/kidpics/2014070715091853bb1a8e44318.jpeg", "img/kidpics/2014070715110353bb1af78d1ed.jpeg", "img/kidpics/2014070806521953bbf79323587.jpeg", "img/kidpics/2014070806541053bbf802c8475.jpeg"],
+    $headerSlider = $('.js-header__flickity-slider');
+    
+    (function init() {
+      $headerSlider.flickity({
+        wrapAround: true,
+        prevNextButtons: false,
+        pageDots: false,
+        imagesLoaded: true,
+        cellAlign: 'left'
+      });
 
+      imgList.forEach(function(item) {
+        $image = $("<img src=" + item + "></img>")
+        $headerSlider.flickity('append', $image);
+      });
+      // Once all images have loaded, resize the slider to fit images correctly.
+      $headerSlider.waitForImages(function() {
+        $headerSlider.flickity('resize');
+      });
+
+    }());
 
 ////////////////////////////////////////////////////////////////
 // EVENT HANDLERS
@@ -67,9 +88,19 @@ $(document).ready(function(){
 ////////////////////////////////////////////////////////////////
 // FUNCTION DECLARATIONS
 //
+
+  // Pushes the most recently drawn pokedraw to the header.
+  function addHeaderDrawing(id) {
+    $image = $("<img src=drawings/" + id + "></img>")
+    $headerSlider.flickity('prepend', $image);
+    // Once all images have loaded, resize the slider to fit images correctly.
+    $headerSlider.waitForImages(function() {
+        $headerSlider.flickity('resize');
+    });
+  }
   
   //Generates an array of 151 Pokemon on init.
-  function generatePokedex () {
+  function generatePokedex() {
     var pokeList = "Bulbasaur Ivysaur Venusaur Charmander Charmeleon Charizard Squirtle Wartortle Blastoise Caterpie Metapod Butterfree Weedle Kakuna Beedrill Pidgey Pidgeotto Pidgeot Rattata Raticate Spearow Fearow Ekans Arbok Pikachu Raichu Sandshrew Sandslash Nidoran♀ Nidorina Nidoqueen Nidoran♂ Nidorino Nidoking Clefairy Clefable Vulpix Ninetales Jigglypuff Wigglytuff Zubat Golbat Oddish Gloom Vileplume Paras Parasect Venonat Venomoth Diglett Dugtrio Meowth Persian Psyduck Golduck Mankey Primeape Growlithe Arcanine Poliwag Poliwhirl Poliwrath Abra Kadabra Alakazam Machop Machoke Machamp Bellsprout Weepinbell Victreebel Tentacool Tentacruel Geodude Graveler Golem Ponyta Rapidash Slowpoke Slowbro Magnemite Magneton Farfetchd Doduo Dodrio Seel Dewgong Grimer Muk Shellder Cloyster Gastly Haunter Gengar Onix Drowzee Hypno Krabby Kingler Voltorb Electrode Exeggcute Exeggutor Cubone Marowak Hitmonlee Hitmonchan Lickitung Koffing Weezing Rhyhorn Rhydon Chansey Tangela Kangaskhan Horsea Seadra Goldeen Seaking Staryu Starmie Mr.Mime Scyther Jynx Electabuzz Magmar Pinsir Tauros Magikarp Gyarados Lapras Ditto Eevee Vaporeon Jolteon Flareon Porygon Omanyte Omastar Kabuto Kabutops Aerodactyl Snorlax Articuno Zapdos Moltres Dratini Dragonair Dragonite Mewtwo Mew";
     return pokeList.split(' ');
   }
@@ -124,7 +155,7 @@ $(document).ready(function(){
           href: "drawings/" + recentDrawingID,
           download: currentPokemon + ".jpeg"
         });
-        
+        addHeaderDrawing(recentDrawingID);
       });
       canSave = false;
       setTimeout(function() {

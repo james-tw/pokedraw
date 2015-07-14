@@ -10,31 +10,45 @@
     <meta name="description=" content="Check out all of the most recent Pokédraws!">
 </head>
 <body>
-    <header class="header">
-        <a href="/"><img class="logo" src="img/logo.png"/></a>
-    </header>
-    <div class="container">
-        <div class="hero__container">
-            <h1 class="hero">Pok&#xe9;draw Gallery</h1>
-            <p class="hero__copy">There are over <strong>10,000,000</strong> Pokedraws! That's awesome! Here is a gallery of the most recent 1000.</p>
-        </div>
-        <section class="sbp">
-            <p class="sbp__header">See the latest drawings of&nbsp;</p>
-            <select class="sbp__dropdown js-sbp__dropdown" name="pokemon-list">
-                <option value="0">Choose a Pok&#xe9;mon...</option>
-                <!-- Dropdown gets populated with a list of all Pokemon on pageload. -->
-            </select>
+
+    <div class="content-wrapper">
+
+        <header class="header">
+            <a href="/"><img class="logo" src="img/logo.png"/></a>
+        </header>
+
+        <section class="main-content">
+            <div class="container">
+
+                <div class="hero__container">
+                    <h1 class="hero">Pok&#xe9;draw Gallery</h1>
+                    <p class="hero__copy">There are over <strong>10,000,000</strong> Pokedraws! That's awesome! Here is a gallery of the most recent 1000.</p>
+                </div>
+
+                <section class="sbp">
+                    <p class="sbp__header">See the latest drawings of&nbsp;</p>
+                    <select class="sbp__dropdown js-sbp__dropdown" name="pokemon-list">
+                        <option value="0">Choose a Pok&#xe9;mon...</option>
+                        <!-- Dropdown gets populated with a list of all Pokemon on pageload. -->
+                    </select>
+                </section>
+
+                <section class="gallery row">
+                    <!--Here's where drawings get dynamically added on pageload. -->
+                </section>
+
+                <div class="loader__container"></div>
+            </div>
         </section>
-        <section class="gallery row">
-            <!--Here's where drawings get dynamically added on pageload. -->
-        </section>
-        <div class="loader__container"></div>
-    </div>
-    <footer class="footer">
-        <div class="container">
-            <div id="footer__byline">Made by <a href="http://jamestw.net">James TW</a></div>
-        </div>
-    </footer>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__byline">Made by <a href="http://jamestw.net">James TW</a></div>
+            </div>
+        </footer>
+
+    </div> <!-- close .content-wrapper -->
+
     <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/min/gallery.min.js" type="text/javascript" charset="utf-8"></script>
     <script>
