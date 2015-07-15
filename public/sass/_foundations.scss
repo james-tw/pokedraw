@@ -1,86 +1,4 @@
 
-@mixin clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-@mixin box-round {
-	border-radius: 5px;
-}
-
-@mixin column($percent) {
-	float: left;
-	width: $percent;
-
-	@media #{$mq-phone} {
-		width: 100%;
-		margin-right: 0;
-	}
-}
-
-
-@mixin shared-color-properties {
-	height: 50px;
-	width: 50px;
-	border-radius: 50px;
-	cursor: pointer;
-	border: 0;
-	box-shadow: 0 2px 0 0 #222, 0px 3px 5px -1px #4F4F4F;
-	
-	@media #{$mq-phone-landscape} {
-    margin: 0 1% 5px;
-		width: 20%;
-		height: 30px;
-	}
-	@media #{$mq-phone} {
-		width:46px;
-		height: 46px;
-	}
-}
-@mixin button($color, $side-color) {
-	@include box-round;
-	position:relative;
-	background: $color;
-	box-shadow: 0 3px 0 0 $side-color, 0px 3px 5px -1px #4F4F4F;
-	color: #fff;
-	outline: none;
-	text-shadow: 0 1px $side-color;
-	display: block;
-	font-size: 16px;
-	border:none;
-	cursor: pointer;
-	font-family: 'Open Sans', sans-serif;
-	&:enabled:active {
-		top: 3px;
-		box-shadow: none;
-	}
-	&:disabled {
-		opacity: 0.7;
-	}
-}
-
-/* Generates the rainbow stripes  */
-@function stripes($colors, $direction: 90deg, $random: false) {
-  $type: 'equal';
-  @return linear-gradient($direction, call('_stripes-#{$type}-stops', $colors));
-}
-
-@function _stripes-equal-stops($colors) {
-  $gradients: ();
-  $stops: 100% / length($colors);
-
-  @for $i from 1 to length($colors) {
-    $gradients: append($gradients, nth($colors, $i) $i * $stops, comma);
-    @if $i <length($colors) {
-      $gradients: append($gradients, nth($colors, $i + 1) $i * $stops);
-    }
-  }
-
-  @return $gradients;
-}
-
 /***** MEDIA QUERIES ************/
 $mq-phone: "only screen and (max-width : 480px)";
 $mq-phone-landscape: "only screen and (max-width : 568px)";
@@ -92,40 +10,136 @@ $mq-1400: "only screen and (max-width : 1400px)";
 $border-colors: #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #946D9B, #F42A35, #FFA200, #FFD500, #A8BF12, #2EB52F, #00AAB5, #325BC5, #946D9B;
 
 $brush-colors: (
-	"red": #F42A35,
-	"orange": #FFA200,
-	"yellow": #FFD500,
-	"light-green": #A8BF12,
-	"green": #2EB52F,
-	"light-blue": #00AAB5,
-	"blue": #325BC5,
-	"pink": #FAD0DE,
-	"purple": #946D9B,
-	"brown": #875E37,
-	"gray": #8E969B,
-	"black": #000
+    "red": #F42A35,
+    "orange": #FFA200,
+    "yellow": #FFD500,
+    "light-green": #A8BF12,
+    "green": #2EB52F,
+    "light-blue": #00AAB5,
+    "blue": #325BC5,
+    "pink": #FAD0DE,
+    "purple": #946D9B,
+    "brown": #875E37,
+    "gray": #8E969B,
+    "black": #000
 );
 
-/*for each item in $brush-names, create a class with a background set to the corresponding color in $rainbow-colors.*/
-@each $color-name, $bgcolor in $brush-colors {
-	.#{$color-name} {
-		background: $bgcolor;
-	}
+/***** MIXINS ********************/
+
+@mixin clearfix {
+    &:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
 }
 
+@mixin box-round {
+    border-radius: 5px;
+}
+
+@mixin column($percent) {
+    float: left;
+    width: $percent;
+
+    @media #{$mq-phone} {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+// Color buttons
+@mixin shared-color-properties {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    box-shadow: 0 2px 0 0 #222, 0px 3px 5px -1px #4F4F4F;
+    
+    @media #{$mq-phone-landscape} {
+    margin: 0 1% 5px;
+        width: 20%;
+        height: 30px;
+    }
+    @media #{$mq-phone} {
+        width:46px;
+        height: 46px;
+    }
+}
+
+// Base styles for buttons
+@mixin button($color, $side-color) {
+    @include box-round;
+    position:relative;
+    background: $color;
+    box-shadow: 0 3px 0 0 $side-color, 0px 3px 5px -1px #4F4F4F;
+    color: #fff;
+    outline: none;
+    text-shadow: 0 1px $side-color;
+    display: block;
+    font-size: 16px;
+    border:none;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+
+    &:enabled:active {
+        top: 3px;
+        box-shadow: none;
+    }
+    
+    &:disabled {
+        opacity: 0.7;
+    }
+}
+
+/***** FUNCTIONS ********************/
+
+/* Generates the rainbow stripes  */
+@function stripes($colors, $direction: 90deg, $random: false) {
+    $type: 'equal';
+    @return linear-gradient($direction, call('_stripes-#{$type}-stops', $colors));
+}
+
+@function _stripes-equal-stops($colors) {
+    $gradients: ();
+    $stops: 100% / length($colors);
+
+    @for $i from 1 to length($colors) {
+        $gradients: append($gradients, nth($colors, $i) $i * $stops, comma);
+        @if $i <length($colors) {
+            $gradients: append($gradients, nth($colors, $i + 1) $i * $stops);
+        }
+    }
+
+    @return $gradients;
+}
+
+
+/***** INIT ********************/
+
+/* For each item in $brush-colors, create a class with a background set to the corresponding color value.*/
+@each $color-name, $bgcolor in $brush-colors {
+    .#{$color-name} {
+        background: $bgcolor;
+    }
+}
+
+/***** BASE STYLES ********************/
+
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 %color-stripes {
-	position: absolute;
-	display: inline-block;
-	content: '';
-	height: 0.5em;
-	left: 0;
-	right: 0;
-	background: stripes($border-colors);
+    position: absolute;
+    display: inline-block;
+    content: '';
+    height: 0.5em;
+    left: 0;
+    right: 0;
+    background: stripes($border-colors);
 }
