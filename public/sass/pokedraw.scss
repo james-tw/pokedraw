@@ -5,11 +5,10 @@
 @import "_flickity";
 
 // Styles necessary for sticky footer
-html, body { height: 100%; min-height: 100%;}
+html, body { height: 100%; min-height: 100%; }
 
 body {
-    margin:0;
-    background: stripes($border-colors, 45deg);
+    margin: 0;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
     font-size: 12px;
 }
@@ -24,16 +23,20 @@ body {
 .main-content {
     // Flex property necessary for sticky footer
     flex: 1;
+    -webkit-flex: 1;
     background: rgba(255, 255, 255, 0.88);
     margin: 0.5em 0;
-    padding: 0.5em 0;
+    padding: 0.5em 0 0;
 }
 
 // Styles necessary for sticky footer
 .content-wrapper {
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
     min-height: 100%;
+    background: stripes($border-colors, 45deg);
 }
 
 /************ HEADER *******************************/
@@ -43,8 +46,11 @@ $header-height-desktop: 140px;
 
 .header {
     display: flex;
+    display: -webkit-flex;
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     align-items: center;
+    -webkit-align-items: center;
 
     position: relative;
     overflow: hidden;
@@ -53,6 +59,7 @@ $header-height-desktop: 140px;
     &__slider {
         width: 100%;
         flex: 1;
+        -webkit-flex: 1;
         position: relative;
     }
 
@@ -125,8 +132,11 @@ $header-height-desktop: 140px;
 
 .nav {
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
     justify-content: space-between;
+    -webkit-justify-content: space-between;
     padding: 0.5em;
     height: $header-height-desktop;
 
@@ -141,16 +151,19 @@ $header-height-desktop: 140px;
     @media #{$mq-phone-landscape} {
         width: 100%;
         flex-direction: row;
+        -webkit-flex-direction: row;
     }
 
     &__link {
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-around;
+        -webkit-justify-content: space-around;
         width: 100%;
         height: 50%;
         text-align: center;
         padding: 0.25em 0.5em;
         font-size: 1.25em;
-        display: flex;
-        justify-content: space-around;
         background: #EEDF8E;
         box-shadow: 0px 1px 4px -2px #4F4F4F;
         color: black;
@@ -175,6 +188,7 @@ $header-height-desktop: 140px;
 
     &__link-text {
         align-self: center;
+        -webkit-align-self: center;
     }
 
 }
@@ -489,7 +503,6 @@ $header-height-desktop: 140px;
     &__button {
         padding: 20px;
         width: 150px;
-        height: 80%;
         margin: 2%;
 
         &--gallery {
@@ -499,8 +512,12 @@ $header-height-desktop: 140px;
     }
     
     img {
-        height: 100px;
+        height: 150px;
         width: auto;
+
+        @media #{$mq-tablet} {
+            height: 120px;
+        }
     }
 
 }
@@ -511,6 +528,7 @@ $header-height-desktop: 140px;
     color: #eee;
     padding: 20px 0;
     position: relative;
+    font-size: 1.5em;
 
     &:after {
         top: 0;

@@ -37,7 +37,7 @@ $(document).ready(function() {
 //
     
     $('.js-header__control--hide').on('click', function() {
-        $('.recent-drawing').css('display', 'none');
+        $('.header__slider img').css('display', 'none');
         return false;
     });
     $('.js-header__control--refresh').on('click', function() {
@@ -73,7 +73,7 @@ $(document).ready(function() {
         $canvas.sketch().clear();
         $canvas.css('pointer-events', 'auto');
         //Reset the timer and get a new Pokemon to draw.
-        sec = 8;
+        sec = 45;
         //If on mobile, Scroll to the canvas element.
         if ($('.pip__container').css('display') === 'block') {
             $('html,body').animate({
@@ -129,12 +129,6 @@ $(document).ready(function() {
 
             updateSBPDrawings(files);
         });
-
-        // REMOVE DRAWINGS
-        var images = [{"created":"2015-07-13T11:00:04-04:00","pokemon":"cubone","_id":"55a3d2748c864ca0040fc8b2"},{"created":"2015-07-13T11:00:03-04:00","pokemon":"beedrill","_id":"55a3d2738c864ca0040fc8b1"},{"created":"2015-07-13T10:59:57-04:00","pokemon":"blastoise","_id":"55a3d26d8c864ca0040fc8b0"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"krabby","_id":"55a3d26c8c864ca0040fc8af"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"tangela","_id":"55a3d26c8c864ca0040fc8ae"},{"created":"2015-07-13T10:59:55-04:00","pokemon":"parasect","_id":"55a3d26b8c864ca0040fc8ad"},{"created":"2015-07-13T10:59:50-04:00","pokemon":"venonat","_id":"55a3d2668c864ca0040fc8ac"},{"created":"2015-07-13T10:59:48-04:00","pokemon":"ninetales","_id":"55a3d2648c864ca0040fc8ab"},{"created":"2015-07-13T10:59:45-04:00","pokemon":"chansey","_id":"55a3d2618c864ca0040fc8aa"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"ponyta","_id":"55a3d25b8c864ca0040fc8a9"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"electabuzz","_id":"55a3d25b8c864ca0040fc8a8"},{"created":"2015-07-13T10:59:37-04:00","pokemon":"krabby","_id":"55a3d2598c864ca0040fc8a7"}];
-        
-        // REMOVE
-        updateSBPDrawings(images);
     }
 
     // AJAX call to MongoDB to get 12 most recent images.
@@ -148,11 +142,6 @@ $(document).ready(function() {
             //On success, send files to another function which updates the jQuery header with the images.
             updateHeaderDrawings(files);
         });
-        // REMOVE DRAWINGS
-        var images = [{"created":"2015-07-13T11:00:04-04:00","pokemon":"cubone","_id":"55a3d2748c864ca0040fc8b2"},{"created":"2015-07-13T11:00:03-04:00","pokemon":"beedrill","_id":"55a3d2738c864ca0040fc8b1"},{"created":"2015-07-13T10:59:57-04:00","pokemon":"blastoise","_id":"55a3d26d8c864ca0040fc8b0"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"krabby","_id":"55a3d26c8c864ca0040fc8af"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"tangela","_id":"55a3d26c8c864ca0040fc8ae"},{"created":"2015-07-13T10:59:55-04:00","pokemon":"parasect","_id":"55a3d26b8c864ca0040fc8ad"},{"created":"2015-07-13T10:59:50-04:00","pokemon":"venonat","_id":"55a3d2668c864ca0040fc8ac"},{"created":"2015-07-13T10:59:48-04:00","pokemon":"ninetales","_id":"55a3d2648c864ca0040fc8ab"},{"created":"2015-07-13T10:59:45-04:00","pokemon":"chansey","_id":"55a3d2618c864ca0040fc8aa"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"ponyta","_id":"55a3d25b8c864ca0040fc8a9"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"electabuzz","_id":"55a3d25b8c864ca0040fc8a8"},{"created":"2015-07-13T10:59:37-04:00","pokemon":"krabby","_id":"55a3d2598c864ca0040fc8a7"}];
-        
-        // REMOVE
-        updateHeaderDrawings(images);
     }
 
     function getNewPokemon() {
@@ -279,8 +268,7 @@ $(document).ready(function() {
     function updateHeaderDrawings(images) {
         $headerSlider.flickity('remove', $headerSlider.find('img'));
         images.forEach(function(item) {
-            // REMOVE: absolute url
-            $image = $("<img src=http://pokedraw.net/drawings/" + item._id + "></img>")
+            var $image = $("<img src='drawings/" + item._id + "'></img>");
             $headerSlider.flickity('append', $image);
         });
         // Once all images have loaded, resize the slider to fit images correctly.
@@ -293,8 +281,7 @@ $(document).ready(function() {
     function updateSBPDrawings(images) {
         $sbpSlider.slideDown('fast').flickity('remove', $sbpSlider.find('img'));
         images.forEach(function(item) {
-            // REMOVE: absolute url
-            var $image = $("<img src=http://pokedraw.net/drawings/" + item._id + "></img>")
+            var $image = $("<img src='drawings/" + item._id + "'></img>");
             $sbpSlider.flickity('append', $image);
         });
 
@@ -322,7 +309,7 @@ $(document).ready(function() {
         //set background color to white
         context.fillStyle = '#fff';
         //draw background / rect on entire canvas
-        // context.fillRect(0,0,canvas.width, canvas.height);
+        context.fillRect(0,0,canvas.width, canvas.height);
     }
 //
 // END FUNCTION DECLARATIONS
@@ -333,6 +320,7 @@ $(document).ready(function() {
 // CANVAS CREATION AND CALIBRATION
 //
 
+    var canvas = document.getElementById('js-canvas');
     var $canvas = $('#js-canvas');
     var context = $canvas[0].getContext('2d');
 

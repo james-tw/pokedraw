@@ -2,12 +2,7 @@ $(document).ready(function() {
     var loadPortion = [],
             imgList = [],
             loadStart = 0,
-            pokedex = generatePokedex();
-
-
-    // REMOVE DRAWINGS
-    var imgList = [{"created":"2015-07-13T11:00:04-04:00","pokemon":"cubone","_id":"55a3d2748c864ca0040fc8b2"},{"created":"2015-07-13T11:00:03-04:00","pokemon":"beedrill","_id":"55a3d2738c864ca0040fc8b1"},{"created":"2015-07-13T10:59:57-04:00","pokemon":"blastoise","_id":"55a3d26d8c864ca0040fc8b0"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"krabby","_id":"55a3d26c8c864ca0040fc8af"},{"created":"2015-07-13T10:59:56-04:00","pokemon":"tangela","_id":"55a3d26c8c864ca0040fc8ae"},{"created":"2015-07-13T10:59:55-04:00","pokemon":"parasect","_id":"55a3d26b8c864ca0040fc8ad"},{"created":"2015-07-13T10:59:50-04:00","pokemon":"venonat","_id":"55a3d2668c864ca0040fc8ac"},{"created":"2015-07-13T10:59:48-04:00","pokemon":"ninetales","_id":"55a3d2648c864ca0040fc8ab"},{"created":"2015-07-13T10:59:45-04:00","pokemon":"chansey","_id":"55a3d2618c864ca0040fc8aa"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"ponyta","_id":"55a3d25b8c864ca0040fc8a9"},{"created":"2015-07-13T10:59:39-04:00","pokemon":"electabuzz","_id":"55a3d25b8c864ca0040fc8a8"},{"created":"2015-07-13T10:59:37-04:00","pokemon":"krabby","_id":"55a3d2598c864ca0040fc8a7"}];
-            
+            pokedex = generatePokedex();    
 
     (function initGallery() {
         $.ajax({
