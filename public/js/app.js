@@ -74,7 +74,7 @@ $(document).ready(function() {
         $canvas.sketch().clear();
         $canvas.css('pointer-events', 'auto');
         //Reset the timer and get a new Pokemon to draw.
-        sec = 5;
+        sec = 45;
         //If on mobile, Scroll to the canvas element.
         if ($('.pip__container').css('display') === 'block') {
             $('html,body').animate({
