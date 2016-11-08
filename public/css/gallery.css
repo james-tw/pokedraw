@@ -410,17 +410,18 @@ a {
   height: 0.5em;
   left: 0;
   right: 0;
-  background: -webkit-linear-gradient(0deg, #F42A35 6.25%, #FFA200 6.25%, #FFA200 12.5%, #FFD500 12.5%, #FFD500 18.75%, #A8BF12 18.75%, #A8BF12 25%, #2EB52F 25%, #2EB52F 31.25%, #00AAB5 31.25%, #00AAB5 37.5%, #325BC5 37.5%, #325BC5 43.75%, #946D9B 43.75%, #946D9B 50%, #F42A35 50%, #F42A35 56.25%, #FFA200 56.25%, #FFA200 62.5%, #FFD500 62.5%, #FFD500 68.75%, #A8BF12 68.75%, #A8BF12 75%, #2EB52F 75%, #2EB52F 81.25%, #00AAB5 81.25%, #00AAB5 87.5%, #325BC5 87.5%, #325BC5 93.75%, #946D9B 93.75%);
+  background: -webkit-linear-gradient(left, #F42A35 6.25%, #FFA200 6.25%, #FFA200 12.5%, #FFD500 12.5%, #FFD500 18.75%, #A8BF12 18.75%, #A8BF12 25%, #2EB52F 25%, #2EB52F 31.25%, #00AAB5 31.25%, #00AAB5 37.5%, #325BC5 37.5%, #325BC5 43.75%, #946D9B 43.75%, #946D9B 50%, #F42A35 50%, #F42A35 56.25%, #FFA200 56.25%, #FFA200 62.5%, #FFD500 62.5%, #FFD500 68.75%, #A8BF12 68.75%, #A8BF12 75%, #2EB52F 75%, #2EB52F 81.25%, #00AAB5 81.25%, #00AAB5 87.5%, #325BC5 87.5%, #325BC5 93.75%, #946D9B 93.75%);
   background: linear-gradient(90deg, #F42A35 6.25%, #FFA200 6.25%, #FFA200 12.5%, #FFD500 12.5%, #FFD500 18.75%, #A8BF12 18.75%, #A8BF12 25%, #2EB52F 25%, #2EB52F 31.25%, #00AAB5 31.25%, #00AAB5 37.5%, #325BC5 37.5%, #325BC5 43.75%, #946D9B 43.75%, #946D9B 50%, #F42A35 50%, #F42A35 56.25%, #FFA200 56.25%, #FFA200 62.5%, #FFD500 62.5%, #FFD500 68.75%, #A8BF12 68.75%, #A8BF12 75%, #2EB52F 75%, #2EB52F 81.25%, #00AAB5 81.25%, #00AAB5 87.5%, #325BC5 87.5%, #325BC5 93.75%, #946D9B 93.75%); }
 
 @font-face {
   font-family: 'icomoon';
-  src: url("/icons/icomoon.eot?-axlseu");
-  src: url("/icons/icomoon.eot?#iefix-axlseu") format("embedded-opentype"), url("/icons/icomoon.woff?-axlseu") format("woff"), url("/icons/icomoon.ttf?-axlseu") format("truetype"), url("/icons/icomoon.svg?-axlseu#icomoon") format("svg");
+  src: url("../icons/icomoon.eot?ccghos");
+  src: url("../icons/icomoon.eot?ccghos#iefix") format("embedded-opentype"), url("../icons/icomoon.ttf?ccghos") format("truetype"), url("../icons/icomoon.woff?ccghos") format("woff"), url("../icons/icomoon.svg?ccghos#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
-  font-family: 'icomoon';
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -430,6 +431,15 @@ a {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+.icon-hat:before {
+  content: "\e900"; }
+
+.icon-mug:before {
+  content: "\e901"; }
+
+.icon-shirt:before {
+  content: "\e902"; }
 
 .icon-disk:before {
   content: "\e600"; }
@@ -501,8 +511,7 @@ Copyright (c) 2015 Daniel Eden
   -webkit-animation-name: bounce;
   animation-name: bounce;
   -webkit-transform-origin: center bottom;
-  -ms-transform-origin: center bottom;
-      transform-origin: center bottom; }
+  transform-origin: center bottom; }
 
 @-webkit-keyframes pulse {
   0% {
@@ -578,7 +587,6 @@ http://flickity.metafizzy.co
   cursor: pointer;
   /* vertically center */
   -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
 .flickity-prev-next-button:hover {
@@ -835,17 +843,18 @@ body {
 
 /************ HERO TEXT ****************************/
 .hero {
-  color: #333;
-  text-align: center;
-  margin: 0 0 10px;
-  font-size: 3em;
-  line-height: 1.25em; }
-  @media only screen and (max-width: 900px) {
-    .hero {
-      font-size: 2em; } }
-  @media only screen and (max-width: 568px) {
-    .hero {
-      font-size: 1.5em; } }
+  margin: 0 0 10px; }
+  .hero h1 {
+    color: #333;
+    text-align: center;
+    font-size: 3em;
+    line-height: 1.25em; }
+    @media only screen and (max-width: 900px) {
+      .hero h1 {
+        font-size: 2em; } }
+    @media only screen and (max-width: 568px) {
+      .hero h1 {
+        font-size: 1.5em; } }
 
 /************ LEFT COLUMN **************************/
 .reference-pane {
@@ -1028,7 +1037,7 @@ body {
       top: 2px;
       box-shadow: none;
       -webkit-transition: top 0.4s ease-in-out;
-              transition: top 0.4s ease-in-out; }
+      transition: top 0.4s ease-in-out; }
     @media only screen and (max-width: 480px) {
       .round-controls__button {
         margin: 0 auto 10px; } }
@@ -1185,6 +1194,32 @@ body {
   border: solid 1px #c3c3c3;
   padding: 50px;
   display: none; }
+
+.buy-button {
+  border-radius: 5px;
+  position: relative;
+  background: #76c038;
+  box-shadow: 0 3px 0 0 #306901, 0px 3px 5px -1px #4F4F4F;
+  color: #fff;
+  outline: none;
+  text-shadow: 0 1px #306901;
+  display: block;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  display: inline-block;
+  padding: 10px;
+  font-size: 1.5em; }
+  .buy-button:enabled:active {
+    top: 3px;
+    box-shadow: none; }
+  .buy-button:disabled {
+    opacity: 0.7; }
+  .buy-button .icon-shirt {
+    font-size: 1.25em;
+    vertical-align: middle;
+    margin-right: 10px; }
 
 .header {
   height: 80px; }

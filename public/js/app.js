@@ -239,6 +239,22 @@ $(document).ready(function() {
         $('.round-controls').css('display', 'inline-block').fadeIn('fast');
         $('.js-controls__color-list').css('display', 'none');
         $('.js-canvas__timer').fadeOut('slow').removeClass('animated pulse infinite');
+
+        showPurchaseHero();
+    }
+
+    function showPurchaseHero() {
+        $('.hero').slideDown('fast');
+
+        $('.hero h1').text("Buy your drawing on a shirt or hat!");
+        $('.buy-button').show().on('click', function (e) {
+            // Show spinner
+            // Upload picture to imgur
+                //.then: build out Zazzle URL using imgur link
+                // Open new tab with zazzle url
+                // Hide spinner
+                
+        })
     }
 
     //Timer function initiated when .js-new-round is clicked.

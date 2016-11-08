@@ -197,19 +197,23 @@ $header-height-desktop: 140px;
 /************ HERO TEXT ****************************/
 
 .hero {
-    color: #333;
-    text-align: center;
     margin: 0 0 10px;
-    font-size: 3em;
-    line-height: 1.25em;
 
-    @media #{$mq-tablet} {
-        font-size: 2em;
-    }
+    h1 {
+        color: #333;
+        text-align: center;
+        font-size: 3em;
+        line-height: 1.25em;
 
-    @media #{$mq-phone-landscape} {
-        font-size: 1.5em;
+        @media #{$mq-tablet} {
+           font-size: 2em;
+        }
+
+        @media #{$mq-phone-landscape} {
+           font-size: 1.5em;
+        } 
     }
+    
 
 }
 
@@ -575,4 +579,19 @@ $header-height-desktop: 140px;
     border: solid 1px #c3c3c3;
     padding: 50px;
     display: none;
+}
+
+
+.buy-button {
+    @include button(#76c038, #306901);
+    display: inline-block;
+    padding: 10px;
+    font-size: 1.5em;
+
+    .icon-shirt {
+        font-size: 1.25em;
+        vertical-align: middle;
+
+        margin-right: 10px;
+    }
 }

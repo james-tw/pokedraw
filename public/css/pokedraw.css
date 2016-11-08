@@ -405,12 +405,13 @@ a {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("/icons/icomoon.eot?-axlseu");
-  src: url("/icons/icomoon.eot?#iefix-axlseu") format("embedded-opentype"), url("/icons/icomoon.woff?-axlseu") format("woff"), url("/icons/icomoon.ttf?-axlseu") format("truetype"), url("/icons/icomoon.svg?-axlseu#icomoon") format("svg");
+  src: url("../icons/icomoon.eot?ccghos");
+  src: url("../icons/icomoon.eot?ccghos#iefix") format("embedded-opentype"), url("../icons/icomoon.ttf?ccghos") format("truetype"), url("../icons/icomoon.woff?ccghos") format("woff"), url("../icons/icomoon.svg?ccghos#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
-  font-family: 'icomoon';
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -420,6 +421,15 @@ a {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+.icon-hat:before {
+  content: "\e900"; }
+
+.icon-mug:before {
+  content: "\e901"; }
+
+.icon-shirt:before {
+  content: "\e902"; }
 
 .icon-disk:before {
   content: "\e600"; }
@@ -491,8 +501,7 @@ Copyright (c) 2015 Daniel Eden
   -webkit-animation-name: bounce;
   animation-name: bounce;
   -webkit-transform-origin: center bottom;
-  -ms-transform-origin: center bottom;
-      transform-origin: center bottom; }
+  transform-origin: center bottom; }
 
 @-webkit-keyframes pulse {
   0% {
@@ -568,7 +577,6 @@ http://flickity.metafizzy.co
   cursor: pointer;
   /* vertically center */
   -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
 .flickity-prev-next-button:hover {
@@ -825,17 +833,18 @@ body {
 
 /************ HERO TEXT ****************************/
 .hero {
-  color: #333;
-  text-align: center;
-  margin: 0 0 10px;
-  font-size: 3em;
-  line-height: 1.25em; }
-  @media only screen and (max-width: 900px) {
-    .hero {
-      font-size: 2em; } }
-  @media only screen and (max-width: 568px) {
-    .hero {
-      font-size: 1.5em; } }
+  margin: 0 0 10px; }
+  .hero h1 {
+    color: #333;
+    text-align: center;
+    font-size: 3em;
+    line-height: 1.25em; }
+    @media only screen and (max-width: 900px) {
+      .hero h1 {
+        font-size: 2em; } }
+    @media only screen and (max-width: 568px) {
+      .hero h1 {
+        font-size: 1.5em; } }
 
 /************ LEFT COLUMN **************************/
 .reference-pane {
@@ -1018,7 +1027,7 @@ body {
       top: 2px;
       box-shadow: none;
       -webkit-transition: top 0.4s ease-in-out;
-              transition: top 0.4s ease-in-out; }
+      transition: top 0.4s ease-in-out; }
     @media only screen and (max-width: 480px) {
       .round-controls__button {
         margin: 0 auto 10px; } }
@@ -1176,4 +1185,28 @@ body {
   padding: 50px;
   display: none; }
 
-/*# sourceMappingURL=pokedraw.css.map */
+.buy-button {
+  border-radius: 5px;
+  position: relative;
+  background: #76c038;
+  box-shadow: 0 3px 0 0 #306901, 0px 3px 5px -1px #4F4F4F;
+  color: #fff;
+  outline: none;
+  text-shadow: 0 1px #306901;
+  display: block;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  display: inline-block;
+  padding: 10px;
+  font-size: 1.5em; }
+  .buy-button:enabled:active {
+    top: 3px;
+    box-shadow: none; }
+  .buy-button:disabled {
+    opacity: 0.7; }
+  .buy-button .icon-shirt {
+    font-size: 1.25em;
+    vertical-align: middle;
+    margin-right: 10px; }
