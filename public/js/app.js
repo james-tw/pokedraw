@@ -7,7 +7,8 @@ $(document).ready(function() {
         sec,
         sharePic,
         $headerSlider = $('.js-header__flickity-slider'),
-        $sbpSlider = $('.js-sbp-slider');
+        $sbpSlider = $('.js-sbp-slider'),
+        zazzleURL;
     (function init() {
         $headerSlider.flickity({
             wrapAround: true,
@@ -73,7 +74,7 @@ $(document).ready(function() {
         $canvas.sketch().clear();
         $canvas.css('pointer-events', 'auto');
         //Reset the timer and get a new Pokemon to draw.
-        sec = 45;
+        sec = 5;
         //If on mobile, Scroll to the canvas element.
         if ($('.pip__container').css('display') === 'block') {
             $('html,body').animate({
@@ -113,6 +114,11 @@ $(document).ready(function() {
 ////////////////////////////////////////////////////////////////
 // FUNCTION DECLARATIONS
 //
+
+    // Checks whether any lines were drawn on the canvas.
+    function canvasContainsDrawing() {
+        return $canvas.sketch().actions.length > 0;
+    }
     
     //Generates an array of 151 Pokemon on init.
     function generatePokedex () {
@@ -208,6 +214,7 @@ $(document).ready(function() {
     function setInterfaceActive() {
         //Hide the hero text once the button has been clicked once.
         $('.hero').slideUp('fast');
+        $('.hero h1').hide();
         //If in mq-mobile resolution, don't show the regular timer.
         if ($('.pip__container').css('display') === 'block') {
             $('.hero').css('height', '0px');
@@ -223,6 +230,8 @@ $(document).ready(function() {
                               .fadeIn('fast');
         $('.round-controls').css('display', 'none');
         $('.js-controls__color-list').css('display', 'inline-block');
+
+        hidePurchaseHero();
     }
 
     function setInterfaceInactive() {
@@ -240,21 +249,79 @@ $(document).ready(function() {
         $('.js-controls__color-list').css('display', 'none');
         $('.js-canvas__timer').fadeOut('slow').removeClass('animated pulse infinite');
 
-        showPurchaseHero();
+        if (canvasContainsDrawing()) {
+            showPurchaseHero();
+        }
+        
+    }
+
+    function hidePurchaseHero() {
+        $('.hero__buy-pitch').addClass('hide');
+
+        zazzleURL = undefined;
     }
 
     function showPurchaseHero() {
+        $('.hero__buy-pitch').removeClass('hide');
         $('.hero').slideDown('fast');
 
-        $('.hero h1').text("Buy your drawing on a shirt or hat!");
-        $('.buy-button').show().on('click', function (e) {
-            // Show spinner
-            // Upload picture to imgur
-                //.then: build out Zazzle URL using imgur link
-                // Open new tab with zazzle url
-                // Hide spinner
+        $('.buy-button').on('click', function (e) {
+            $buyButton = $(this);
+            ga('send', 'event', 'buy-button-click', 'click');
+
+            if (zazzleURL) {
+                window.open(zazzleURL, '_blank');
+            } else {
+                // Show spinner?
+                // $buyButton.text('Uploading...');
+
+                // Get dataURL info from canvas
+                var imgurDataURL = canvas.toDataURL('image/png', 0.9).split(',')[1];
+
+                // TODO: Create a "LOADING" page rather than taking the user to a blank page.
+                var newWindow = window.open('', '_blank');
+
+                // Upload picture to imgur
+                $.ajax({
+                    url: 'https://api.imgur.com/3/image',
+                    type: 'post',
+                    headers: {
+                        Authorization: 'Client-ID 0179df3db8add13'
+                    },
+                    data: {
+                        image: imgurDataURL
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if(response.success) {
+                            // build out Zazzle URL using imgur link
+                            zazzleURL = getZazzleURL(response.data.link, true);
+                            // Open new tab with zazzle url
+                            newWindow.location.assign(zazzleURL);
+                            ga('send', 'event', 'imgur-upload-success', 'trigger');
+                        }
+                    },
+                    error: function (error) {
+                        // Handle error
+                    },
+                    complete: function () {
+                        // Hide spinner?
+                        // $buyButton.text('Check it out!');
+                    }
+                });
+            }
+
+           
                 
         })
+    }
+
+    function getZazzleURL(imageURL, isTemplateBuffet) {
+        if (isTemplateBuffet) {
+            return 'http://www.zazzle.com/api/create/at-238661179973446865?rf=238661179973446865&ax=DesignBlast&sr=250747147674160458&cg=196659863177995039&t__useQpc=false&ed=true&t__smart=false&continueUrl=http%3A%2F%2Fwww.zazzle.com%2Fpokedraw&fwd=ProductPage&tc=buyHero&ic=&t_image0_iid=' + imageURL;
+        } else {
+            return 'http://www.zazzle.com/api/create/at-238661179973446865?rf=238661179973446865&ax=Linkover&pd=235436136963403667&fwd=ProductPage&ed=true&tc=buyHero&ic=&t_image0_iid=' + encodeURIComponent(imageURL);
+        }
     }
 
     //Timer function initiated when .js-new-round is clicked.
@@ -273,7 +340,7 @@ $(document).ready(function() {
                 //Automatically select the currentPokemon from the sbp__dropdown input.
                 $('.js-sbp__dropdown').val(currentPokemon).change();
                 //Only save the image if something has been drawn.
-                if ($canvas.sketch().actions.length > 0) {
+                if (canvasContainsDrawing()) {
                     saveImage(); //Calls getRecentDrawings() in callback.
                 }
                 ga('send', 'event', 'round-complete', 'trigger');
