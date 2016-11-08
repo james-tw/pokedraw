@@ -1,103 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pokedraw - Kids Version - Draw a Pokemon in 45 seconds!</title>
-	<link rel="stylesheet" href="/css/smart-grid.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="/css/painter.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <title>Pokedraw - Kids Version - Draw a Pokemon in 45 seconds!</title>
+    <link rel="stylesheet" href="/css/pokedraw.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
-	<meta name="description=" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds. (This site is kid friendly!)">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
+    <meta name="description=" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds. (This site is kid friendly!)">
 </head>
 <body>
 
-	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+    <!--[if IE]><script src="excanvas.js"></script><![endif]-->
+    
+    <div class="content-wrapper">
 
-	<header class="row">
-		<a href="kids.html"><img id="logo" src="img/logo.png"/></a>
-	</header>
-	<div class="container">
-		<div class="row">
-			<h1 class="title">You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
-		</div>
-		<section class="row">
-			<div class="left-column columns five">
-				<div id="imageContainer">
-					<!--Image of Pokemon goes here-->
-					<img src="img/whos-that-pokemon.jpg">
-				</div>
-				<p id="pokemonName"></p>
-			</div>
-			<div class="center-column columns two">
-				<button id="newRound" class="intro">Let's Draw!</button>
-				<span id="timer">45</span>
-				<button class="share share-facebook">Share</button>
-				<a href="#canvas" id="save" data-download="jpeg">Save</a>
-			</div>
-			<div class="right-column columns five ">
-				<div id="canvas-container">
-					<div id="pip">
-						<img src="img/whos-that-pokemon.jpg">
-					</div>
-					<span id="pip-timer">45</span>
-					<canvas id="canvas" width="400" height="400"></canvas>
-				</div>
-				<div class="controls">
-					<ul>
-						<li class="red"></li>
-						<li class="orange"></li>
-						<li class="yellow"></li>
-						<li class="light-green"></li>
-						<li class="green"></li>
-						<li class="light-blue"></li>
-						<li class="blue"></li>
-						<li class="pink"></li>
-						<li class="purple"></li>
-						<li class="brown"></li>
-						<li class="gray"></li>
-						<li class="black selected"></li>
-					</ul>
-					<div id="colorSelect">
-						<div>
-							<button id="addNewColor">Add This Color</button>
-						</div>
-						<div class="sliders">
-							<p>
-								<label for="red">Red</label>
-								<input id="red" name="red" type="range" min=0 max=255 value=148>
-							</p>
-							<p>
-								<label for="green">Green</label>
-								<input id="green" name="green" type="range" min=0 max=255 value=109>
-							</p>
-							<p>
-								<label for="blue">Blue</label>
-								<input id="blue" name="blue" type="range" min=0 max=255 value=155>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	<footer>
-		<div class="container">
-			<p>Parents, this is a kid friendly version of the site. No drawings from outside sources will be shown on this page (except the 10 original ones I drew).</p>
-		</div>
-	</footer>
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/js/kids.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/js/sketch.js" type="text/javascript" charset="utf-8"></script>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <header class="header">
+            <a class="logo__container" href="/"><img class="logo" src="img/logo.png" alt="Pokedraw"/></a>
+           
+            <div class="header__slider">
+                <div class="header__flickity-slider js-header__flickity-slider"><!-- Pokedraw images are loaded into here --></div>
+                <div class="header__slider-mask"></div>
+            </div>
+        </header>
 
-	  ga('create', 'UA-52635684-1', 'auto');
-	  ga('send', 'pageview');
+        <section class="main-content">
+            <div class="container">
 
-	</script>
+                <h1 class="hero">You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
+
+                <section class="reference-pane">
+
+                    <div class="reference-image__container js-reference-image__container">
+                        <img class="reference-image js-reference-image intro" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+                    </div>
+                    <p class="pokemon-name js-pokemon-name"></p>
+
+                </section>
+
+                <section class="drawing-pane">
+
+                    <div class="canvas__container">
+                        <div class="pip__container">
+                            <img class="pip" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+                        </div>
+                        <span class="canvas__timer js-canvas__timer">45</span>
+                        <canvas id="js-canvas" class="canvas" width="400" height="400"></canvas>
+                        <button class="new-round js-new-round intro">Let's Draw!</button>
+                    </div>
+
+                    <div class="controls">
+
+                        <ul class="controls__color-list js-controls__color-list">
+                            <li class="controls__color js-controls__color red"></li>
+                            <li class="controls__color js-controls__color orange"></li>
+                            <li class="controls__color js-controls__color yellow"></li>
+                            <li class="controls__color js-controls__color light-green"></li>
+                            <li class="controls__color js-controls__color green"></li>
+                            <li class="controls__color js-controls__color light-blue"></li>
+                            <li class="controls__color js-controls__color blue"></li>
+                            <li class="controls__color js-controls__color pink"></li>
+                            <li class="controls__color js-controls__color purple"></li>
+                            <li class="controls__color js-controls__color brown"></li>
+                            <li class="controls__color js-controls__color gray"></li>
+                            <li class="controls__color js-controls__color black controls__color--selected"></li>
+                        </ul>
+
+                        <div class="round-controls">
+                            <a href="#" class="round-controls__button round-controls__button--save js-save" download="#"><span class="icon-disk"></span>Save</a>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <p>Parents, this is a kid friendly version of the site. No drawings from outside sources will be shown on this page (except the 10 original ones I drew).</p>
+            </div>
+        </footer>
+
+    </div> <!-- close .content-wrapper -->
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
+    <script src="/js/min/sketch.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/min/kids.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52635684-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,578 @@
+@import "_normalize";
+@import "_foundations";
+@import "_icons";
+@import "_animate";
+@import "_flickity";
+
+// Styles necessary for sticky footer
+html, body { height: 100%; min-height: 100%; }
+
+body {
+    margin: 0;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.container {
+    @include clearfix;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1%;
+}
+
+.main-content {
+    // Flex property necessary for sticky footer
+    flex: 1;
+    -webkit-flex: 1;
+    background: rgba(255, 255, 255, 0.88);
+    margin: 0.5em 0;
+    padding: 0.5em 0 0;
+}
+
+// Styles necessary for sticky footer
+.content-wrapper {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    min-height: 100%;
+    background: stripes($border-colors, 45deg);
+}
+
+/************ HEADER *******************************/
+$header-height-phone-landscape: 80px;
+$header-height-tablet: 110px;
+$header-height-desktop: 140px;
+
+.header {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    align-items: center;
+    -webkit-align-items: center;
+
+    position: relative;
+    overflow: hidden;
+    background: white;
+
+    &__slider {
+        width: 100%;
+        flex: 1;
+        -webkit-flex: 1;
+        position: relative;
+    }
+
+    &__flickity-slider {
+        img {
+            height: $header-height-desktop;
+
+            @media #{$mq-tablet} {
+                height: $header-height-tablet;
+            }
+
+            @media #{$mq-phone-landscape} {
+                height: $header-height-phone-landscape;
+            }
+        }
+    }
+
+    &__slider-mask {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+        background-color: rgba(255,255,255,1);
+        background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 85%, rgba(255,255,255,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );  }
+
+    &__control {
+        position: absolute;
+        z-index: 3;
+        right: 5px;
+        text-decoration: none;
+        color: #000;
+        font-weight: 100;
+        line-height: 1;
+
+        &--hide {
+            font-size: 2.5em;
+            top: 0;
+        }
+
+        &--refresh {
+            bottom: 8px;
+            font-size: 1.5em;
+        }
+    }
+
+}
+
+.logo {
+    height: $header-height-desktop;
+    padding: 5px;
+
+    @media #{$mq-tablet} {
+        height: $header-height-tablet;
+    }
+
+    @media #{$mq-phone-landscape} {
+        height: $header-height-phone-landscape;
+    }
+
+    &__container {
+        display: block;
+        line-height: 0;
+    }
+}
+
+/************ NAVIGATION ***************************/
+
+.nav {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    padding: 0.5em;
+    height: $header-height-desktop;
+
+    @media #{$mq-tablet} {
+        height: $header-height-tablet;
+    }
+
+    @media #{$mq-phone-landscape} {
+        height: auto;
+    }
+
+    @media #{$mq-phone-landscape} {
+        width: 100%;
+        flex-direction: row;
+        -webkit-flex-direction: row;
+    }
+
+    &__link {
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-around;
+        -webkit-justify-content: space-around;
+        width: 100%;
+        height: 50%;
+        text-align: center;
+        padding: 0.25em 0.5em;
+        font-size: 1.25em;
+        background: #EEDF8E;
+        box-shadow: 0px 1px 4px -2px #4F4F4F;
+        color: black;
+
+        @media #{$mq-phone-landscape} {
+            width: 49%;
+        }
+
+        &:hover {
+            background: #EFE29E;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 5%;
+
+            @media #{$mq-phone-landscape} {
+                margin-bottom: 0;
+            }
+        }
+
+    }
+
+    &__link-text {
+        align-self: center;
+        -webkit-align-self: center;
+    }
+
+}
+
+
+/************ HERO TEXT ****************************/
+
+.hero {
+    color: #333;
+    text-align: center;
+    margin: 0 0 10px;
+    font-size: 3em;
+    line-height: 1.25em;
+
+    @media #{$mq-tablet} {
+        font-size: 2em;
+    }
+
+    @media #{$mq-phone-landscape} {
+        font-size: 1.5em;
+    }
+
+}
+
+/************ LEFT COLUMN **************************/
+
+.reference-pane {
+    @include column(49%);
+    margin-right: 2%;
+}
+
+.reference-image {
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+
+    &.intro {
+        width: 100%;
+        padding: 0;
+    }
+
+    &__container {
+        @include box-round;
+        position: relative;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
+
+        @media #{$mq-phone} {
+            display: none;
+        }
+
+    }
+}
+
+.pokemon-name {
+    text-align: center;
+    color: #333;
+    font-size: 3em;
+    margin: 5px 0;
+
+    @media #{$mq-phone-landscape} {
+        font-size: 2em;
+    }
+
+    @media #{$mq-phone} {
+        font-size: 3em;
+    }
+
+}
+
+/************ CONTROLS **************************/
+.new-round {
+    @include button(#76C038,#306901);
+    font-size: 2em;
+    margin: 0px auto 10px;
+    padding: 8px 6px;
+    width: 80%;
+
+    @media #{$mq-phone} {
+        font-size: 2em;
+        padding: 8px 20px;
+        margin: 0 auto 10px;
+    }
+
+    &.intro {
+        font-size: 3em;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 60%;
+        height: 20%;
+
+        @media #{$mq-tablet} {
+            font-size: 2em;
+            padding: 10px 12px;
+        }
+
+        @media #{$mq-phone-landscape} {
+            font-size: 1.5em;
+            line-height: 1.5em;
+            padding: 10px 6px;
+        }
+
+        @media #{$mq-phone} {
+            font-size: 2em;
+            padding: 8px 20px;
+        }
+
+    }
+}
+
+.controls {
+    @include box-round;
+    margin: 10px auto 2em;
+
+    &__color-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    &__color {
+        @include shared-color-properties;
+        display: inline-block;
+        margin: 0 5px 5px;
+        position: relative;
+
+        a {
+            display: block;
+            height: 100%;
+        }
+
+        &--selected {
+            top: 2px;
+            box-shadow: none;
+        }
+
+    }
+}
+
+.round-controls {
+    text-align:center;
+    display: none;
+    width: 100%;
+
+    &__button {
+        @include button(#946D9B, #57405B);
+        margin: 0 auto;
+        font-size: 2em;
+        padding: 8px 0;
+        text-decoration: none;
+        display: inline-block;
+
+        &--share {
+            width: 18%;
+
+            &.share-facebook {
+                background: #3b5998;
+                box-shadow: 0 3px 0 0 #082665, 0px 3px 5px -1px #4F4F4F;
+                text-shadow: 0 1px #082665;
+            }
+
+            &.share-twitter {
+                background: #00aced;
+                box-shadow: 0 3px 0 0 #0079BA, 0px 3px 5px -1px #4F4F4F;
+                text-shadow: 0 1px #0079BA;
+            }
+
+        }
+
+        &--save {
+            width: 60%;
+
+            [class^="icon-"] {
+                font-size: 1em;
+                margin-right: 5px;
+            }
+
+        }
+
+        &:active {
+            top: 2px;
+            box-shadow: none;
+            transition: top 0.4s ease-in-out;
+
+        }
+
+        @media #{$mq-phone} {
+            margin: 0 auto 10px;
+        }
+
+    }
+}
+
+/************ RIGHT COLUMN **************************/
+
+.drawing-pane {
+    @include column(49%);
+}
+
+.canvas {
+    @include box-round;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    background: #d3d3d3;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 1px 0 0 #222, 0px 2px 3px -1px #4F4F4F;
+    pointer-events: none;
+    cursor: url(../img/cursor.png), crosshair;
+
+    &__container {
+        position: relative;
+    }
+
+    &__timer {
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        font-size: 36px;
+
+        @media #{$mq-phone} {
+            display: block;
+        }
+
+    }
+}
+
+.pip {
+    @include box-round;
+    max-width: 100%;
+    max-height: 100%;
+
+    &__container {
+        @include box-round;
+        display: none;
+        position: absolute;
+        max-height: 25%;
+        max-width: 25%;
+        top: 5px;
+        left: 5px;
+
+        @media #{$mq-phone} {
+            display: block;
+        }
+
+    }
+}
+
+/********** SEARCH BY POKEMON *************/
+
+.sbp {
+    text-align: center;
+
+    @media #{$mq-phone-landscape} {
+        display: none;
+    }
+
+    &__header {
+        display: inline-block;
+        font-size: 2em;
+        margin: 0 0 1em;
+        
+        @media #{$mq-phone} {
+            font-size: 1.5em;
+        }
+        
+    }
+
+    &__dropdown {
+        font-size: 2em;
+
+        @media #{$mq-phone-landscape} {
+            font-size: 1em;
+        }
+
+    }
+}
+
+.sbp-slider {
+    display: none;
+    text-align: center;
+    height: 150px;
+    overflow: hidden;
+    background: white;
+
+    @media #{$mq-tablet} {
+        height: 120px;
+    }
+
+    @media #{$mq-phone-landscape} {
+        display: none !important;
+    }
+
+    &__button {
+        padding: 20px;
+        width: 150px;
+        margin: 2%;
+
+        &--gallery {
+            @include button(#946D9B, #57405B);
+        }
+
+    }
+    
+    img {
+        height: 150px;
+        width: auto;
+
+        @media #{$mq-tablet} {
+            height: 120px;
+        }
+    }
+
+}
+
+/********** FOOTER **********************/
+.footer {
+    background: #444;
+    color: #eee;
+    padding: 20px 0;
+    position: relative;
+    font-size: 1.5em;
+
+    &:after {
+        top: 0;
+    }
+
+    &__content {
+        @include column(69%);
+        margin-right: 2%;
+    }
+
+    &__link-list {
+        list-style-type: none;
+        margin: 0 0 20px;
+        padding: 0;
+    }
+    
+    &__byline {
+        @include column(29%);
+        text-align: right;
+    }
+
+    a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #BD9E70;
+
+        &:hover {
+            color: #E4C08A;
+        }
+        
+    }
+
+    // .fb-like-box {
+    //  float: right;
+    // }
+
+}
+
+/********** FACEBOOK PANEL **********************/
+#panel {
+    padding: 5px;
+    text-align: center;
+    background-color: #e5eecc;
+    border: solid 1px #c3c3c3;
+    padding: 50px;
+    display: none;
+}

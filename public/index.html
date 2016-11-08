@@ -1,167 +1,150 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pokedraw - Draw a Pokemon in 45 seconds!</title>
-	<link rel="stylesheet" href="/css/smart-grid.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="/css/painter.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="/css/icons.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <title>Pokedraw - Draw a Pokemon in 45 seconds!</title>
+    <link rel="stylesheet" href="/css/pokedraw.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
-	<meta name="description=" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds.">
-	<!--For Facebook Sharing-->
-	<meta property="og:title" content="Pokédraw - Draw a Pokémon in 45 seconds!" />
-	<meta property="og:site_name" content="Pokédraw" />
-	<meta property="og:url" content="http://www.jamestw.net/pokedraw/" />
-	<meta property="og:description" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds." />
-	<meta property="og:image" content="http://www.jamestw.net/pokedraw/img/logo-fb-share.png" />
-	<style>
-		#panel
-			{
-			padding:5px;
-			text-align:center;
-			background-color:#e5eecc;
-			border:solid 1px #c3c3c3;
-			padding:50px;
-			display:none;
-			}
-	</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
+    <meta name="description=" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds.">
+    <!--For Facebook Sharing-->
+    <meta property="og:title" content="Pokédraw - Draw a Pokémon in 45 seconds!" />
+    <meta property="og:site_name" content="Pokédraw" />
+    <meta property="og:url" content="http://www.jamestw.net/pokedraw/" />
+    <meta property="og:description" content="Think you can draw a Pokémon? Click here to try it out. It only takes 45 seconds." />
+    <meta property="og:image" content="http://www.jamestw.net/pokedraw/img/logo-fb-share.png" />
 </head>
 <body>
-	<script> //Facebook sharing script. No malicious intent here! Install Ghostery if you don't want to be tracked. https://www.ghostery.com/
-		window.fbAsyncInit = function() {
-	        FB.init({
-	          appId      : 351920294960632,
-	          xfbml      : true,
-	          version    : 'v2.0'
-	        });
-	      };
-	      (function(d, s, id){
-	         var js, fjs = d.getElementsByTagName(s)[0];
-	         if (d.getElementById(id)) {return;}
-	         js = d.createElement(s); js.id = id;
-	         js.src = "//connect.facebook.net/en_US/sdk.js";
-	         fjs.parentNode.insertBefore(js, fjs);
-	       }(document, 'script', 'facebook-jssdk'));
-	</script>
-	<div id="fb-root"></div>
-	<script>
-		(function(d, s, id) {
-		    var js, fjs = d.getElementsByTagName(s)[0];
-		    if (d.getElementById(id)) return;
-		    js = d.createElement(s); js.id = id;
-		    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=351920294960632&version=v2.0";
-		    fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-		</script>
+    <script> //Facebook sharing script. No malicious intent here! Install Ghostery if you don't want to be tracked. https://www.ghostery.com/
+        window.fbAsyncInit=function(){FB.init({appId:351920294960632,xfbml:!0,version:"v2.0"})},function(a,b,c){var d,e=a.getElementsByTagName(b)[0];a.getElementById(c)||(d=a.createElement(b),d.id=c,d.src="//connect.facebook.net/en_US/sdk.js",e.parentNode.insertBefore(d,e))}(document,"script","facebook-jssdk");
+    </script>
+    <div id="fb-root"></div>
 
-	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
-	<div id="update-modal">
-		<a class="modal-close" href="#">&times;</a>
-		<h1>Recent Updates</h1>
-		<h2>March 2015</h2>
-		<ul>
-			<li>You can now see the last 1000 drawings of any Pokemon in the <a href="/gallery.html">Gallery!</a></li>
-			<li>Saving drawings is much easier and better.</li>
-			<li>Improved layout on mobile and tablet.</li>
-			<li>Faster load times!</li>
-			<li>A new Pokemon appeared?!</li>
-		</ul>
-		<h3>More fun new features coming soon!</h3>
-	</div>
-	<header class="row">
-		<a href="/"><img id="logo" src="img/logo.png" alt="Pokedraw"/></a>
-		<a class="header-control refresh-drawings" href="#" title="Refresh recent drawings"><span class="icon-spinner"></span></a>
-		<a class="header-control hide-drawings" href="#" title="Hide these drawings">&times;</a>
-	</header>
-	<nav>
-		<a href="gallery.html"><span>Gallery</span></a>
-		<a href="kids.html"><span>Kid Safe Version!</span></a>
-		<a href="#update-modal" class="nav-link-right nav-update"><span>New Updates!</span></a>
-	</nav>
-	<div class="container">
-		<div class="row">
-			<h1 class="title">You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
-		</div>
-		<section class="row">
-			<div class="left-column columns five">
-				<div id="imageContainer">
-					<!--Image of Pokemon goes here-->
-					<img src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
-				</div>
-				<p id="pokemonName"></p>
-			</div>
-			<div class="center-column columns two">
-				<button id="newRound" class="intro">Let's Draw!</button>
-				<span id="timer">45</span>
-				<button class="share share-facebook"><span class="icon-facebook"></span></button>
-				<a class="share share-twitter" href="http://twitter.com/share?url=http%3A%2F%2Fpokedraw.net" data-dnt="true"><span class="icon-twitter"></span></a>
-				<a href="#" id="save" download="#"><span class="icon-disk"></span>Save</a>
-			</div>
-			<div class="right-column columns five ">
-				<div id="canvas-container">
-					<div id="pip">
-						<img src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
-					</div>
-					<span id="pip-timer">45</span>
-					<canvas id="canvas" width="400" height="400"></canvas>
-				</div>
-				<div class="controls">
-					<ul>
-						<li class="red"></li>
-						<li class="orange"></li>
-						<li class="yellow"></li>
-						<li class="light-green"></li>
-						<li class="green"></li>
-						<li class="light-blue"></li>
-						<li class="blue"></li>
-						<li class="pink"></li>
-						<li class="purple"></li>
-						<li class="brown"></li>
-						<li class="gray"></li>
-						<li class="black selected"></li>
-					</ul>
-				</div>
-			</div>
-		</section>
-	</div>
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="columns eight">
-					<div class="footerLink"><a href="gallery.html">Gallery</a> - See all the most recent drawings!</div><br/>
-					<div class="footerLink"><a href="kids.html">Kid safe version</a> - Where children can play &amp; view safely.</div><br/>
-					<div class="footerLink"><a href="privacy.html">Privacy Policy</a></div></br></br>
-					<form id="dropdownDonateButton" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-						<input type="hidden" name="cmd" value="_s-xclick">
-						<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
-						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="vertical-align: middle;">
-						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"><span>if you're having a great time!</span>
-					</form>
-					<p><strong>10,000,000</strong> Pokedraws and counting!</p>
-					<p>Pokémon and all respective names are &trade; &amp; &copy; of Nintendo 1996-2015</p>
-				</div>
-				<div class="columns four">
-					<div class="fb-like-box" data-href="https://www.facebook.com/pokedrawdotnet" data-width="150px" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
-					<div id="byline">Made by <a href="http://jamestw.net">James TW</a></div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/js/min/app.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/js/sketch.js" type="text/javascript" charset="utf-8"></script>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <!--[if IE]><script src="excanvas.js"></script><![endif]-->
+    <div class="content-wrapper">
+        <header class="header">
+            <a class="logo__container" href="/"><img class="logo" src="img/logo.png" alt="Pokedraw"/></a>
+           
+            <div class="header__slider">
+                <div class="header__flickity-slider js-header__flickity-slider"><!-- Pokedraw images are loaded into here --></div>
+                <div class="header__slider-mask"></div>
+                <a class="header__control header__control--refresh js-header__control--refresh" href="#" title="Refresh recent drawings"><span class="icon-spinner"></span></a>
+                <a class="header__control header__control--hide js-header__control--hide" href="#" title="Hide these drawings">&times;</a>
+            </div>
+            <nav class="nav">
+                <a href="kids.html" class="nav__link"><span class="nav__link-text">Kid Safe Version!</span></a>
+                <a href="gallery.html" class="nav__link"><span class="nav__link-text">Gallery</span></a>
+            </nav>
+        </header>
 
-	  ga('create', 'UA-52635684-1', 'auto');
-	  ga('send', 'pageview');
+        <section class="main-content">
+        
+            <div class="container">
 
-	</script>
+                <h1 class="hero">You have 45 seconds to draw a random Pok&#xe9;mon.</h1>
+
+                <section class="reference-pane">
+
+                    <div class="reference-image__container js-reference-image__container">
+                        <img class="reference-image js-reference-image intro" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+                    </div>
+                    <p class="pokemon-name js-pokemon-name"></p>
+
+                </section>
+
+                <section class="drawing-pane">
+
+                    <div class="canvas__container">
+                        <div class="pip__container">
+                            <img class="pip" src="img/whos-that-pokemon.jpg" alt="Who's that Pokemon?!">
+                        </div>
+                        <span class="canvas__timer js-canvas__timer">45</span>
+                        <canvas id="js-canvas" class="canvas" width="400" height="400"></canvas>
+                        <button class="new-round js-new-round intro">Let's Draw!</button>
+                    </div>
+
+                    <div class="controls">
+
+                        <ul class="controls__color-list js-controls__color-list">
+                            <li class="controls__color js-controls__color red"></li>
+                            <li class="controls__color js-controls__color orange"></li>
+                            <li class="controls__color js-controls__color yellow"></li>
+                            <li class="controls__color js-controls__color light-green"></li>
+                            <li class="controls__color js-controls__color green"></li>
+                            <li class="controls__color js-controls__color light-blue"></li>
+                            <li class="controls__color js-controls__color blue"></li>
+                            <li class="controls__color js-controls__color pink"></li>
+                            <li class="controls__color js-controls__color purple"></li>
+                            <li class="controls__color js-controls__color brown"></li>
+                            <li class="controls__color js-controls__color gray"></li>
+                            <li class="controls__color js-controls__color black controls__color--selected"></li>
+                        </ul>
+
+                        <div class="round-controls">
+                            <!-- <span id="timer">45</span> -->
+                            <button class="round-controls__button round-controls__button--share share-facebook js-share-facebook"><span class="icon-facebook"></span></button>
+                            <a class="round-controls__button round-controls__button--share share-twitter js-share-twitter" href="http://twitter.com/share?url=http%3A%2F%2Fpokedraw.net" data-dnt="true"><span class="icon-twitter"></span></a>
+                            <a href="#" class="round-controls__button round-controls__button--save js-save" download="#"><span class="icon-disk"></span>Save</a>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="sbp">
+                    <p class="sbp__header">See the latest drawings of&nbsp;</p>
+                    <select class="sbp__dropdown js-sbp__dropdown" name="pokemon-list">
+                        <option value="0">Choose a Pok&#xe9;mon...</option>
+                        <!-- Dropdown gets populated with a list of all Pokemon on pageload. -->
+                    </select>
+                </section>
+
+            </div>
+
+                <section class="sbp-slider js-sbp-slider">
+                    <!--Here's where drawings get dynamically added on pageload. -->
+                    <a class="sbp-slider__button sbp-slider__button--gallery" href="gallery.html">See more<br/>in the Gallery!</a>
+                </section>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__content">
+                    <ul class="footer__link-list">
+                        <li><a href="gallery.html">Gallery</a> - See all the most recent drawings!</li>
+                        <li><a href="kids.html">Kid safe version</a> - Where children can play &amp; view safely.</li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                    <form id="dropdownDonateButton" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHPwYJKoZIhvcNAQcEoIIHMDCCBywCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAdhPBEcsVRcSMbaUH7x/mVaid7FthsK49p0/1QbaW/21odNd+nx6DR0kg5aZmL0YMgpJqxePch7VFhnfIQstL0ke1tf9tTwAmzbheHKREs403tflsIohk4YZhHslwSW0YfVs4D+cjDIwy4QHNvZT1KEXByuj1PwjtnJMaXp3TyvjELMAkGBSsOAwIaBQAwgbwGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIRY83aPONbpWAgZib0Ak2bjnaRjZebIgWXR9OwKU58MdfodGsIgriDq2+usFGY/UgpQIXrnyWiX3kkF6zBojxjDyOGo3pN0TbUaFBOT74WPmqSe/NLf9wzsn4Gk2GfiKYKK8cOURP+9WusylrM9JK2frXM1aVcbhTcqM7yKzw2xqpHoiy4vxuV3S4gKdEeWAuobQoaN9kxeJLYgxe70GMak+JZaCCA4cwggODMIIC7KADAgECAgEAMA0GCSqGSIb3DQEBBQUAMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTAeFw0wNDAyMTMxMDEzMTVaFw0zNTAyMTMxMDEzMTVaMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwUdO3fxEzEtcnI7ZKZL412XvZPugoni7i7D7prCe0AtaHTc97CYgm7NsAtJyxNLixmhLV8pyIEaiHXWAh8fPKW+R017+EmXrr9EaquPmsVvTywAAE1PMNOKqo2kl4Gxiz9zZqIajOm1fZGWcGS0f5JQ2kBqNbvbg2/Za+GJ/qwUCAwEAAaOB7jCB6zAdBgNVHQ4EFgQUlp98u8ZvF71ZP1LXChvsENZklGswgbsGA1UdIwSBszCBsIAUlp98u8ZvF71ZP1LXChvsENZklGuhgZSkgZEwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAgV86VpqAWuXvX6Oro4qJ1tYVIT5DgWpE692Ag422H7yRIr/9j/iKG4Thia/Oflx4TdL+IFJBAyPK9v6zZNZtBgPBynXb048hsP16l2vi0k5Q2JKiPDsEfBhGI+HnxLXEaUWAcVfCsQFvd2A1sxRr67ip5y2wwBelUecP3AjJ+YcxggGaMIIBlgIBATCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE0MDcyNTIzMzAzOFowIwYJKoZIhvcNAQkEMRYEFM7UT9Bj00prBf6R0iorb19vMft1MA0GCSqGSIb3DQEBAQUABIGAGmjU3xacJU61dQXhTV2g9PLZCdD3T/QDmFL9e2fYqrQoNzlfZdO5uVKjsyBYl/gd6mZtjYgXY+8uZ9quKpIEuu7zh+Ixvi/QmCNx4D+zNYxjg+kd8XpVer5MGlmwHjX1zIoVVTGr2ZTxKNt0CJm3v5+ChMhg9KwGfcbGL7+QFZ4=-----END PKCS7-----">
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="vertical-align: middle;">
+                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"><span>if you're having a great time!</span>
+                    </form>
+                    <p><strong>20,000,000</strong> Pokedraws and counting!</p>
+                    <p>Pok&#xe9;mon and all respective names are &trade; &amp; &copy; of Nintendo 1996-2015</p>
+                </div>
+                <div class="footer__byline">Made by <a href="http://jamestw.net">James TW</a></div>
+            </div>
+        </footer>
+
+    </div> <!-- close .content-wrapper -->
+
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
+    <script src="/js/min/sketch.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/min/app.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52635684-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
 
 </body>
 </html>
