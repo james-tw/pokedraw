@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "body-parser": "~1.8.1",
+    "cloudinary": "^1.4.4",
     "cookie-parser": "~1.3.3",
     "debug": "~2.0.0",
     "ejs": "~0.8.5",
