@@ -266,7 +266,6 @@ $(document).ready(function() {
         $('.hero').slideDown('fast');
 
         $('.buy-button').on('click', function (e) {
-            $buyButton = $(this);
             ga('send', 'event', 'buy-button-click', 'click');
 
             if (uploadedImageURL) {
@@ -274,7 +273,7 @@ $(document).ready(function() {
             } else {
 
                 // Get dataURL info from canvas
-                var dataURL = canvas.toDataURL('image/png')
+                var dataURL = canvas.toDataURL('image/png');
 
                 // TODO: Create a "LOADING" page rather than taking the user to a blank page.
                 var newWindow = window.open('', '_blank');
@@ -298,12 +297,9 @@ $(document).ready(function() {
                     complete: function () {
 
                     }
-                })
-            }
-
-           
-                
-        })
+                });
+            }   
+        });
     }
 
     function getuploadedImageURL(imageURL, isTemplateBuffet) {
@@ -444,7 +440,7 @@ $(document).ready(function() {
     })();
 
     //Twitter Share button
-    $('.js-share-twitter').click(function(event) {
+    $('.js-share-twitter').click(function() {
         var width  = 575,
             height = 400,
             left   = ($(window).width()  - width)  / 2,
