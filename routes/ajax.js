@@ -2,6 +2,24 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 
+var cloudinary = require('cloudinary');
+
+cloudinary.config({
+    cloud_name: 'pokedraw',
+    'api_key': '161199926885557',
+    'api_secret': 'bdnZvQbdDPUOBw5PcvLk2yzg3VY'
+})
+
+router.post('/cloudinaryUpload', function (req, res, next) {
+    cloudinary.uploader.upload(req.body.imgBase64)
+        .then(function(result) { 
+            res.send(result.url);
+        })
+        .catch(function (error) {
+            console.warn(error);
+        });
+})
+
 /* GET home page. */
 router.post('/saveImage', function(req, res,next) {
     var collection = req.db.get('images');

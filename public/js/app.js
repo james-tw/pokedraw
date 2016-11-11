@@ -8,7 +8,7 @@ $(document).ready(function() {
         sharePic,
         $headerSlider = $('.js-header__flickity-slider'),
         $sbpSlider = $('.js-sbp-slider'),
-        zazzleURL;
+        uploadedImageURL;
     (function init() {
         $headerSlider.flickity({
             wrapAround: true,
@@ -74,7 +74,7 @@ $(document).ready(function() {
         $canvas.sketch().clear();
         $canvas.css('pointer-events', 'auto');
         //Reset the timer and get a new Pokemon to draw.
-        sec = 45;
+        sec = 5;
         //If on mobile, Scroll to the canvas element.
         if ($('.pip__container').css('display') === 'block') {
             $('html,body').animate({
@@ -258,7 +258,7 @@ $(document).ready(function() {
     function hidePurchaseHero() {
         $('.hero__buy-pitch').addClass('hide');
 
-        zazzleURL = undefined;
+        uploadedImageURL = undefined;
     }
 
     function showPurchaseHero() {
@@ -269,46 +269,36 @@ $(document).ready(function() {
             $buyButton = $(this);
             ga('send', 'event', 'buy-button-click', 'click');
 
-            if (zazzleURL) {
-                window.open(zazzleURL, '_blank');
+            if (uploadedImageURL) {
+                window.open(uploadedImageURL, '_blank');
             } else {
-                // Show spinner?
-                // $buyButton.text('Uploading...');
 
                 // Get dataURL info from canvas
-                var imgurDataURL = canvas.toDataURL('image/png', 0.9).split(',')[1];
+                var dataURL = canvas.toDataURL('image/png')
 
                 // TODO: Create a "LOADING" page rather than taking the user to a blank page.
                 var newWindow = window.open('', '_blank');
 
-                // Upload picture to imgur
                 $.ajax({
-                    url: 'https://api.imgur.com/3/image',
-                    type: 'post',
-                    headers: {
-                        Authorization: 'Client-ID 0179df3db8add13'
-                    },
+                    type: "POST",
+                    url: "/ajax/cloudinaryUpload",
                     data: {
-                        image: imgurDataURL
+                        imgBase64: dataURL
                     },
-                    dataType: 'json',
-                    success: function(response) {
-                        if(response.success) {
-                            // build out Zazzle URL using imgur link
-                            zazzleURL = getZazzleURL(response.data.link, true);
-                            // Open new tab with zazzle url
-                            newWindow.location.assign(zazzleURL);
-                            ga('send', 'event', 'imgur-upload-success', 'trigger');
-                        }
+                    success: function (url) {
+                        // Build Zazzle link and open it in the fresh window.
+                        uploadedImageURL = getuploadedImageURL(url, true);
+                        newWindow.location.assign(uploadedImageURL);
+
+                        ga('send', 'event', 'image-upload-success', 'trigger');
                     },
                     error: function (error) {
-                        // Handle error
+                        console.error(error);
                     },
                     complete: function () {
-                        // Hide spinner?
-                        // $buyButton.text('Check it out!');
+
                     }
-                });
+                })
             }
 
            
@@ -316,9 +306,9 @@ $(document).ready(function() {
         })
     }
 
-    function getZazzleURL(imageURL, isTemplateBuffet) {
+    function getuploadedImageURL(imageURL, isTemplateBuffet) {
         if (isTemplateBuffet) {
-            return 'http://www.zazzle.com/api/create/at-238661179973446865?rf=238661179973446865&ax=DesignBlast&sr=250747147674160458&cg=196659863177995039&t__useQpc=false&ed=true&t__smart=false&continueUrl=http%3A%2F%2Fwww.zazzle.com%2Fpokedraw&fwd=ProductPage&tc=buyHero&ic=&t_image0_iid=' + imageURL;
+            return 'http://www.zazzle.com/api/create/at-238661179973446865?rf=238661179973446865&ax=DesignBlast&sr=250747147674160458&cg=196659863177995039&t__useQpc=false&ed=true&t__smart=false&continueUrl=http%3A%2F%2Fwww.zazzle.com%2Fpokedraw&fwd=ProductPage&tc=buyHero&ic=&t_image0_iid=' + encodeURIComponent(imageURL);
         } else {
             return 'http://www.zazzle.com/api/create/at-238661179973446865?rf=238661179973446865&ax=Linkover&pd=235436136963403667&fwd=ProductPage&ed=true&tc=buyHero&ic=&t_image0_iid=' + encodeURIComponent(imageURL);
         }
